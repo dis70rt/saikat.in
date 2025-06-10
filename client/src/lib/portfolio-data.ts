@@ -47,7 +47,7 @@ export const portfolioData = {
       "title": "SynqIt",
       "description": "SynqIt is a music streaming mobile application that allows users to stream music, share with friends, listen together with friends in a sync",
       "shortDesc": "SynqIt is a music streaming app that lets users stream songs, share tracks, and listen together with friends in real-time sync.",
-      "img": "/synqit.jpeg",
+      "img": "/synqit.png",
       "technologies": ["Flutter", "Firebase", "Python", "Redis", "PostgreSQL", "REST APIs", "gRPC", "Sockets"],
       "link": "",
       "href": "",
