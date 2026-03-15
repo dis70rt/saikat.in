@@ -1,6 +1,6 @@
 <table>
 <tr>
-<td width="50">
+<td width="120">
 
 <img src="public/favicon.png" alt="Favicon" width="64" />
 
