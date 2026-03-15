@@ -5,7 +5,7 @@ import path from "path";
 
 
 const port = process.env.PORT ? Number(process.env.PORT) : 5173;
-const basePath = process.env.BASE_PATH || "/saikat.in/";
+const basePath = process.env.BASE_PATH || "/";
 
 export default defineConfig({
   base: basePath,
