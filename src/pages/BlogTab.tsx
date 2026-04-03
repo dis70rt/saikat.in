@@ -165,13 +165,13 @@ export function BlogTab({ posts, postsLoading }: BlogTabProps) {
         >
           <div className="flex items-start justify-between gap-3">
             <div className="flex-1 min-w-0">
-              <h3 className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
+              <h3 className="text-base font-semibold text-foreground group-hover:text-primary transition-colors">
                 {post.title}
               </h3>
-              <p className="text-xs text-muted-foreground mt-1.5 leading-relaxed">
+              <p className="text-sm text-muted-foreground mt-1.5 leading-relaxed">
                 {post.brief}
               </p>
-              <div className="flex items-center gap-3 mt-2 text-[10px] text-muted-foreground">
+              <div className="flex items-center gap-3 mt-2 text-xs text-muted-foreground">
                 <span>{new Date(post.publishedAt).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })}</span>
                 <span className="flex items-center gap-1">
                   <Clock size={9} />

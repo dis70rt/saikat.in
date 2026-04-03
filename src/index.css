@@ -31,7 +31,7 @@
   --card: 0 0% 9%;
   --card-foreground: 0 0% 90%;
   --muted: 0 0% 12%;
-  --muted-foreground: 0 0% 55%;
+  --muted-foreground: 0 0% 62%;
   --accent: 0 0% 14%;
   --accent-foreground: 0 0% 90%;
   --primary: 270 60% 72%;
@@ -68,8 +68,32 @@
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
     font-family: var(--app-font-mono);
+    font-size: 14px;
     -webkit-font-smoothing: antialiased;
   }
+
+  @media (min-width: 1024px) {
+    body { font-size: 15px; }
+  }
+  @media (min-width: 1440px) {
+    body { font-size: 16px; }
+  }
+}
+
+/* Tab content enter animation */
+@keyframes tabContentEnter {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tab-content-enter {
+  animation: tabContentEnter 0.18s ease-out;
 }
 
 /* Terminal cursor blink */

@@ -54,7 +54,7 @@ export default function App() {
                     <button
                       key={tab.id}
                       onClick={() => setActiveTab(tab.id)}
-                      className={`flex items-center gap-2 px-4 py-2.5 text-xs border-r border-border whitespace-nowrap transition-colors flex-shrink-0 ${
+                      className={`flex items-center gap-2 px-4 py-2.5 text-sm border-r border-border whitespace-nowrap transition-colors flex-shrink-0 ${
                         activeTab === tab.id
                           ? "bg-background text-foreground border-b-2 border-b-primary -mb-px"
                           : "text-muted-foreground hover:text-foreground hover:bg-muted/40"
@@ -66,11 +66,13 @@ export default function App() {
                   ))}
                 </div>
 
-                <div className="p-5">
-                  {activeTab === "about.ts"    && <AboutTab posts={posts} postsLoading={postsLoading} onNavigate={(tab) => setActiveTab(tab as Tab)} />}
-                  {activeTab === "projects.md" && <ProjectsTab />}
-                  {activeTab === "journey.md"  && <JourneyTab />}
-                  {activeTab === "blog.md"     && <BlogTab posts={posts} postsLoading={postsLoading} />}
+                <div className="p-5 sm:p-6" key={activeTab}>
+                  <div className="tab-content-enter">
+                    {activeTab === "about.ts"    && <AboutTab posts={posts} postsLoading={postsLoading} onNavigate={(tab) => setActiveTab(tab as Tab)} />}
+                    {activeTab === "projects.md" && <ProjectsTab />}
+                    {activeTab === "journey.md"  && <JourneyTab />}
+                    {activeTab === "blog.md"     && <BlogTab posts={posts} postsLoading={postsLoading} />}
+                  </div>
                 </div>
               </div>
             </div>

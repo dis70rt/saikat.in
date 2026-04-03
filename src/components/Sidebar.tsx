@@ -66,28 +66,28 @@ export function Sidebar() {
             )}
           </div>
           <div>
-            <h1 className="text-sm font-semibold text-foreground">{profile.name}</h1>
+            <h1 className="text-base font-semibold text-foreground">{profile.name}</h1>
             <p className="text-xs text-primary mt-0.5">{profile.title}</p>
           </div>
         </div>
 
-        <div className="flex items-center gap-1.5 text-xs text-muted-foreground mt-2">
+        <div className="flex items-center gap-1.5 text-sm text-muted-foreground mt-2">
           <MapPin size={11} />
           <span>{profile.location}</span>
         </div>
 
-        <p className="text-xs text-muted-foreground leading-relaxed mt-2">{profile.bio}</p>
+        <p className="text-sm text-muted-foreground leading-relaxed mt-2">{profile.bio}</p>
       </div>
 
       {/* Tech stack */}
       {profile.techStack.length > 0 && (
         <div className="border border-border rounded-sm bg-card p-3 sm:p-4 flex flex-col gap-3">
-          <p className="text-[10px] text-muted-foreground uppercase tracking-widest">Tech Stack</p>
+          <p className="text-xs text-muted-foreground uppercase tracking-widest">Tech Stack</p>
           <div className="flex flex-wrap gap-1.5">
             {profile.techStack.map((tech) => (
               <span
                 key={tech.name}
-                className={`text-[11px] border rounded-sm px-2 py-0.5 ${categoryColor[tech.category] ?? "text-muted-foreground border-border bg-muted/30"}`}
+                className={`text-xs border rounded-sm px-2 py-0.5 ${categoryColor[tech.category] ?? "text-muted-foreground border-border bg-muted/30"}`}
               >
                 {tech.name}
               </span>
@@ -111,10 +111,10 @@ export function Sidebar() {
       {/* Interests */}
       {profile.interests.length > 0 && (
         <div className="border border-border rounded-sm bg-card p-4 flex flex-col gap-3">
-          <p className="text-[10px] text-muted-foreground uppercase tracking-widest">Interests</p>
+          <p className="text-xs text-muted-foreground uppercase tracking-widest">Interests</p>
           <div className="flex flex-col gap-1.5">
             {profile.interests.map((interest) => (
-              <div key={interest} className="flex items-center gap-2 text-xs text-foreground">
+              <div key={interest} className="flex items-center gap-2 text-sm text-foreground">
                 <span className="text-primary text-[10px]">▸</span>
                 {interest}
               </div>
@@ -128,7 +128,7 @@ export function Sidebar() {
 
       {/* Socials */}
       <div className="border border-border rounded-sm bg-card p-4 flex flex-col gap-3">
-        <p className="text-[10px] text-muted-foreground uppercase tracking-widest">Socials</p>
+        <p className="text-xs text-muted-foreground uppercase tracking-widest">Socials</p>
         <div className="flex gap-2 flex-wrap">
           {profile.socials.map((s) => {
             const Icon = iconMap[s.icon] || Mail;
@@ -154,7 +154,7 @@ export function Sidebar() {
             target="_blank"
             rel="noopener noreferrer"
             download
-            className="flex items-center justify-center gap-2 text-xs border border-primary/40 text-primary rounded-sm py-1.5 px-3 hover:bg-primary/10 transition-colors"
+            className="flex items-center justify-center gap-2 text-sm border border-primary/40 text-primary rounded-sm py-1.5 px-3 hover:bg-primary/10 transition-colors"
           >
             <Download size={12} />
             Download Resume

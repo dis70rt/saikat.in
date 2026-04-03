@@ -20,12 +20,12 @@ export function AboutTab({ posts, postsLoading, onNavigate }: AboutTabProps) {
   return (
     <div className="flex flex-col gap-6">
       <section>
-        <h2 className="text-xs text-primary uppercase tracking-widest mb-3 flex items-center gap-2">
+        <h2 className="text-sm text-primary uppercase tracking-widest mb-3 flex items-center gap-2">
           <span>►</span> About me
         </h2>
-        <div className="border border-border rounded-sm bg-card p-4">
-          {/* <p className="text-xs text-muted-foreground leading-relaxed">{profile.bio}</p> */}
-          <p className="text-xs text-muted-foreground leading-relaxed mt-2">
+        <div className="border border-border rounded-sm bg-card p-4 sm:p-5">
+          {/* <p className="text-sm text-muted-foreground leading-relaxed">{profile.bio}</p> */}
+          <p className="text-sm text-muted-foreground leading-relaxed">
             I build backend systems that stay fast under pressure. Most of my time goes into Go, real-time architectures, and databases. The rest goes into chess ♟️, sketching ✏️, strong coffee ☕, and traveling ✈️ to find great food 🍜.
           </p>
         </div>
@@ -33,7 +33,7 @@ export function AboutTab({ posts, postsLoading, onNavigate }: AboutTabProps) {
 
       {hasPosts && (
         <section>
-          <h2 className="text-xs text-primary uppercase tracking-widest mb-3 flex items-center gap-2">
+          <h2 className="text-sm text-primary uppercase tracking-widest mb-3 flex items-center gap-2">
             <span>≡</span> Latest Posts
           </h2>
           <div className="flex flex-col gap-2">
@@ -44,10 +44,10 @@ export function AboutTab({ posts, postsLoading, onNavigate }: AboutTabProps) {
                 className="border border-border rounded-sm bg-card p-3 flex items-start justify-between gap-3 cursor-pointer hover:border-primary/50 transition-colors"
               >
                 <div className="flex-1 min-w-0">
-                  <p className="text-xs font-medium text-foreground">{post.title}</p>
-                  <p className="text-[10px] text-muted-foreground mt-0.5 line-clamp-1">{post.brief}</p>
+                  <p className="text-sm font-medium text-foreground">{post.title}</p>
+                  <p className="text-xs text-muted-foreground mt-0.5 line-clamp-1">{post.brief}</p>
                 </div>
-                <span className="text-[10px] text-muted-foreground flex-shrink-0">
+                <span className="text-xs text-muted-foreground flex-shrink-0">
                   {new Date(post.publishedAt).toLocaleDateString("en-US", { month: "numeric", day: "numeric", year: "numeric" })}
                 </span>
               </div>
@@ -58,7 +58,7 @@ export function AboutTab({ posts, postsLoading, onNavigate }: AboutTabProps) {
 
       {hasProjects && (
         <section>
-          <h2 className="text-xs text-primary uppercase tracking-widest mb-3 flex items-center gap-2">
+          <h2 className="text-sm text-primary uppercase tracking-widest mb-3 flex items-center gap-2">
             <span>□</span> Latest Projects
           </h2>
           <div className="flex flex-col gap-2">
@@ -69,10 +69,10 @@ export function AboutTab({ posts, postsLoading, onNavigate }: AboutTabProps) {
                 className="border border-border rounded-sm bg-card p-3 flex items-start justify-between gap-3 cursor-pointer hover:border-primary/50 transition-colors"
               >
                 <div className="flex-1 min-w-0">
-                  <p className="text-xs font-medium text-foreground">{project.title}</p>
-                  <p className="text-[10px] text-muted-foreground mt-0.5">{project.description}</p>
+                  <p className="text-sm font-medium text-foreground">{project.title}</p>
+                  <p className="text-xs text-muted-foreground mt-0.5">{project.description}</p>
                 </div>
-                <span className="text-[10px] text-muted-foreground flex-shrink-0">
+                <span className="text-xs text-muted-foreground flex-shrink-0">
                   {new Date(project.date).toLocaleDateString("en-US", { month: "numeric", day: "numeric", year: "numeric" })}
                 </span>
               </div>
@@ -83,21 +83,21 @@ export function AboutTab({ posts, postsLoading, onNavigate }: AboutTabProps) {
 
       {hasExperience && (
         <section>
-          <h2 className="text-xs text-primary uppercase tracking-widest mb-3 flex items-center gap-2">
+          <h2 className="text-sm text-primary uppercase tracking-widest mb-3 flex items-center gap-2">
             <span>◈</span> Work Experience
           </h2>
           <div className="flex flex-col gap-2">
             {experience.map((job, i) => (
               <div key={i} className="border border-border rounded-sm bg-card p-3">
                 <div className="flex items-center justify-between gap-2 mb-1">
-                  <span className={`text-xs font-semibold ${job.current ? "text-primary" : "text-foreground"}`}>
+                  <span className={`text-sm font-semibold ${job.current ? "text-primary" : "text-foreground"}`}>
                     {job.company}
                   </span>
-                  <span className="text-[10px] text-muted-foreground">{job.period}</span>
+                  <span className="text-xs text-muted-foreground">{job.period}</span>
                 </div>
-                <p className="text-[10px] text-muted-foreground">{job.role}</p>
+                <p className="text-xs text-muted-foreground">{job.role}</p>
                 {job.description && (
-                  <p className="text-[10px] text-muted-foreground mt-1 leading-relaxed">{job.description}</p>
+                  <p className="text-xs text-muted-foreground mt-1 leading-relaxed">{job.description}</p>
                 )}
               </div>
             ))}

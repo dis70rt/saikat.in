@@ -28,7 +28,7 @@ function LinkButton({ link }: { link: TProjectLink }) {
       target="_blank"
       rel="noopener noreferrer"
       onClick={(e) => e.stopPropagation()}
-      className={`flex items-center gap-1.5 text-[11px] border rounded-sm px-2.5 py-1.5 transition-colors whitespace-nowrap ${
+      className={`flex items-center gap-1.5 text-xs border rounded-sm px-2.5 py-1.5 transition-colors whitespace-nowrap ${
         LINK_STYLE[link.label] ?? DEFAULT_LINK_STYLE
       }`}
     >
@@ -58,7 +58,7 @@ function ProjectCard({
     >
       {/* Header */}
       <div className="flex items-start justify-between gap-2">
-        <h3 className="text-sm font-semibold text-foreground leading-snug">
+        <h3 className="text-base font-semibold text-foreground leading-snug">
           {project.title}
         </h3>
         {project.featured && (
@@ -71,7 +71,7 @@ function ProjectCard({
       {/* Description & Bullets */}
       <div className="flex-1 flex flex-col gap-2">
         {project.description && (
-          <p className="text-xs text-muted-foreground leading-relaxed">
+          <p className="text-sm text-muted-foreground leading-relaxed">
             {project.description}
           </p>
         )}
@@ -82,7 +82,7 @@ function ProjectCard({
               expanded ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
             }`}
           >
-            <ul className="list-disc list-inside text-xs text-muted-foreground leading-relaxed max-w-full space-y-1.5 ml-3">
+            <ul className="list-disc list-inside text-sm text-muted-foreground leading-relaxed max-w-full space-y-1.5 ml-3">
               {project.bullets.map((bullet, i) => (
                 <li key={i}>{bullet}</li>
               ))}
@@ -97,7 +97,7 @@ function ProjectCard({
           {project.tags.map((tag) => (
             <span
               key={tag}
-              className="flex items-center gap-1 text-[10px] text-muted-foreground bg-muted/60 px-1.5 py-0.5 rounded-sm"
+              className="flex items-center gap-1 text-xs text-muted-foreground bg-muted/60 px-1.5 py-0.5 rounded-sm"
             >
               <Tag size={8} />
               {tag}

@@ -18,7 +18,7 @@ export function JourneyTab() {
           const hasAny = journey.some((e) => e.kind === kind);
           if (!hasAny) return null;
           return (
-            <span key={kind} className="flex items-center gap-1.5 text-[10px] text-muted-foreground">
+            <span key={kind} className="flex items-center gap-1.5 text-xs text-muted-foreground">
               <span className={`w-2 h-2 rounded-full ${cfg.dot}`} />
               {cfg.label}
             </span>
@@ -47,14 +47,14 @@ export function JourneyTab() {
                   <div className="flex items-start justify-between gap-3 flex-wrap">
                     <div>
                       <div className="flex items-center gap-2 flex-wrap">
-                        <h3 className="text-xs font-semibold text-foreground">{entry.title}</h3>
+                        <h3 className="text-sm font-semibold text-foreground">{entry.title}</h3>
                         {entry.highlight && (
                           <span className={`text-[10px] border rounded-sm px-1.5 py-0.5 font-medium ${cfg.badge}`}>
                             {entry.highlight}
                           </span>
                         )}
                       </div>
-                      <p className="text-[11px] text-muted-foreground mt-0.5">
+                      <p className="text-xs text-muted-foreground mt-0.5">
                         {entry.org} &middot; {entry.period}
                       </p>
                     </div>
@@ -63,12 +63,12 @@ export function JourneyTab() {
                     </span>
                   </div>
 
-                  <p className="text-xs text-muted-foreground leading-relaxed">{entry.description}</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{entry.description}</p>
 
                   {entry.tags && entry.tags.length > 0 && (
                     <div className="flex flex-wrap gap-1.5 mt-1">
                       {entry.tags.map((tag) => (
-                        <span key={tag} className="text-[10px] text-muted-foreground bg-muted/50 border border-border rounded-sm px-1.5 py-0.5">
+                        <span key={tag} className="text-xs text-muted-foreground bg-muted/50 border border-border rounded-sm px-1.5 py-0.5">
                           {tag}
                         </span>
                       ))}

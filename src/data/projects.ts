@@ -35,13 +35,13 @@ export const projects: Project[] = [
   {
     id: "tradeorders",
     title: "TradeOrders – Order Matching Engine",
-    description: "Event-driven order matching backend using Kafka.",
+    description: "Event-driven trade clearing engine using Kafka microservices.",
     bullets: [
-      "Event-driven order matching backend using Kafka to decouple order ingestion from persistence.",
-      "Scaled throughput from 1k to 18k requests/sec with p95 latency < 220ms, validated using k6 load tests.",
-      "Sequential order processing per instrument via Kafka partitioning, avoiding locks in the matching logic."
+      "Built a trade clearing engine using four microservices and Kafka topics for order ingestion.",
+      "Scaled throughput to 18.8k requests/sec with p95 latency of 219ms, validated using k6 load tests.",
+      "Used Kafka key partitioning for lock-free sequential order matching per order book."
     ],
-    tags: ["Go", "Kafka", "Docker"],
+    tags: ["Go", "Kafka", "PostgreSQL", "Redis", "Docker"],
     date: "2025-10-01",
     featured: true,
     links: [
@@ -50,14 +50,14 @@ export const projects: Project[] = [
   },
   {
     id: "bluppi",
-    title: "Bluppi – Synchronized Music Streaming",
-    description: "Cross-platform real-time music streaming app.",
+    title: "Bluppi – Shared Music Playback",
+    description: "Distributed music streaming backend with real-time synchronization.",
     bullets: [
-      "Cross-platform real-time Flutter app achieving < 200 ms audio synchronization drift across multiple devices.",
-      "Implemented WebSocket for persistent control connections and MQTT for lightweight pub/sub messaging.",
-      "Optimized backend latency using Redis caching for session states and active track management."
+      "Built a distributed music streaming backend in Go with PTP style clock synchronization.",
+      "Developed a real-time presence gateway with gRPC handling 51k concurrent connections.",
+      "Developed an ephemeral chat system utilizing Redis Pub/Sub for real-time messaging."
     ],
-    tags: ["Flutter", "Python", "PostgreSQL", "Redis"],
+    tags: ["Go", "gRPC", "PostgreSQL", "Redis", "Solr", "Flutter"],
     date: "2025-05-01",
     featured: true,
     links: [
@@ -74,17 +74,17 @@ export const projects: Project[] = [
       "Achieved 10x speedup on large datasets by implementing statistical sampling with controlled error bounds."
     ],
     tags: ["Python", "PostgreSQL"],
-    date: "2025-09-14",
+    date: "2025-08-14",
     links: [
       { label: "Open Source", url: "https://github.com/dis70rt/qql" },
     ],
   },
   {
     id: "wizflow",
-    title: "WizFlow - Workflow Engine",
+    title: "WizFlow – Workflow Engine",
     description: "Asynchronous workflow engine with a drag-and-drop UI.",
     bullets: [
-      "Asynchronous workflow engine with a drag-and-drop React interface for complex node-based execution.",
+      "Built an asynchronous workflow engine using React, FastAPI, and Redis task queuing.",
       "Won 2nd Place at Nutanix Hackathon 2025 for system reliability and real-time execution logs."
     ],
     tags: ["Python", "FastAPI", "Redis"],
@@ -92,13 +92,13 @@ export const projects: Project[] = [
   },
   {
     id: "subpaper",
-    title: "SubPaper - Reddit Wallpapers App",
-    description: "Flutter app on the Play Store for Reddit wallpapers.",
+    title: "SubPaper – Reddit Wallpapers App",
+    description: "Flutter wallpaper app on the Play Store.",
     bullets: [
-      "Published a Flutter app on the Play Store with 300+ downloads and a 4.5 user rating.",
-      "Integrated Reddit APIs for content delivery and AdMob for in-app monetization."
+      "Published a Flutter wallpaper app on the Play Store with over 300 downloads and a 4.5 rating.",
+      "Integrated Reddit APIs for dynamic content delivery and AdMob for monetization."
     ],
-    tags: ["Flutter"],
+    tags: ["Flutter", "Go"],
     date: "2024-04-01",
     links: [
       { label: "Play Store", url: "https://app.saikat.in/subpaper" },
