@@ -1,5 +1,7 @@
 ---
 import "../styles/global.css";
+import { SIGNATURE_PATHS, SIGNATURE_VIEWBOX, LETTER_DURATION, LETTER_STAGGER } from "@/data/signature-paths";
+import { ClientRouter } from "astro:transitions";
 
 interface Props {
   title?: string;
@@ -13,6 +15,7 @@ const {
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL("/avatar.png", Astro.site);
+const drawDuration = LETTER_STAGGER * (SIGNATURE_PATHS.length - 1) + LETTER_DURATION;
 ---
 
 <!doctype html>
@@ -25,7 +28,6 @@ const ogImage = new URL("/avatar.png", Astro.site);
     <meta name="author" content="Saikat Das" />
     <meta name="robots" content="index,follow" />
     <link rel="canonical" href={canonicalUrl.href} />
-
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Saikat Das" />
     <meta property="og:title" content={title} />
@@ -33,50 +35,46 @@ const ogImage = new URL("/avatar.png", Astro.site);
     <meta property="og:url" content={canonicalUrl.href} />
     <meta property="og:image" content={ogImage.href} />
     <meta property="og:image:alt" content="Saikat Das portfolio" />
-
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage.href} />
-
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <ClientRouter />
   </head>
   <body>
-    <div
-      id="loader"
-      class="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[hsl(235,14%,10%)]"
-    >
-      <div class="font-mono text-sm max-w-md w-full px-8 mb-8">
-        <div class="terminal-line text-muted-foreground" style="animation-delay: 0s">
-          <span class="text-primary">❯</span> init saikat.in
+    <div id="loader" class="fixed inset-0 z-[9999] flex items-center justify-center bg-background" transition:persist>
+      <div class="flex flex-col items-center gap-6 w-full max-w-sm px-8 select-none">
+        <svg
+          viewBox={SIGNATURE_VIEWBOX}
+          class="w-full"
+          aria-hidden="true"
+          stroke="hsl(var(--primary))"
+          stroke-width="2"
+          stroke-linecap="round"
+          fill="transparent"
+        >
+          {SIGNATURE_PATHS.map((d, i) => {
+            const delay = i * LETTER_STAGGER;
+            return (
+              <path
+                d={d}
+                class="signature-path"
+                style={`--path-delay: ${delay}s; --path-duration: ${LETTER_DURATION}s`}
+              />
+            );
+          })}
+        </svg>
+        <div class="w-32 h-px bg-border overflow-hidden rounded-full">
+          <div class="h-full bg-primary rounded-full" style={`animation: progressBar ${drawDuration}s linear forwards`}></div>
         </div>
-        <div class="terminal-line text-muted-foreground" style="animation-delay: 0.5s">
-          <span class="text-primary">❯</span> loading modules<span class="cursor-blink">_</span>
-        </div>
-        <div class="terminal-line" style="animation-delay: 1.1s">
-          <span class="text-[var(--tn-green)]">✓</span>
-          <span class="text-muted-foreground"> build: success</span>
-        </div>
-      </div>
-      <div
-        id="loader-name"
-        class="text-3xl sm:text-4xl font-bold tracking-[0.15em] text-primary opacity-0"
-        style="animation: loaderNameIn 0.6s ease-out 1.6s forwards, loaderGlow 2s ease-in-out 2s infinite"
-      >
-        SAIKAT DAS
       </div>
     </div>
 
-    <div
-      id="app-shell"
-      class="min-h-screen bg-background text-foreground opacity-0 transition-opacity duration-500"
-    >
+    <div id="app-shell" class="min-h-screen bg-background text-foreground opacity-0 transition-opacity duration-300">
       <main class="flex flex-col items-stretch min-h-screen p-2 sm:p-4 md:p-8">
         <div class="w-full max-w-6xl mx-auto">
           <div class="flex flex-col lg:flex-row gap-4 items-stretch lg:items-start">
@@ -85,6 +83,27 @@ const ogImage = new URL("/avatar.png", Astro.site);
         </div>
       </main>
     </div>
+
+    <style>
+      .signature-path {
+        stroke-dasharray: 2000;
+        stroke-dashoffset: 2000;
+        opacity: 0;
+        animation:
+          showPath 0.001s var(--path-delay) forwards,
+          drawPath var(--path-duration) var(--path-delay) linear forwards;
+      }
+      @keyframes showPath {
+        to { opacity: 1; }
+      }
+      @keyframes drawPath {
+        to { stroke-dashoffset: 0; }
+      }
+      @keyframes progressBar {
+        from { width: 0%; }
+        to { width: 100%; }
+      }
+    </style>
 
     <script>
       function runLoader() {
@@ -99,17 +118,25 @@ const ogImage = new URL("/avatar.png", Astro.site);
           return;
         }
 
+        const totalMs = (0.24 * 8 + 0.36) * 1000 + 300;
         setTimeout(() => {
-          loader.style.transition = "opacity 0.5s ease-out";
+          loader.style.transition = "opacity 0.25s ease-out";
           loader.style.opacity = "0";
           shell.style.opacity = "1";
           setTimeout(() => {
             loader.remove();
             sessionStorage.setItem("loader-seen", "1");
-          }, 500);
-        }, 2800);
+          }, 250);
+        }, totalMs);
       }
       runLoader();
+
+      document.addEventListener("astro:after-swap", () => {
+        const loader = document.getElementById("loader");
+        if (loader) loader.remove();
+        const shell = document.getElementById("app-shell");
+        if (shell) shell.style.opacity = "1";
+      });
     </script>
   </body>
 </html>

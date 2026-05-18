@@ -99,23 +99,4 @@ export const journey: JourneyEntry[] = [
     tags: ["JEE"],
     highlight: "AIR 8,166",
   },
-  {
-    id: "dps-dhanbad",
-    kind: "education",
-    title: "CBSE Class XII: 87.20%",
-    org: "DPS Dhanbad",
-    period: "2022",
-    description: "Science stream.",
-    tags: ["CBSE"],
-  },
-  {
-    id: "codeforces",
-    kind: "achievement",
-    title: "Codeforces Pupil (Max Rating: 1282)",
-    org: "Codeforces",
-    period: "Present",
-    description: "Over 150 problems solved.",
-    tags: ["CP"],
-    highlight: "Pupil",
-  },
 ];
