@@ -1,0 +1,179 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --font-sans: var(--app-font-sans);
+  --font-mono: var(--app-font-mono);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+}
+
+:root {
+  --background: 235 16% 15%;
+  --foreground: 227 30% 75%;
+  --border: 228 22% 21%;
+  --card: 235 14% 10%;
+  --card-foreground: 227 30% 75%;
+  --muted: 228 23% 19%;
+  --muted-foreground: 228 22% 44%;
+  --accent: 265 85% 78%;
+  --accent-foreground: 235 16% 15%;
+  --primary: 220 90% 72%;
+  --primary-foreground: 235 16% 15%;
+  --input: 228 22% 21%;
+  --ring: 220 90% 72%;
+  --app-font-sans: 'Space Grotesk', sans-serif;
+  --app-font-mono: 'JetBrains Mono', monospace;
+  --radius: 0.25rem;
+
+  --tn-red: #f7768e;
+  --tn-orange: #ff9e64;
+  --tn-yellow: #e0af68;
+  --tn-green: #9ece6a;
+  --tn-cyan: #7dcfff;
+  --tn-blue: #7aa2f7;
+  --tn-purple: #bb9af7;
+  --tn-comment: #565f89;
+  --tn-selection: #283457;
+  --tn-terminal-black: #414868;
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: var(--app-font-sans);
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  @media (min-width: 1024px) {
+    body { font-size: 15px; }
+  }
+  @media (min-width: 1440px) {
+    body { font-size: 16px; }
+  }
+}
+
+@keyframes tabContentEnter {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.tab-content-enter {
+  animation: tabContentEnter 0.18s ease-out;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: hsl(var(--background)); }
+::-webkit-scrollbar-thumb { background: hsl(var(--border)); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: hsl(var(--muted-foreground)); }
+
+@keyframes terminalLine {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.terminal-line {
+  opacity: 0;
+  animation: terminalLine 0.3s ease-out forwards;
+}
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+  opacity: 0;
+  animation: fadeSlideUp 0.4s ease-out forwards;
+}
+
+.blog-content h1,
+.blog-content h2,
+.blog-content h3 {
+  color: hsl(var(--foreground));
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+.blog-content h1 { font-size: 1.25rem; }
+.blog-content h2 { font-size: 1.1rem; }
+.blog-content h3 { font-size: 1rem; }
+.blog-content p {
+  color: hsl(var(--muted-foreground));
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+.blog-content code {
+  background: hsl(var(--muted));
+  padding: 0.1rem 0.3rem;
+  border-radius: 2px;
+  font-size: 0.85em;
+  color: var(--tn-red);
+  font-family: var(--app-font-mono);
+}
+.blog-content pre {
+  background: hsl(var(--muted));
+  border: 1px solid hsl(var(--border));
+  border-radius: 4px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+  font-family: var(--app-font-mono);
+}
+.blog-content pre code {
+  background: none;
+  padding: 0;
+}
+.blog-content ul, .blog-content ol {
+  color: hsl(var(--muted-foreground));
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+.blog-content li { margin-bottom: 0.25rem; }
+
+@keyframes loaderFadeOut {
+  to { opacity: 0; visibility: hidden; }
+}
+
+@keyframes loaderLineIn {
+  from { opacity: 0; transform: translateX(-8px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes loaderGlow {
+  0%, 100% { text-shadow: 0 0 20px rgba(122, 162, 247, 0.3); }
+  50% { text-shadow: 0 0 40px rgba(122, 162, 247, 0.6), 0 0 80px rgba(122, 162, 247, 0.2); }
+}
+
+@keyframes loaderNameIn {
+  from { opacity: 0; transform: scale(0.95); letter-spacing: 0.3em; }
+  to { opacity: 1; transform: scale(1); letter-spacing: 0.15em; }
+}

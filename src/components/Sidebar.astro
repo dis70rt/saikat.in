@@ -1,0 +1,142 @@
+---
+import { profile } from "@/data/profile";
+import { Github, Linkedin, Mail, MapPin, User, Download, Code } from "lucide-react";
+
+const iconMap: Record<string, any> = {
+  github: Github,
+  linkedin: Linkedin,
+  mail: Mail,
+  code: Code,
+};
+
+const categoryColor: Record<string, string> = {
+  language:  "text-[var(--tn-blue)] border-[var(--tn-blue)]/20 bg-[var(--tn-blue)]/5",
+  framework: "text-[var(--tn-purple)] border-[var(--tn-purple)]/20 bg-[var(--tn-purple)]/5",
+  infra:     "text-[var(--tn-yellow)] border-[var(--tn-yellow)]/20 bg-[var(--tn-yellow)]/5",
+  database:  "text-[var(--tn-green)] border-[var(--tn-green)]/20 bg-[var(--tn-green)]/5",
+};
+
+const terminalLines = [
+  { prefix: true,  text: "go run ./cmd/connect",      delay: "0s",    muted: false },
+  { prefix: false, text: "» compiling...",             delay: "0.7s",  muted: true  },
+  { prefix: false, text: "» build: success",           delay: "1.4s",  muted: true  },
+  { prefix: false, text: "» listening for contact...", delay: "2.1s",  muted: false },
+];
+---
+
+<aside class="w-full lg:w-72 flex-shrink-0 flex flex-col gap-4 lg:sticky lg:top-8 lg:self-start lg:max-h-[calc(100vh-4rem)] lg:overflow-y-auto">
+  <div class="border border-border rounded-sm bg-card p-4 sm:p-5 flex flex-col gap-4">
+    <div class="flex items-center gap-3 flex-wrap">
+      <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-sm border border-border bg-muted flex items-center justify-center flex-shrink-0 overflow-hidden">
+        {profile.avatar ? (
+          <img src={profile.avatar} alt={profile.name} class="w-full h-full object-cover rounded-sm" loading="lazy" />
+        ) : (
+          <User size={24} className="text-muted-foreground" />
+        )}
+      </div>
+      <div>
+        <h1 class="text-base font-semibold text-foreground">{profile.name}</h1>
+        <p class="text-xs text-primary mt-0.5">{profile.title}</p>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-1.5 text-sm text-muted-foreground mt-2">
+      <MapPin size={11} />
+      <span>{profile.location}</span>
+    </div>
+
+    <p class="text-sm text-muted-foreground leading-relaxed mt-2">{profile.bio}</p>
+  </div>
+
+  {profile.techStack.length > 0 && (
+    <div class="border border-border rounded-sm bg-card p-3 sm:p-4 flex flex-col gap-3">
+      <p class="text-xs text-muted-foreground uppercase tracking-widest">Tech Stack</p>
+      <div class="flex flex-wrap gap-1.5">
+        {profile.techStack.map((tech) => (
+          <span class={`text-xs border rounded-sm px-2 py-0.5 ${categoryColor[tech.category] ?? "text-muted-foreground border-border bg-muted/30"}`}>
+            {tech.name}
+          </span>
+        ))}
+      </div>
+      <div class="flex flex-wrap gap-x-2 gap-y-1 mt-0.5">
+        {(["language", "framework", "infra", "database"] as const).map((cat) => {
+          const hasAny = profile.techStack.some((t) => t.category === cat);
+          if (!hasAny) return null;
+          return (
+            <span class={`flex items-center gap-1 text-[9px] ${categoryColor[cat]}`}>
+              <span class="w-1.5 h-1.5 rounded-full inline-block" style={{ borderColor: "currentColor", background: "currentColor", opacity: 0.5 }} />
+              {cat}
+            </span>
+          );
+        })}
+      </div>
+    </div>
+  )}
+
+  {profile.interests.length > 0 && (
+    <div class="border border-border rounded-sm bg-card p-4 flex flex-col gap-3">
+      <p class="text-xs text-muted-foreground uppercase tracking-widest">Interests</p>
+      <div class="flex flex-col gap-1.5">
+        {profile.interests.map((interest) => (
+          <div class="flex items-center gap-2 text-sm text-foreground">
+            <span class="text-primary text-[10px]">▸</span>
+            {interest}
+          </div>
+        ))}
+      </div>
+    </div>
+  )}
+
+  <div class="bg-card border border-border rounded-sm p-3 text-xs font-mono">
+    {terminalLines.map((line, i) => (
+      <div
+        class={`terminal-line ${line.muted ? "text-muted-foreground" : "text-foreground"}`}
+        style={`animation-delay: ${line.delay}`}
+      >
+        {line.prefix && <span class="text-primary">$ </span>}
+        {line.text}
+        {i === terminalLines.length - 1 && <span class="cursor-blink text-primary ml-0.5">_</span>}
+      </div>
+    ))}
+  </div>
+
+  <div class="border border-border rounded-sm bg-card p-4 flex flex-col gap-3">
+    <p class="text-xs text-muted-foreground uppercase tracking-widest">Socials</p>
+    <div class="flex gap-2 flex-wrap">
+      {profile.socials.map((s) => {
+        const Icon = iconMap[s.icon] || Mail;
+        return (
+          <a
+            href={s.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            title={s.label}
+            class="w-9 h-9 border border-border rounded-sm bg-muted/40 flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-primary/50 transition-colors cursor-pointer"
+          >
+            <Icon size={15} />
+          </a>
+        );
+      })}
+    </div>
+
+    {profile.resumeUrl ? (
+      <a
+        href={profile.resumeUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex items-center justify-center gap-2 text-sm border border-primary/40 text-primary rounded-sm py-1.5 px-3 hover:bg-primary/10 transition-colors cursor-pointer"
+      >
+        <Download size={12} />
+        Download Resume
+      </a>
+    ) : (
+      <div
+        title="Resume not available"
+        class="flex items-center justify-center gap-2 text-xs border border-border text-muted-foreground/40 rounded-sm py-1.5 px-3 cursor-not-allowed select-none"
+      >
+        <Download size={12} />
+        Download Resume
+      </div>
+    )}
+  </div>
+</aside>

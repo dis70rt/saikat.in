@@ -1,0 +1,115 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Saikat Das",
+  description = "Backend engineer building fast, real-time systems in Go. IIT (BHU) Varanasi.",
+} = Astro.props;
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL("/avatar.png", Astro.site);
+---
+
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Saikat Das" />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href={canonicalUrl.href} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Saikat Das" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl.href} />
+    <meta property="og:image" content={ogImage.href} />
+    <meta property="og:image:alt" content="Saikat Das portfolio" />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage.href} />
+
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div
+      id="loader"
+      class="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[hsl(235,14%,10%)]"
+    >
+      <div class="font-mono text-sm max-w-md w-full px-8 mb-8">
+        <div class="terminal-line text-muted-foreground" style="animation-delay: 0s">
+          <span class="text-primary">❯</span> init saikat.in
+        </div>
+        <div class="terminal-line text-muted-foreground" style="animation-delay: 0.5s">
+          <span class="text-primary">❯</span> loading modules<span class="cursor-blink">_</span>
+        </div>
+        <div class="terminal-line" style="animation-delay: 1.1s">
+          <span class="text-[var(--tn-green)]">✓</span>
+          <span class="text-muted-foreground"> build: success</span>
+        </div>
+      </div>
+      <div
+        id="loader-name"
+        class="text-3xl sm:text-4xl font-bold tracking-[0.15em] text-primary opacity-0"
+        style="animation: loaderNameIn 0.6s ease-out 1.6s forwards, loaderGlow 2s ease-in-out 2s infinite"
+      >
+        SAIKAT DAS
+      </div>
+    </div>
+
+    <div
+      id="app-shell"
+      class="min-h-screen bg-background text-foreground opacity-0 transition-opacity duration-500"
+    >
+      <main class="flex flex-col items-stretch min-h-screen p-2 sm:p-4 md:p-8">
+        <div class="w-full max-w-6xl mx-auto">
+          <div class="flex flex-col lg:flex-row gap-4 items-stretch lg:items-start">
+            <slot />
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      function runLoader() {
+        const loader = document.getElementById("loader");
+        const shell = document.getElementById("app-shell");
+        if (!loader || !shell) return;
+
+        const seen = sessionStorage.getItem("loader-seen");
+        if (seen) {
+          loader.remove();
+          shell.style.opacity = "1";
+          return;
+        }
+
+        setTimeout(() => {
+          loader.style.transition = "opacity 0.5s ease-out";
+          loader.style.opacity = "0";
+          shell.style.opacity = "1";
+          setTimeout(() => {
+            loader.remove();
+            sessionStorage.setItem("loader-seen", "1");
+          }, 500);
+        }, 2800);
+      }
+      runLoader();
+    </script>
+  </body>
+</html>

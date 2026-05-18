@@ -1,0 +1,202 @@
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{tabularx}
+
+\usepackage{fontawesome5}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-0.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Section formatting
+\titleformat{\section}{
+  \vspace{-7pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+\begin{document}
+
+% HEADER
+\begin{center}
+    \textbf{\Huge \scshape Saikat Das} \\ \vspace{5pt}
+    \small 
+    \faPhone \ +91 6202051066 \ $|$ \ 
+    \faEnvelope \ \href{mailto:sd.saikat369@gmail.com}{sd.saikat369@gmail.com} \ $|$ \ 
+    \faLinkedin \ \href{https://linkedin.com/in/in-saikat}{LinkedIn} \ $|$ \ 
+    \faGithub \ \href{https://github.com/dis70rt}{GitHub} \ $|$ \ 
+    \faCode \ \href{https://codeforces.com/profile/saikat_das}{Codeforces}
+\end{center}
+
+% EDUCATION
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Indian Institute of Technology (BHU), Varanasi}{Varanasi, India}
+      {Bachelor of Technology in Mining Engineering; \textbf{CGPA: 8.39/10.0}}{July 2023 to May 2027}
+    \resumeSubheading
+      {DPS Dhanbad}{Dhanbad, India}
+      {CBSE Class XII: \textbf{87.20\%}}{2022}
+  \resumeSubHeadingListEnd
+
+% TECHNICAL SKILLS
+\section{Technical Skills}
+    \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+        \textbf{Languages}{: Go, C++, Python, Dart} \\
+        \textbf{Backend Systems}{: REST APIs, Microservices, gRPC, Kafka} \\
+        \textbf{Databases}{: PostgreSQL, Redis} \\
+        \textbf{Tools \& Platforms}{: Flutter, Git, Docker, Linux, Postman, k6}
+}}
+\end{itemize}
+
+
+% EXPERIENCE
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Flutter Developer Intern}{Dec 2024 to Feb 2025}
+      {\href{https://www.linkedin.com/company/vrajpath-itech-llp/}{Vrajpath iTech LLP}}{Dhanbad, India}
+      \resumeItemListStart
+        \resumeItem{Improved app performance by changing state management, reducing \textbf{API call overhead by 30\%}.}
+        \resumeItem{Integrated \textbf{Google Maps SDK} and \textbf{Razorpay} payment gateway for secure transactions.}
+        \resumeItem{Fixed privacy and permission issues to meet \textbf{Android 13} policies and pass Play Store review.}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+% PROJECTS
+\section{Projects}
+    \resumeSubHeadingListStart
+    
+      \resumeProjectHeading
+          {\textbf{TradeOrders -- Order Matching Engine} $|$ \emph{Go, Kafka, PostgreSQL, Redis, Docker} $|$ \href{https://github.com/dis70rt/TradeOrders}{\color{blue}\underline{GitHub}}}
+          {Oct 2025}
+          \resumeItemListStart
+            \resumeItem{Built a trade clearing engine using \textbf{four microservices} and \textbf{Kafka topics} for order ingestion.}
+            \resumeItem{Scaled throughput to \textbf{18.8k requests/sec} with p95 latency of \textbf{219ms}, validated using \textbf{k6 load tests}.}
+            \resumeItem{Used \textbf{Kafka key partitioning} for lock free sequential order matching per order book.}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{Bluppi -- Shared Music Playback} $|$ \emph{Go, gRPC, PostgreSQL, Redis, Solr, Flutter} $|$ \href{https://github.com/dis70rt/bluppi-backend}{\color{blue}\underline{Backend}} \href{https://github.com/dis70rt/bluppi-frontend}{\color{blue}\underline{Frontend}}}
+          {May 2025}
+          \resumeItemListStart
+            \resumeItem{Built a distributed music streaming backend in \textbf{Go} with \textbf{PTP style clock synchronization}.}
+            \resumeItem{Developed a real time presence gateway with \textbf{gRPC} handling \textbf{51k concurrent connections}.}
+            \resumeItem{Developed an \textbf{ephemeral chat system} utilizing \textbf{Redis Pub/Sub} for real-time messaging.}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{QQL -- Approximate Query Processing Shell} $|$ \emph{Python, PostgreSQL} $|$ \href{https://github.com/dis70rt/qql}{\color{blue}\underline{GitHub}}}
+          {Aug 2025}
+          \resumeItemListStart
+            \resumeItem{Developed an interactive SQL shell focusing on \textbf{data sampling techniques} for faster query estimation.}
+            \resumeItem{Achieved \textbf{10x speedup} on large datasets by implementing statistical sampling with \textbf{controlled error bounds}.}
+          \resumeItemListEnd
+          
+      \resumeProjectHeading
+          {\textbf{WizFlow -- Workflow Engine} $|$ \emph{Python, FastAPI, Redis}}
+          {Apr 2025}
+          \resumeItemListStart
+            \resumeItem{Built an asynchronous workflow engine using \textbf{React}, \textbf{FastAPI}, and \textbf{Redis} task queuing.}
+            \resumeItem{\textbf{Won 2nd Place at Nutanix Hackathon 2025} for system reliability and real time execution logs.}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{SubPaper -- Reddit Wallpapers App} $|$ \emph{Flutter, Go} $|$ \href{https://app.saikat.in/subpaper}{\color{blue}\underline{Play Store}}}
+          {Apr 2024}
+          \resumeItemListStart
+            \resumeItem{Published a \textbf{Flutter} wallpaper app on the Play Store with \textbf{over 300 downloads} and a 4.5 rating.}
+            \resumeItem{Integrated \textbf{Reddit APIs} for dynamic content delivery and \textbf{AdMob} for monetization.}
+          \resumeItemListEnd
+          
+    \resumeSubHeadingListEnd
+
+% LEADERSHIP
+\section{Leadership}
+    \resumeSubHeadingListStart
+    
+      \resumeProjectHeading
+          {\textbf{Event Executive} $|$ \emph{Club of Programmers, IIT (BHU)}}{2024 to Present}
+          \resumeItemListStart
+            \resumeItem{Mentored over 200 students in web and mobile development workshops.}
+          \resumeItemListEnd
+          
+      \resumeProjectHeading
+          {\textbf{Creative Executive} $|$ \emph{Kashiyatra, IIT (BHU)}}{2024}
+          \resumeItemListStart
+            \resumeItem{Improved creative presence across 9 events for Kashiyatra to increase audience engagement.}
+          \resumeItemListEnd
+          
+    \resumeSubHeadingListEnd
+
+% ACHIEVEMENTS
+\section{Achievements}
+    \resumeSubHeadingListStart
+      \resumeProjectHeading
+          {\textbf{BNY Hackathon} $|$ \emph{1st Place (Transaction Processing and Settlement)}}{April 2026}
+      \resumeProjectHeading
+          {\textbf{Nutanix Hackathon} $|$ \emph{2nd Place (Real-time Workflow Engine)}}{2025}
+      \resumeProjectHeading
+          {\textbf{\href{https://codeforces.com/profile/saikat_das}{Codeforces}} $|$ \emph{\href{https://codeforces.com/profile/saikat_das}{\color{blue}\underline{Pupil}} (Max Rating: \textbf{1282}), over 150 Problems Solved}}{Present}
+      \resumeProjectHeading
+          {\textbf{e6Data Hackathon} $|$ \emph{Special Mention for QQL System}}{2024}
+      \resumeProjectHeading
+          {\textbf{JEE Advanced 2023} $|$ \emph{AIR 13757 (Top 9\% of qualified candidates)}}{2023}
+      \resumeProjectHeading
+          {\textbf{JEE Mains 2023} $|$ \emph{AIR 8166 (Top 1\% of 1.1 Million candidates)}}{2023}
+    \resumeSubHeadingListEnd
+
+\end{document}

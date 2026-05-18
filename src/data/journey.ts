@@ -1,4 +1,4 @@
-export type JourneyKind = "education" | "internship" | "hackathon" | "achievement";
+export type JourneyKind = "education" | "internship" | "hackathon" | "achievement" | "leadership";
 
 export interface JourneyEntry {
   id: string;
@@ -13,6 +13,16 @@ export interface JourneyEntry {
 
 export const journey: JourneyEntry[] = [
   {
+    id: "bny-hackathon",
+    kind: "hackathon",
+    title: "1st Place - BNY Hackathon (Transaction Processing & Settlement)",
+    org: "BNY Hackathon",
+    period: "April 2026",
+    description: "Won first place for building a high-performance transaction processing and settlement system.",
+    tags: ["Systems"],
+    highlight: "1st Place",
+  },
+  {
     id: "nutanix-hackathon",
     kind: "hackathon",
     title: "2nd Place - Nutanix Hackathon (Real-time Workflow Engine)",
@@ -23,21 +33,49 @@ export const journey: JourneyEntry[] = [
     highlight: "2nd Place",
   },
   {
+    id: "event-exec",
+    kind: "leadership",
+    title: "Event Executive",
+    org: "Club of Programmers, IIT (BHU)",
+    period: "2024 – Present",
+    description: "Mentored over 200 students in web and mobile development workshops.",
+    tags: ["Mentorship"],
+  },
+  {
     id: "vrajh-intern",
     kind: "internship",
     title: "Flutter Developer Intern",
-    org: "Vrajh iTech LLP",
-    period: "Dec 2024 - Feb 2025",
+    org: "Vrajpath iTech LLP",
+    period: "Dec 2024 – Feb 2025",
     description: "Refactored state management, reduced API calls by 30%. Integrated Google Maps SDK and Razorpay. Fixed Play Store privacy and permission issues.",
     tags: ["Flutter", "API", "Android"],
     highlight: "30% API calls reduction",
+  },
+  {
+    id: "creative-exec",
+    kind: "leadership",
+    title: "Creative Executive",
+    org: "Kashiyatra, IIT (BHU)",
+    period: "2024",
+    description: "Improved creative presence across 9 events for Kashiyatra to increase audience engagement.",
+    tags: ["Design"],
+  },
+  {
+    id: "e6data-hackathon",
+    kind: "hackathon",
+    title: "Special Mention - e6Data Hackathon",
+    org: "e6Data Hackathon",
+    period: "2024",
+    description: "Recognized for QQL — an approximate query processing shell with statistical sampling.",
+    tags: ["Python", "PostgreSQL"],
+    highlight: "Special Mention",
   },
   {
     id: "iit-bhu",
     kind: "education",
     title: "B.Tech in Mining Engineering (CGPA: 8.39/10)",
     org: "Indian Institute of Technology (BHU), Varanasi",
-    period: "July 2023 - May 2027",
+    period: "July 2023 – May 2027",
     description: "",
     tags: [],
   },
@@ -51,15 +89,6 @@ export const journey: JourneyEntry[] = [
     tags: ["JEE"],
     highlight: "AIR 13,757"
   },
-    {
-    id: "dps-dhanbad",
-    kind: "education",
-    title: "CBSE Class XII: 87.20%",
-    org: "DPS Dhanbad",
-    period: "2022",
-    description: "Science stream. Foundation for engineering studies.",
-    tags: ["CBSE"],
-  },
   {
     id: "jee-mains-2023",
     kind: "achievement",
@@ -69,5 +98,24 @@ export const journey: JourneyEntry[] = [
     description: "Top 1% of 1.1 Million candidates.",
     tags: ["JEE"],
     highlight: "AIR 8,166",
+  },
+  {
+    id: "dps-dhanbad",
+    kind: "education",
+    title: "CBSE Class XII: 87.20%",
+    org: "DPS Dhanbad",
+    period: "2022",
+    description: "Science stream.",
+    tags: ["CBSE"],
+  },
+  {
+    id: "codeforces",
+    kind: "achievement",
+    title: "Codeforces Pupil (Max Rating: 1282)",
+    org: "Codeforces",
+    period: "Present",
+    description: "Over 150 problems solved.",
+    tags: ["CP"],
+    highlight: "Pupil",
   },
 ];
