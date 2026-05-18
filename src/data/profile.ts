@@ -3,7 +3,7 @@ export const profile = {
   title: "IIT (BHU) Varanasi",
   location: "Varanasi, India",
   bio: "I hate slow stuff",
-  avatar: "https://media.licdn.com/dms/image/v2/D5603AQFSD3-CIy7h1A/profile-displayphoto-crop_800_800/B56Zt.hHcHLAAI-/0/1767354173134?e=1775088000&v=beta&t=16TMPVqxUQ-l3qiG8PoyJqyI_ez-Es4UiWPuy1_pgJM",
+  avatar: "/avatar.png",
 
   githubUsername: "dis70rt",
   githubTopic: "portfolio",

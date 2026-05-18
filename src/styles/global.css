@@ -60,16 +60,16 @@
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
     font-family: var(--app-font-sans);
-    font-size: 15px;
+    font-size: 16px;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
   }
 
   @media (min-width: 1024px) {
-    body { font-size: 16px; }
+    body { font-size: 17px; }
   }
   @media (min-width: 1440px) {
-    body { font-size: 17px; }
+    body { font-size: 18px; }
   }
 }
 
