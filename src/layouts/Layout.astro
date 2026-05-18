@@ -118,7 +118,7 @@ const drawDuration = LETTER_STAGGER * (SIGNATURE_PATHS.length - 1) + LETTER_DURA
           return;
         }
 
-        const totalMs = (0.24 * 8 + 0.36) * 1000 + 300;
+        const totalMs = (0.24 * 8 + 0.36) * 1000 + 1000;
         setTimeout(() => {
           loader.style.transition = "opacity 0.25s ease-out";
           loader.style.opacity = "0";
