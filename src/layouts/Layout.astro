@@ -45,7 +45,7 @@ const ogImage = new URL("/avatar.png", Astro.site);
     <script is:inline src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
     <script is:inline>
       (function() {
-        var themes = ["midnight", "one-dark-pro", "catppuccin", "dracula", "nord"];
+        var themes = ["midnight", "one-dark-pro", "catppuccin", "dracula"];
         var randomTheme = themes[Math.floor(Math.random() * themes.length)];
         document.documentElement.setAttribute("data-theme", randomTheme);
       })();

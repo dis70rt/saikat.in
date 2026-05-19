@@ -25,10 +25,12 @@ const sorted = [...projects].sort(
             </p>
           </div>
         ) : (
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 items-start">
-            {sorted.map((project) => (
-              <ProjectCard project={project} />
-            ))}
+          <div class="lg:max-h-[calc(100vh-14rem)] lg:overflow-y-auto lg:pr-2">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 items-start">
+              {sorted.map((project) => (
+                <ProjectCard project={project} />
+              ))}
+            </div>
           </div>
         )}
       </div>
