@@ -1,6 +1,6 @@
 ---
 import "../styles/global.css";
-import { SIGNATURE_PATHS, SIGNATURE_VIEWBOX, LETTER_DURATION, LETTER_STAGGER } from "@/data/signature-paths";
+import { SIGNATURE_PATHS, SIGNATURE_VIEWBOX } from "@/data/signature-paths";
 import { ClientRouter } from "astro:transitions";
 
 interface Props {
@@ -15,7 +15,6 @@ const {
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL("/avatar.png", Astro.site);
-const drawDuration = LETTER_STAGGER * (SIGNATURE_PATHS.length - 1) + LETTER_DURATION;
 ---
 
 <!doctype html>
@@ -43,38 +42,34 @@ const drawDuration = LETTER_STAGGER * (SIGNATURE_PATHS.length - 1) + LETTER_DURA
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
     <ClientRouter />
   </head>
   <body>
     <div id="loader" class="fixed inset-0 z-[9999] flex items-center justify-center bg-background" transition:persist>
       <div class="flex flex-col items-center gap-6 w-full max-w-sm px-8 select-none">
         <svg
+          id="signature-svg"
           viewBox={SIGNATURE_VIEWBOX}
           class="w-full"
           aria-hidden="true"
           stroke="hsl(var(--primary))"
           stroke-width="2"
           stroke-linecap="round"
+          stroke-linejoin="round"
           fill="transparent"
         >
-          {SIGNATURE_PATHS.map((d, i) => {
-            const delay = i * LETTER_STAGGER;
-            return (
-              <path
-                d={d}
-                class="signature-path"
-                style={`--path-delay: ${delay}s; --path-duration: ${LETTER_DURATION}s`}
-              />
-            );
-          })}
+          {SIGNATURE_PATHS.map((d) => (
+            <path d={d} class="signature-path" />
+          ))}
         </svg>
         <div class="w-32 h-px bg-border overflow-hidden rounded-full">
-          <div class="h-full bg-primary rounded-full" style={`animation: progressBar ${drawDuration}s linear forwards`}></div>
+          <div id="loader-progress" class="h-full bg-primary rounded-full w-0"></div>
         </div>
       </div>
     </div>
 
-    <div id="app-shell" class="min-h-screen bg-background text-foreground opacity-0 transition-opacity duration-300">
+    <div id="app-shell" class="min-h-screen bg-background text-foreground opacity-0">
       <main class="flex flex-col items-stretch min-h-screen p-2 sm:p-4 md:p-8">
         <div class="w-full max-w-6xl mx-auto">
           <div class="flex flex-col lg:flex-row gap-4 items-stretch lg:items-start">
@@ -86,26 +81,11 @@ const drawDuration = LETTER_STAGGER * (SIGNATURE_PATHS.length - 1) + LETTER_DURA
 
     <style>
       .signature-path {
-        stroke-dasharray: 2000;
-        stroke-dashoffset: 2000;
         opacity: 0;
-        animation:
-          showPath 0.001s var(--path-delay) forwards,
-          drawPath var(--path-duration) var(--path-delay) linear forwards;
-      }
-      @keyframes showPath {
-        to { opacity: 1; }
-      }
-      @keyframes drawPath {
-        to { stroke-dashoffset: 0; }
-      }
-      @keyframes progressBar {
-        from { width: 0%; }
-        to { width: 100%; }
       }
     </style>
 
-    <script>
+    <script is:inline>
       function runLoader() {
         const loader = document.getElementById("loader");
         const shell = document.getElementById("app-shell");
@@ -118,24 +98,84 @@ const drawDuration = LETTER_STAGGER * (SIGNATURE_PATHS.length - 1) + LETTER_DURA
           return;
         }
 
-        const totalMs = (0.24 * 8 + 0.36) * 1000 + 1000;
-        setTimeout(() => {
-          loader.style.transition = "opacity 0.25s ease-out";
-          loader.style.opacity = "0";
+        const paths = document.querySelectorAll(".signature-path");
+        if (!paths.length || typeof gsap === "undefined") {
+          loader.remove();
           shell.style.opacity = "1";
-          setTimeout(() => {
-            loader.remove();
-            sessionStorage.setItem("loader-seen", "1");
-          }, 250);
-        }, totalMs);
+          return;
+        }
+
+        // Prepare all paths — measure real lengths
+        paths.forEach(function(path) {
+          var len = path.getTotalLength();
+          path.style.strokeDasharray = len;
+          path.style.strokeDashoffset = len;
+          path.style.opacity = "1";
+        });
+
+        var stagger = 0.22;
+        var duration = 0.4;
+        var tl = gsap.timeline({
+          onComplete: function() {
+            gsap.to(loader, {
+              opacity: 0,
+              duration: 0.35,
+              ease: "power2.inOut",
+              onComplete: function() {
+                loader.remove();
+                sessionStorage.setItem("loader-seen", "1");
+              }
+            });
+            gsap.to(shell, {
+              opacity: 1,
+              duration: 0.35,
+              ease: "power2.inOut"
+            });
+          }
+        });
+
+        // Animate each path with natural pen-like easing
+        paths.forEach(function(path, i) {
+          tl.to(path, {
+            strokeDashoffset: 0,
+            duration: duration,
+            ease: "power2.inOut"
+          }, i * stagger);
+        });
+
+        // Progress bar tracks the full timeline
+        var totalDuration = stagger * (paths.length - 1) + duration;
+        var progress = document.getElementById("loader-progress");
+        if (progress) {
+          tl.to(progress, {
+            width: "100%",
+            duration: totalDuration,
+            ease: "power1.inOut"
+          }, 0);
+        }
+
+        // Small pause after drawing finishes before fading out
+        tl.to({}, { duration: 0.3 });
       }
+
+      // Run immediately
       runLoader();
 
-      document.addEventListener("astro:after-swap", () => {
-        const loader = document.getElementById("loader");
+      // Handle Astro view transitions
+      document.addEventListener("astro:after-swap", function() {
+        var loader = document.getElementById("loader");
         if (loader) loader.remove();
-        const shell = document.getElementById("app-shell");
+        var shell = document.getElementById("app-shell");
         if (shell) shell.style.opacity = "1";
+      });
+
+      // Maintain scroll position exactly where it is on tab clicks
+      let scrollPos = 0;
+      document.addEventListener("astro:before-preparation", () => {
+        scrollPos = window.scrollY;
+      });
+      document.addEventListener("astro:after-swap", () => {
+        window.scrollTo({ top: scrollPos, behavior: "instant" });
       });
     </script>
   </body>
