@@ -42,7 +42,7 @@ const ogImage = new URL("/avatar.png", Astro.site);
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+    <script is:inline src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
     <script is:inline>
       (function() {
         var themes = ["midnight", "one-dark-pro", "catppuccin", "dracula", "nord"];
@@ -53,7 +53,7 @@ const ogImage = new URL("/avatar.png", Astro.site);
     <ClientRouter />
   </head>
   <body>
-    <div id="loader" class="fixed inset-0 z-[9999] flex items-center justify-center bg-background" transition:persist>
+    <div id="loader" class="fixed inset-0 z-[9999] flex items-center justify-center bg-background">
       <div class="flex flex-col items-center gap-6 w-full max-w-sm px-8 select-none">
         <svg
           id="signature-svg"
@@ -98,12 +98,12 @@ const ogImage = new URL("/avatar.png", Astro.site);
         const shell = document.getElementById("app-shell");
         if (!loader || !shell) return;
 
-        const seen = sessionStorage.getItem("loader-seen");
-        if (seen) {
+        if (window.loaderHasRun) {
           loader.remove();
           shell.style.opacity = "1";
           return;
         }
+        window.loaderHasRun = true;
 
         const paths = document.querySelectorAll(".signature-path");
         if (!paths.length || typeof gsap === "undefined") {
@@ -165,17 +165,19 @@ const ogImage = new URL("/avatar.png", Astro.site);
         tl.to({}, { duration: 0.3 });
       }
 
-      // Run immediately
+      // Run immediately (first load / hard reload)
       runLoader();
 
-      // Handle Astro view transitions
+      // On soft navigations (tab clicks), the inline script doesn't re-run,
+      // so we need this handler to clean up the fresh loader div
       document.addEventListener("astro:after-swap", function() {
-        var loader = document.getElementById("loader");
-        if (loader) loader.remove();
-        var shell = document.getElementById("app-shell");
-        if (shell) shell.style.opacity = "1";
+        if (window.loaderHasRun) {
+          var loader = document.getElementById("loader");
+          if (loader) loader.remove();
+          var shell = document.getElementById("app-shell");
+          if (shell) shell.style.opacity = "1";
+        }
       });
-
       // Maintain scroll position exactly where it is on tab clicks
       let scrollPos = 0;
       document.addEventListener("astro:before-preparation", () => {
