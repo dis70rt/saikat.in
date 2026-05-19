@@ -30,5 +30,6 @@ export const profile = {
     "Data Structure & Algorithms",
     "System Design",
     "Real-time Systems",
+    "Computer Vision",
   ],
 };

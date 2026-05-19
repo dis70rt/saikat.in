@@ -21,7 +21,8 @@
   --radius-lg: var(--radius);
 }
 
-:root {
+:root,
+[data-theme="midnight"] {
   --background: 235 16% 15%;
   --foreground: 227 30% 75%;
   --border: 228 22% 21%;
@@ -49,6 +50,118 @@
   --tn-comment: #565f89;
   --tn-selection: #283457;
   --tn-terminal-black: #414868;
+}
+
+/* ── One Dark Pro ── */
+[data-theme="one-dark-pro"] {
+  --background: 220 13% 18%;
+  --foreground: 219 14% 71%;
+  --border: 220 13% 24%;
+  --card: 220 13% 14%;
+  --card-foreground: 219 14% 71%;
+  --muted: 220 13% 22%;
+  --muted-foreground: 219 10% 46%;
+  --accent: 286 60% 67%;
+  --accent-foreground: 220 13% 18%;
+  --primary: 207 82% 66%;
+  --primary-foreground: 220 13% 18%;
+  --input: 220 13% 24%;
+  --ring: 207 82% 66%;
+
+  --tn-red: #e06c75;
+  --tn-orange: #d19a66;
+  --tn-yellow: #e5c07b;
+  --tn-green: #98c379;
+  --tn-cyan: #56b6c2;
+  --tn-blue: #61afef;
+  --tn-purple: #c678dd;
+  --tn-comment: #5c6370;
+  --tn-selection: #3e4452;
+  --tn-terminal-black: #3b4048;
+}
+
+/* ── Catppuccin (Mocha) ── */
+[data-theme="catppuccin"] {
+  --background: 240 21% 15%;
+  --foreground: 226 64% 88%;
+  --border: 237 16% 23%;
+  --card: 240 21% 12%;
+  --card-foreground: 226 64% 88%;
+  --muted: 237 16% 21%;
+  --muted-foreground: 228 24% 50%;
+  --accent: 316 72% 86%;
+  --accent-foreground: 240 21% 15%;
+  --primary: 217 92% 76%;
+  --primary-foreground: 240 21% 15%;
+  --input: 237 16% 23%;
+  --ring: 217 92% 76%;
+
+  --tn-red: #f38ba8;
+  --tn-orange: #fab387;
+  --tn-yellow: #f9e2af;
+  --tn-green: #a6e3a1;
+  --tn-cyan: #89dceb;
+  --tn-blue: #89b4fa;
+  --tn-purple: #cba6f7;
+  --tn-comment: #6c7086;
+  --tn-selection: #313244;
+  --tn-terminal-black: #45475a;
+}
+
+/* ── Dracula ── */
+[data-theme="dracula"] {
+  --background: 231 15% 18%;
+  --foreground: 60 30% 96%;
+  --border: 232 14% 25%;
+  --card: 231 15% 14%;
+  --card-foreground: 60 30% 96%;
+  --muted: 232 14% 23%;
+  --muted-foreground: 225 14% 48%;
+  --accent: 326 100% 74%;
+  --accent-foreground: 231 15% 18%;
+  --primary: 265 89% 78%;
+  --primary-foreground: 231 15% 18%;
+  --input: 232 14% 25%;
+  --ring: 265 89% 78%;
+
+  --tn-red: #ff5555;
+  --tn-orange: #ffb86c;
+  --tn-yellow: #f1fa8c;
+  --tn-green: #50fa7b;
+  --tn-cyan: #8be9fd;
+  --tn-blue: #6272a4;
+  --tn-purple: #bd93f9;
+  --tn-comment: #6272a4;
+  --tn-selection: #44475a;
+  --tn-terminal-black: #44475a;
+}
+
+/* ── Nord ── */
+[data-theme="nord"] {
+  --background: 220 16% 22%;
+  --foreground: 219 28% 88%;
+  --border: 220 16% 28%;
+  --card: 220 16% 18%;
+  --card-foreground: 219 28% 88%;
+  --muted: 220 16% 26%;
+  --muted-foreground: 219 16% 50%;
+  --accent: 311 20% 63%;
+  --accent-foreground: 220 16% 22%;
+  --primary: 213 32% 52%;
+  --primary-foreground: 220 16% 22%;
+  --input: 220 16% 28%;
+  --ring: 213 32% 52%;
+
+  --tn-red: #bf616a;
+  --tn-orange: #d08770;
+  --tn-yellow: #ebcb8b;
+  --tn-green: #a3be8c;
+  --tn-cyan: #88c0d0;
+  --tn-blue: #81a1c1;
+  --tn-purple: #b48ead;
+  --tn-comment: #616e88;
+  --tn-selection: #3b4252;
+  --tn-terminal-black: #434c5e;
 }
 
 @layer base {
