@@ -1,6 +1,6 @@
 ---
 import { profile } from "@/data/profile";
-import { Github, Linkedin, Mail, MapPin, User, Download, Code } from "lucide-react";
+import { Github, Linkedin, Mail, MapPin, User, FileText, Code } from "lucide-react";
 
 const iconMap: Record<string, any> = {
   github: Github,
@@ -16,12 +16,6 @@ const categoryColor: Record<string, string> = {
   database:  "text-[var(--tn-green)] border-[var(--tn-green)]/20 bg-[var(--tn-green)]/5",
 };
 
-const terminalLines = [
-  { prefix: true,  text: "go run ./cmd/connect",      delay: "0s",    muted: false },
-  { prefix: false, text: "» compiling...",             delay: "0.7s",  muted: true  },
-  { prefix: false, text: "» build: success",           delay: "1.4s",  muted: true  },
-  { prefix: false, text: "» listening for contact...", delay: "2.1s",  muted: false },
-];
 ---
 
 <aside class="w-full lg:w-72 flex-shrink-0 flex flex-col gap-4 lg:sticky lg:top-8 lg:self-start lg:max-h-[calc(100vh-4rem)] lg:overflow-y-auto">
@@ -87,19 +81,6 @@ const terminalLines = [
     </div>
   )}
 
-  <div class="bg-card border border-border rounded-sm p-3 text-xs font-mono">
-    {terminalLines.map((line, i) => (
-      <div
-        class={`terminal-line ${line.muted ? "text-muted-foreground" : "text-foreground"}`}
-        style={`animation-delay: ${line.delay}`}
-      >
-        {line.prefix && <span class="text-primary">$ </span>}
-        {line.text}
-        {i === terminalLines.length - 1 && <span class="cursor-blink text-primary ml-0.5">_</span>}
-      </div>
-    ))}
-  </div>
-
   <div class="border border-border rounded-sm bg-card p-4 flex flex-col gap-3">
     <p class="text-xs text-muted-foreground uppercase tracking-widest">Socials</p>
     <div class="flex gap-2 flex-wrap">
@@ -126,16 +107,16 @@ const terminalLines = [
         rel="noopener noreferrer"
         class="flex items-center justify-center gap-2 text-sm border border-primary/40 text-primary rounded-sm py-1.5 px-3 hover:bg-primary/10 transition-colors cursor-pointer"
       >
-        <Download size={12} />
-        Download Resume
+        <FileText size={12} />
+        View Resume
       </a>
     ) : (
       <div
         title="Resume not available"
         class="flex items-center justify-center gap-2 text-xs border border-border text-muted-foreground/40 rounded-sm py-1.5 px-3 cursor-not-allowed select-none"
       >
-        <Download size={12} />
-        Download Resume
+        <FileText size={12} />
+        View Resume
       </div>
     )}
   </div>
