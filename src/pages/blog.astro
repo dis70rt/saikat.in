@@ -4,7 +4,7 @@ import Sidebar from "@/components/Sidebar.astro";
 import NavTabs from "@/components/NavTabs.astro";
 import { fetchHashnodePosts } from "@/lib/hashnode";
 
-const posts = await fetchHashnodePosts();
+const posts = fetchHashnodePosts();
 ---
 
 <Layout title="Blog - Saikat Das" description="Technical blog posts on Go, distributed systems, and backend engineering.">

@@ -42,7 +42,7 @@ const ogImage = new URL("/avatar.png", Astro.site);
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-    <script is:inline src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+    <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
     <script is:inline>
       (function() {
         var savedTheme = sessionStorage.getItem("theme");
@@ -185,7 +185,7 @@ const ogImage = new URL("/avatar.png", Astro.site);
         }
       });
       // Maintain scroll position exactly where it is on tab clicks
-      let scrollPos = 0;
+      var scrollPos = 0;
       document.addEventListener("astro:before-preparation", () => {
         scrollPos = window.scrollY;
       });

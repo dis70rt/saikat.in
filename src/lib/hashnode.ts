@@ -15,7 +15,7 @@ export interface HashnodePostSummary {
   tags: HashnodeTag[];
 }
 
-export async function fetchHashnodePosts(): Promise<HashnodePostSummary[]> {
+export function fetchHashnodePosts(): HashnodePostSummary[] {
   // Completely removed network fetch and XML parsing.
   // We now simply serve the static JSON file.
   // You can manually edit `src/data/blog-posts.json` to add new posts!

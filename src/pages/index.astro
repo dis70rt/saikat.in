@@ -10,7 +10,7 @@ import { badgeStyle } from "@/data/colors";
 const latestProjects = projects.slice(0, 2);
 const experience = journey.filter((e) => e.kind === "internship");
 const education = journey.find((e) => e.kind === "education");
-const latestPosts = (await fetchHashnodePosts()).slice(0, 2);
+const latestPosts = fetchHashnodePosts().slice(0, 2);
 ---
 
 <Layout title="Saikat Das - Backend Engineer" description="Backend engineer building fast, real-time systems in Go. IIT (BHU) Varanasi.">

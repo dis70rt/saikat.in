@@ -10,5 +10,3 @@ export const SIGNATURE_PATHS = [
 ];
 
 export const SIGNATURE_VIEWBOX = "322.578 227.385 487.783 142.345";
-export const LETTER_DURATION = 0.36;
-export const LETTER_STAGGER = 0.24;

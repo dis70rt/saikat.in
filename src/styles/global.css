@@ -226,20 +226,13 @@
   display: flex;
   width: max-content;
   animation: marquee-scroll 30s linear infinite;
-  -webkit-animation: marquee-scroll 30s linear infinite;
 }
 
 .marquee-track:hover {
   animation-play-state: paused;
-  -webkit-animation-play-state: paused;
 }
 
 @keyframes marquee-scroll {
-  0% { transform: translateX(0); -webkit-transform: translateX(0); }
-  100% { transform: translateX(-50%); -webkit-transform: translateX(-50%); }
-}
-
-@-webkit-keyframes marquee-scroll {
-  0% { -webkit-transform: translateX(0); }
-  100% { -webkit-transform: translateX(-50%); }
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
