@@ -1,8 +1,12 @@
 ---
 import { profile } from "@/data/profile";
-import { Github, Linkedin, Mail, MapPin, User, FileText, Code } from "lucide-react";
+import { journey } from "@/data/journey";
+import { Github, Linkedin, Mail, MapPin, User, FileText, Code, Phone, type LucideIcon } from "lucide-react";
 
-const iconMap: Record<string, any> = {
+const highlights = journey.filter((e) => e.kind === "hackathon" || e.kind === "achievement");
+const doubled = [...highlights, ...highlights];
+
+const iconMap: Record<string, LucideIcon> = {
   github: Github,
   linkedin: Linkedin,
   mail: Mail,
@@ -16,9 +20,11 @@ const categoryColor: Record<string, string> = {
   database:  "text-[var(--tn-green)] border-[var(--tn-green)]/20 bg-[var(--tn-green)]/5",
 };
 
+const highlightColor = (kind: string) =>
+  kind === "hackathon" ? "text-[var(--tn-yellow)]" : "text-[var(--tn-green)]";
 ---
 
-<aside class="w-full lg:w-72 flex-shrink-0 flex flex-col gap-4 lg:sticky lg:top-8 lg:self-start lg:max-h-[calc(100vh-4rem)] lg:overflow-y-auto">
+<aside transition:persist="sidebar" class="w-full lg:w-72 flex-shrink-0 flex flex-col gap-4 lg:sticky lg:top-8 lg:self-start lg:max-h-[calc(100vh-4rem)] lg:overflow-y-auto">
   <div class="border border-border rounded-sm bg-card p-4 sm:p-5 flex flex-col gap-4">
     <div class="flex items-center gap-3 flex-wrap">
       <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-sm border border-border bg-muted flex items-center justify-center flex-shrink-0 overflow-hidden">
@@ -40,6 +46,24 @@ const categoryColor: Record<string, string> = {
     </div>
 
     <p class="text-sm text-muted-foreground leading-relaxed mt-2">{profile.bio}</p>
+  </div>
+
+  <div class="border border-border rounded-sm bg-card px-4 py-3 flex flex-col gap-2">
+    <div class="flex items-center gap-2">
+      <span class="relative flex h-2 w-2">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+      </span>
+      <span class="text-xs font-medium text-foreground">Open to work</span>
+    </div>
+    <div class="flex items-center gap-2 text-xs text-muted-foreground">
+      <Mail size={12} />
+      <a href={`mailto:${profile.email}`} class="hover:text-foreground transition-colors">{profile.email}</a>
+    </div>
+    <div class="flex items-center gap-2 text-xs text-muted-foreground">
+      <Phone size={12} />
+      <a href={`tel:${profile.phone.replace(/\s/g, '')}`} class="hover:text-foreground transition-colors">{profile.phone}</a>
+    </div>
   </div>
 
   {profile.techStack.length > 0 && (
@@ -67,13 +91,35 @@ const categoryColor: Record<string, string> = {
     </div>
   )}
 
+  {highlights.length > 0 && (
+    <div class="border border-border rounded-sm bg-card py-3 overflow-hidden">
+      <p class="text-xs text-muted-foreground uppercase tracking-widest px-4 mb-2">Highlights</p>
+      <div class="marquee-container">
+        <div class="marquee-track">
+          {doubled.map((entry) => (
+            <a
+              href="/journey"
+              class="inline-flex items-center gap-2 px-3 py-2 mr-3 rounded-sm border border-border bg-muted/30 hover:bg-muted/60 transition-colors no-underline cursor-pointer flex-shrink-0 whitespace-nowrap"
+            >
+              <span class={`text-[10px] font-semibold ${highlightColor(entry.kind)}`}>
+                {entry.highlight ?? entry.kind}
+              </span>
+              <span class="text-[10px] text-muted-foreground">-</span>
+              <span class="text-xs text-foreground">{entry.org}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  )}
+
   {profile.interests.length > 0 && (
-    <div class="border border-border rounded-sm bg-card p-4 flex flex-col gap-3">
+    <div class="rounded-sm bg-muted/30 p-4 flex flex-col gap-3">
       <p class="text-xs text-muted-foreground uppercase tracking-widest">Interests</p>
       <div class="flex flex-col gap-1.5">
         {profile.interests.map((interest) => (
-          <div class="flex items-center gap-2 text-sm text-foreground">
-            <span class="text-primary text-[10px]">▸</span>
+          <div class="flex items-center gap-2 text-xs text-muted-foreground">
+            <span class="text-primary text-[9px]">&#x25B8;</span>
             {interest}
           </div>
         ))}

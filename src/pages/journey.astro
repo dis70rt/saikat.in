@@ -4,19 +4,20 @@ import Sidebar from "@/components/Sidebar.astro";
 import NavTabs from "@/components/NavTabs.astro";
 import TimelineEntry from "@/components/TimelineEntry.astro";
 import { journey, type JourneyKind } from "@/data/journey";
+import { kindColors } from "@/data/colors";
 
-const kindConfig: Record<JourneyKind, { label: string; dot: string }> = {
-  education:   { label: "Education",   dot: "bg-[var(--tn-blue)]" },
-  internship:  { label: "Internship",  dot: "bg-[var(--tn-purple)]" },
-  hackathon:   { label: "Hackathon",   dot: "bg-[var(--tn-yellow)]" },
-  achievement: { label: "Achievement", dot: "bg-[var(--tn-green)]" },
-  leadership:  { label: "Leadership",  dot: "bg-[var(--tn-cyan)]" },
+const kindLabels: Record<JourneyKind, string> = {
+  education: "Education",
+  internship: "Internship",
+  hackathon: "Hackathon",
+  achievement: "Achievement",
+  leadership: "Leadership",
 };
 
 const activeKinds = [...new Set(journey.map((e) => e.kind))];
 ---
 
-<Layout title="Journey — Saikat Das" description="Education, hackathons, internships, and achievements timeline.">
+<Layout title="Journey - Saikat Das" description="Education, hackathons, internships, and achievements timeline.">
   <Sidebar />
 
   <div class="flex-1 min-w-0 border border-border rounded-sm bg-card overflow-hidden mt-4 lg:mt-0">
@@ -27,8 +28,8 @@ const activeKinds = [...new Set(journey.map((e) => e.kind))];
         <div class="flex flex-wrap gap-x-4 gap-y-1.5 mb-6">
           {activeKinds.map((kind) => (
             <span class="flex items-center gap-1.5 text-xs text-muted-foreground">
-              <span class={`w-2 h-2 rounded-full ${kindConfig[kind].dot}`} />
-              {kindConfig[kind].label}
+              <span class="w-2 h-2 rounded-full" style={`background:${kindColors[kind].hex}`} />
+              {kindLabels[kind]}
             </span>
           ))}
         </div>

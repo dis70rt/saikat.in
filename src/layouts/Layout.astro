@@ -118,7 +118,7 @@ const ogImage = new URL("/avatar.png", Astro.site);
           return;
         }
 
-        // Prepare all paths — measure real lengths
+        // Prepare all paths - measure real lengths
         paths.forEach(function(path) {
           var len = path.getTotalLength();
           path.style.strokeDasharray = len;

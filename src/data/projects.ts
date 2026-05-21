@@ -1,17 +1,17 @@
 // ─────────────────────────────────────────────────────────────
-//  Projects data file  —  edit this file to manage your projects
+//  Projects data file  -  edit this file to manage your projects
 //
 //  Each project can have up to 4 links (buttons).
 //  A link is a pair of { label, url }.
 //  If a url is empty ("") or the link is omitted, no button shows.
 //
 //  Common label examples:
-//    "Frontend"     — link to the frontend / live demo
-//    "Backend"      — link to the backend / API repo
-//    "Open Source"  — link to the GitHub repo
-//    "Open Project" — link to the live project / website
-//    "Paper"        — link to a research paper / write-up
-//    "Video"        — link to a demo video
+//    "Frontend"     - link to the frontend / live demo
+//    "Backend"      - link to the backend / API repo
+//    "Open Source"  - link to the GitHub repo
+//    "Open Project" - link to the live project / website
+//    "Paper"        - link to a research paper / write-up
+//    "Video"        - link to a demo video
 // ─────────────────────────────────────────────────────────────
 
 export interface ProjectLink {
@@ -27,14 +27,14 @@ export interface Project {
   tags: string[];
   date: string;
   featured?: boolean;
-  // Up to 4 buttons — any with an empty url will be hidden automatically
+  // Up to 4 buttons - any with an empty url will be hidden automatically
   links?: ProjectLink[];
 }
 
 export const projects: Project[] = [
   {
     id: "tradeorders",
-    title: "TradeOrders – Order Matching Engine",
+    title: "TradeOrders - Order Matching Engine",
     description: "Event-driven trade clearing engine using Kafka microservices.",
     bullets: [
       "Built a trade clearing engine using four microservices and Kafka topics for order ingestion.",
@@ -50,7 +50,7 @@ export const projects: Project[] = [
   },
   {
     id: "bluppi",
-    title: "Bluppi – Shared Music Playback",
+    title: "Bluppi - Shared Music Playback",
     description: "Distributed music streaming backend with real-time synchronization.",
     bullets: [
       "Built a distributed music streaming backend in Go with PTP style clock synchronization.",
@@ -67,7 +67,7 @@ export const projects: Project[] = [
   },
   {
     id: "qql",
-    title: "QQL – Approximate Query Processing Shell",
+    title: "QQL - Approximate Query Processing Shell",
     description: "Interactive SQL shell focusing on data sampling.",
     bullets: [
       "Developed an interactive SQL shell focusing on data sampling techniques for faster query estimation.",
@@ -81,7 +81,7 @@ export const projects: Project[] = [
   },
   {
     id: "wizflow",
-    title: "WizFlow – Workflow Engine",
+    title: "WizFlow - Workflow Engine",
     description: "Asynchronous workflow engine with a drag-and-drop UI.",
     bullets: [
       "Built an asynchronous workflow engine using React, FastAPI, and Redis task queuing.",
@@ -92,7 +92,7 @@ export const projects: Project[] = [
   },
   {
     id: "subpaper",
-    title: "SubPaper – Reddit Wallpapers App",
+    title: "SubPaper - Reddit Wallpapers App",
     description: "Flutter wallpaper app on the Play Store.",
     bullets: [
       "Published a Flutter wallpaper app on the Play Store with over 300 downloads and a 4.5 rating.",

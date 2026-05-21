@@ -1,6 +1,6 @@
 export const profile = {
   name: "Saikat Das",
-  title: "IIT (BHU) Varanasi",
+  title: "Software Engineer",
   location: "Varanasi, India",
   bio: "I hate slow stuff",
   avatar: "/avatar.png",
@@ -8,6 +8,8 @@ export const profile = {
   githubUsername: "dis70rt",
   githubTopic: "portfolio",
   resumeUrl: "https://dis70rt.github.io/resume/resume.pdf" as string | null,
+  email: "sd.saikat369@gmail.com",
+  phone: "+91 6202051066",
   socials: [
     { label: "GitHub", icon: "github", url: "https://github.com/dis70rt" },
     { label: "LinkedIn", icon: "linkedin", url: "https://linkedin.com/in/in-saikat" },
@@ -24,7 +26,7 @@ export const profile = {
     { name: "PostgreSQL", category: "database" },
     { name: "Redis", category: "database" },
     { name: "Linux (Bash)", category: "infra" },
-    { name: "k6", category: "infra" },
+    { name: "Grafana k6", category: "infra" },
   ],
   interests: [
     "Data Structure & Algorithms",

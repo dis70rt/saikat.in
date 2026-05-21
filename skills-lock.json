@@ -7,6 +7,18 @@
       "skillPath": ".claude/skills/ui-styling/SKILL.md",
       "computedHash": "9ae38e4e201f338b6150e462b98a2db0f2ae7c180c77e8cfb1d33eba9d33bf33"
     },
+    "improve-code-quality": {
+      "source": "moonrepo/moon",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/improve-code-quality/SKILL.md",
+      "computedHash": "4e1b5591f6b141dc4e35df9e58915c6c35d532cfb2790af589fcf2b78b960d4b"
+    },
+    "recruiter": {
+      "source": "dailydotdev/apps",
+      "sourceType": "github",
+      "skillPath": ".claude/skills/recruiter/SKILL.md",
+      "computedHash": "c9cd6c60ea542a35d96f180a3c566a4af09ecf47cdaec603b55717600e8db440"
+    },
     "ui-ux-pro-max": {
       "source": "nextlevelbuilder/ui-ux-pro-max-skill",
       "sourceType": "github",
