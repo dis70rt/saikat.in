@@ -99,7 +99,7 @@ const highlightColor = (kind: string) =>
           {doubled.map((entry) => (
             <a
               href="/journey"
-              class="inline-flex items-center gap-2 px-3 py-2 mr-3 rounded-sm border border-border bg-muted/30 hover:bg-muted/60 transition-colors no-underline cursor-pointer flex-shrink-0 whitespace-nowrap"
+              class="inline-flex items-center gap-2 px-3 py-1.5 mr-3 rounded-lg bg-muted/30 hover:bg-muted/60 transition-colors no-underline cursor-pointer flex-shrink-0 whitespace-nowrap"
             >
               <span class={`text-[10px] font-semibold ${highlightColor(entry.kind)}`}>
                 {entry.highlight ?? entry.kind}
