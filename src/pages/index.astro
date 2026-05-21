@@ -16,12 +16,12 @@ const latestPosts = fetchHashnodePosts().slice(0, 2);
 <Layout title="Saikat Das - Backend Engineer" description="Backend engineer building fast, real-time systems in Go. IIT (BHU) Varanasi.">
   <Sidebar />
 
-  <div class="flex-1 min-w-0 border border-border rounded-sm bg-card mt-4 lg:mt-0">
+  <div class="flex-1 min-w-0 border border-border rounded-sm bg-card mt-4 lg:mt-0 lg:max-h-[calc(100vh-4rem)] lg:flex lg:flex-col lg:sticky lg:top-8 lg:self-start">
     <NavTabs />
 
-    <div class="p-5 sm:p-6">
-      <div class="tab-content-enter">
-        <div class="lg:max-h-[calc(100vh-8rem)] lg:overflow-y-auto lg:pr-2 flex flex-col gap-7">
+    <div class="p-5 sm:p-6 lg:flex-1 lg:min-h-0 lg:flex lg:flex-col">
+      <div class="tab-content-enter lg:flex-1 lg:min-h-0 lg:flex lg:flex-col">
+        <div class="lg:flex-1 lg:overflow-y-auto lg:pr-2 flex flex-col gap-7">
 
           <section>
             <h2 class="text-xs font-semibold text-primary uppercase tracking-widest mb-3 flex items-center gap-2">

@@ -10,17 +10,17 @@ const posts = fetchHashnodePosts();
 <Layout title="Blog - Saikat Das" description="Technical blog posts on Go, distributed systems, and backend engineering.">
   <Sidebar />
 
-  <div class="flex-1 min-w-0 border border-border rounded-sm bg-card mt-4 lg:mt-0">
+  <div class="flex-1 min-w-0 border border-border rounded-sm bg-card mt-4 lg:mt-0 lg:max-h-[calc(100vh-4rem)] lg:flex lg:flex-col lg:sticky lg:top-8 lg:self-start">
     <NavTabs />
 
-    <div class="p-5 sm:p-6">
-      <div class="tab-content-enter">
+    <div class="p-5 sm:p-6 lg:flex-1 lg:min-h-0 lg:flex lg:flex-col">
+      <div class="tab-content-enter lg:flex-1 lg:min-h-0 lg:flex lg:flex-col">
         {posts.length === 0 ? (
           <div class="text-center py-12">
             <p class="text-sm text-muted-foreground">No posts yet.</p>
           </div>
         ) : (
-          <div class="lg:max-h-[calc(100vh-8rem)] lg:overflow-y-auto lg:pr-2">
+          <div class="lg:flex-1 lg:overflow-y-auto lg:pr-2">
             <div class="flex flex-col gap-3">
               {posts.map((post) => {
                 const date = new Date(post.publishedAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
