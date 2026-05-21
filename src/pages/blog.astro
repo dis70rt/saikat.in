@@ -20,7 +20,7 @@ const posts = fetchHashnodePosts();
             <p class="text-sm text-muted-foreground">No posts yet.</p>
           </div>
         ) : (
-          <div class="lg:max-h-[calc(100vh-14rem)] lg:overflow-y-auto lg:pr-2">
+          <div class="lg:max-h-[calc(100vh-8rem)] lg:overflow-y-auto lg:pr-2">
             <div class="flex flex-col gap-3">
               {posts.map((post) => {
                 const date = new Date(post.publishedAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });

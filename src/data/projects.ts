@@ -89,6 +89,9 @@ export const projects: Project[] = [
     ],
     tags: ["Python", "FastAPI", "Redis"],
     date: "2025-04-01",
+    links: [
+      { label: "Open Source", url: "https://github.com/dis70rt/WizFlow" },
+    ],
   },
   {
     id: "subpaper",

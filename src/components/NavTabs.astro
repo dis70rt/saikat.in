@@ -9,8 +9,8 @@ const tabs = [
 ];
 
 function isActive(href: string, current: string): boolean {
-  if (href === "/") return current === "/" || current === "";
-  return current.startsWith(href);
+  const normalize = (p: string) => p.replace(/\/+$/, "") || "/";
+  return normalize(href) === normalize(current);
 }
 ---
 
