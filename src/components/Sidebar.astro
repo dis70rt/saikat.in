@@ -57,7 +57,7 @@ const categoryColor: Record<string, string> = {
           const hasAny = profile.techStack.some((t) => t.category === cat);
           if (!hasAny) return null;
           return (
-            <span class={`flex items-center gap-1 text-[9px] ${categoryColor[cat]}`}>
+            <span class={`flex items-center gap-1 text-[9px] rounded-lg px-1.5 py-0.5 ${categoryColor[cat]}`}>
               <span class="w-1.5 h-1.5 rounded-full inline-block" style={{ borderColor: "currentColor", background: "currentColor", opacity: 0.5 }} />
               {cat}
             </span>
