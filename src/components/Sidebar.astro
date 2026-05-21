@@ -25,7 +25,7 @@ const highlightColor = (kind: string) =>
 ---
 
 <aside transition:persist="sidebar" class="w-full lg:w-72 flex-shrink-0 flex flex-col gap-4 lg:sticky lg:top-8 lg:self-start lg:max-h-[calc(100vh-4rem)] lg:overflow-y-auto">
-  <div class="border border-border rounded-sm bg-card p-4 sm:p-5 flex flex-col gap-4">
+  <div class="border border-border rounded-sm bg-card p-4 sm:p-5 flex flex-col gap-4 shrink-0">
     <div class="flex items-center gap-3 flex-wrap">
       <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-sm border border-border bg-muted flex items-center justify-center flex-shrink-0 overflow-hidden">
         {profile.avatar ? (
@@ -48,7 +48,7 @@ const highlightColor = (kind: string) =>
     <p class="text-sm text-muted-foreground leading-relaxed mt-2">{profile.bio}</p>
   </div>
 
-  <div class="border border-border rounded-sm bg-card px-4 py-3 flex flex-col gap-2">
+  <div class="border border-border rounded-sm bg-card px-4 py-3 flex flex-col gap-2 shrink-0">
     <div class="flex items-center gap-2">
       <span class="relative flex h-2 w-2">
         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
@@ -67,7 +67,7 @@ const highlightColor = (kind: string) =>
   </div>
 
   {profile.techStack.length > 0 && (
-    <div class="border border-border rounded-sm bg-card p-3 sm:p-4 flex flex-col gap-3">
+    <div class="border border-border rounded-sm bg-card p-3 sm:p-4 flex flex-col gap-3 shrink-0">
       <p class="text-xs text-muted-foreground uppercase tracking-widest">Tech Stack</p>
       <div class="flex flex-wrap gap-1.5">
         {profile.techStack.map((tech) => (
@@ -92,7 +92,7 @@ const highlightColor = (kind: string) =>
   )}
 
   {highlights.length > 0 && (
-    <div class="border border-border rounded-sm bg-card py-3 overflow-hidden">
+    <div class="border border-border rounded-sm bg-card py-3 overflow-hidden shrink-0">
       <p class="text-xs text-muted-foreground uppercase tracking-widest px-4 mb-2">Highlights</p>
       <div class="marquee-container">
         <div class="marquee-track">
@@ -114,7 +114,7 @@ const highlightColor = (kind: string) =>
   )}
 
   {profile.interests.length > 0 && (
-    <div class="rounded-sm bg-muted/30 p-4 flex flex-col gap-3">
+    <div class="rounded-sm bg-muted/30 p-4 flex flex-col gap-3 shrink-0">
       <p class="text-xs text-muted-foreground uppercase tracking-widest">Interests</p>
       <div class="flex flex-col gap-1.5">
         {profile.interests.map((interest) => (
@@ -127,7 +127,7 @@ const highlightColor = (kind: string) =>
     </div>
   )}
 
-  <div class="border border-border rounded-sm bg-card p-4 flex flex-col gap-3">
+  <div class="border border-border rounded-sm bg-card p-4 flex flex-col gap-3 shrink-0">
     <p class="text-xs text-muted-foreground uppercase tracking-widest">Socials</p>
     <div class="flex gap-2 flex-wrap">
       {profile.socials.map((s) => {
