@@ -20,7 +20,7 @@ const posts = fetchHashnodePosts();
             <p class="text-sm text-muted-foreground font-bold uppercase tracking-widest">No posts yet.</p>
           </div>
         ) : (
-          <div class="lg:flex-1 lg:overflow-y-auto lg:pr-2">
+          <div class="lg:flex-1 lg:overflow-y-auto p-2 -m-2">
             <div class="flex flex-col gap-3">
               {posts.map((post) => {
                 const date = new Date(post.publishedAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
@@ -30,12 +30,16 @@ const posts = fetchHashnodePosts();
                     href={post.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="border-2 border-[hsl(var(--border))] bg-card p-4 hover:bg-muted/20 transition-colors no-underline cursor-pointer block group"
-                    style="box-shadow: 3px 3px 0 0 #000; transition: box-shadow 0.12s, transform 0.12s;"
-                    onmouseover="this.style.boxShadow='5px 5px 0 0 #000'; this.style.transform='translate(-2px,-2px)'"
-                    onmouseout="this.style.boxShadow='3px 3px 0 0 #000'; this.style.transform=''"
+                    class="border-2 border-[hsl(var(--border))] bg-card p-4 transition-all duration-100 no-underline cursor-pointer flex flex-row items-start gap-4 group hover:bg-muted/20 hover:-translate-y-[2px] hover:-translate-x-[2px] hover:shadow-[5px_5px_0_0_#000]"
+                    style="box-shadow: 3px 3px 0 0 #000;"
                   >
-                    <div class="flex items-start justify-between gap-3">
+                    {post.coverImage && (
+                      <div class="w-20 h-20 sm:w-28 sm:h-28 flex-shrink-0 border-2 border-[hsl(var(--border))] overflow-hidden bg-muted/20 aspect-square">
+                        <img src={post.coverImage} alt={post.title} loading="lazy" class="w-full h-full object-cover" onerror="this.parentElement.style.display='none'" />
+                      </div>
+                    )}
+                    <div class="flex-1 min-w-0 w-full">
+                      <div class="flex items-start justify-between gap-3">
                       <div class="flex-1 min-w-0">
                         <p class="text-base font-bold text-foreground leading-snug tracking-tight">{post.title}</p>
                         <p class="text-sm text-muted-foreground mt-1 leading-relaxed line-clamp-2">{post.brief}</p>
@@ -56,6 +60,8 @@ const posts = fetchHashnodePosts();
                       <span>{date}</span>
                       <span>·</span>
                       <span>{post.readTimeInMinutes} min read</span>
+                    </div>
+                      </div>
                     </div>
                   </a>
                 );
