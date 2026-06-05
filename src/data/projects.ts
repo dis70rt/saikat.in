@@ -23,6 +23,7 @@ export interface Project {
   id: string;
   title: string;
   description?: string;
+  image?: string;
   bullets?: string[];
   tags: string[];
   date: string;
@@ -36,6 +37,7 @@ export const projects: Project[] = [
     id: "tradeorders",
     title: "TradeOrders - Order Matching Engine",
     description: "Event-driven trade clearing engine using Kafka microservices.",
+    image: "/images/projects/trade_orders.webp",
     bullets: [
       "Built a trade clearing engine using four microservices and Kafka topics for order ingestion.",
       "Scaled throughput to 18.8k requests/sec with p95 latency of 219ms, validated using k6 load tests.",
@@ -52,6 +54,7 @@ export const projects: Project[] = [
     id: "bluppi",
     title: "Bluppi - Shared Music Playback",
     description: "Distributed music streaming backend with real-time synchronization.",
+    image: "/images/projects/bluppi.webp",
     bullets: [
       "Built a distributed music streaming backend in Go with PTP style clock synchronization.",
       "Developed a real-time presence gateway with gRPC handling 51k concurrent connections.",
@@ -61,6 +64,7 @@ export const projects: Project[] = [
     date: "2025-05-01",
     featured: true,
     links: [
+      { label: "Open Project", url: "https://bluppi.saikat.in" },
       { label: "Backend", url: "https://github.com/dis70rt/Bluppi-backend" },
       { label: "Frontend", url: "https://github.com/dis70rt/Bluppi" },
     ],
@@ -69,6 +73,7 @@ export const projects: Project[] = [
     id: "qql",
     title: "QQL - Approximate Query Processing Shell",
     description: "Interactive SQL shell focusing on data sampling.",
+    image: "/images/projects/qql.webp",
     bullets: [
       "Developed an interactive SQL shell focusing on data sampling techniques for faster query estimation.",
       "Achieved 10x speedup on large datasets by implementing statistical sampling with controlled error bounds."
@@ -80,9 +85,26 @@ export const projects: Project[] = [
     ],
   },
   {
+    id: "subpaper",
+    title: "SubPaper - Reddit Wallpapers App",
+    description: "Flutter wallpaper app on the Play Store.",
+    image: "/images/projects/subpaper.webp",
+    bullets: [
+      "Published a Flutter wallpaper app on the Play Store with over 300 downloads and a 4.5 rating.",
+      "Integrated Reddit APIs for dynamic content delivery and AdMob for monetization."
+    ],
+    tags: ["Flutter", "Go"],
+    date: "2024-04-01",
+    links: [
+      { label: "Open Project", url: "https://subpaper.saikat.in" },
+      { label: "Play Store", url: "https://app.saikat.in/subpaper" },
+    ],
+  },
+  {
     id: "wizflow",
     title: "WizFlow - Workflow Engine",
     description: "Asynchronous workflow engine with a drag-and-drop UI.",
+    image: "/images/projects/wizflow.webp",
     bullets: [
       "Built an asynchronous workflow engine using React, FastAPI, and Redis task queuing.",
       "Won 2nd Place at Nutanix Hackathon 2025 for system reliability and real-time execution logs."
@@ -91,20 +113,6 @@ export const projects: Project[] = [
     date: "2025-04-01",
     links: [
       { label: "Open Source", url: "https://github.com/dis70rt/WizFlow" },
-    ],
-  },
-  {
-    id: "subpaper",
-    title: "SubPaper - Reddit Wallpapers App",
-    description: "Flutter wallpaper app on the Play Store.",
-    bullets: [
-      "Published a Flutter wallpaper app on the Play Store with over 300 downloads and a 4.5 rating.",
-      "Integrated Reddit APIs for dynamic content delivery and AdMob for monetization."
-    ],
-    tags: ["Flutter", "Go"],
-    date: "2024-04-01",
-    links: [
-      { label: "Play Store", url: "https://app.saikat.in/subpaper" },
     ],
   },
 ];
