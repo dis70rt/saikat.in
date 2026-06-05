@@ -53,13 +53,21 @@ const highlightColor = (kind: string) =>
   </div>
 
   <!-- Status + Contact Card -->
-  <div class="nb-card-sm px-4 py-3 flex flex-col gap-2 shrink-0" style="border-left: 3px solid var(--tn-green); box-shadow: 2px 2px 0 0 #000;">
+  <div class="nb-card-sm px-4 py-3 flex flex-col gap-2 shrink-0" style={`border-left: 3px solid ${profile.openToWork ? 'var(--tn-green)' : 'var(--tn-blue)'}; box-shadow: 2px 2px 0 0 #000;`}>
     <div class="flex items-center gap-2">
-      <span class="relative flex h-2 w-2">
-        <span class="animate-ping absolute inline-flex h-full w-full bg-[var(--tn-green)] opacity-75"></span>
-        <span class="relative inline-flex h-2 w-2 bg-[var(--tn-green)]"></span>
+      {profile.openToWork ? (
+        <span class="relative flex h-2 w-2">
+          <span class="animate-ping absolute inline-flex h-full w-full bg-[var(--tn-green)] opacity-75"></span>
+          <span class="relative inline-flex h-2 w-2 bg-[var(--tn-green)]"></span>
+        </span>
+      ) : (
+        <span class="relative flex h-2 w-2">
+          <span class="relative inline-flex h-2 w-2 bg-[var(--tn-blue)]"></span>
+        </span>
+      )}
+      <span class={`text-xs font-bold uppercase tracking-wider ${profile.openToWork ? 'text-[var(--tn-green)]' : 'text-[var(--tn-blue)]'}`}>
+        {profile.openToWork ? 'Open to work' : 'Currently Employed'}
       </span>
-      <span class="text-xs font-bold text-[var(--tn-green)] uppercase tracking-wider">Open to work</span>
     </div>
     <div class="flex items-center gap-2 text-xs text-muted-foreground">
       <Mail size={12} />

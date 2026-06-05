@@ -4,6 +4,7 @@ export const profile = {
   location: "Varanasi, India",
   bio: "I hate slow stuff",
   avatar: "/avatar.png",
+  openToWork: false,
 
   githubUsername: "dis70rt",
   githubTopic: "portfolio",
