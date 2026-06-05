@@ -24,21 +24,28 @@
 :root,
 [data-theme="midnight"] {
   --background: 235 16% 15%;
-  --foreground: 227 30% 75%;
+  --foreground: 227 30% 85%;
   --border: 228 22% 21%;
   --card: 235 14% 10%;
-  --card-foreground: 227 30% 75%;
+  --card-foreground: 227 30% 85%;
   --muted: 228 23% 19%;
-  --muted-foreground: 228 22% 44%;
+  --muted-foreground: 228 22% 50%;
   --accent: 265 85% 78%;
   --accent-foreground: 235 16% 15%;
   --primary: 220 90% 72%;
   --primary-foreground: 235 16% 15%;
   --input: 228 22% 21%;
   --ring: 220 90% 72%;
-  --app-font-sans: 'Inter', sans-serif;
+  --app-font-sans: 'Space Grotesk', 'Inter', sans-serif;
   --app-font-mono: 'JetBrains Mono', monospace;
-  --radius: 0.25rem;
+  --radius: 0rem;
+
+  /* Neobrutal shadow */
+  --nb-shadow: 3px 3px 0px 0px #000;
+  --nb-shadow-sm: 2px 2px 0px 0px #000;
+  --nb-shadow-lg: 5px 5px 0px 0px #000;
+  --nb-border: 2px solid hsl(228 22% 30%);
+  --nb-border-strong: 2px solid hsl(228 22% 40%);
 
   --tn-red: #f7768e;
   --tn-orange: #ff9e64;
@@ -55,12 +62,12 @@
 /* ── One Dark Pro ── */
 [data-theme="one-dark-pro"] {
   --background: 220 13% 18%;
-  --foreground: 219 14% 71%;
+  --foreground: 219 14% 78%;
   --border: 220 13% 24%;
   --card: 220 13% 14%;
-  --card-foreground: 219 14% 71%;
+  --card-foreground: 219 14% 78%;
   --muted: 220 13% 22%;
-  --muted-foreground: 219 10% 46%;
+  --muted-foreground: 219 10% 52%;
   --accent: 286 60% 67%;
   --accent-foreground: 220 13% 18%;
   --primary: 207 82% 66%;
@@ -88,7 +95,7 @@
   --card: 240 21% 12%;
   --card-foreground: 226 64% 88%;
   --muted: 237 16% 21%;
-  --muted-foreground: 228 24% 50%;
+  --muted-foreground: 228 24% 55%;
   --accent: 316 72% 86%;
   --accent-foreground: 240 21% 15%;
   --primary: 217 92% 76%;
@@ -116,7 +123,7 @@
   --card: 231 15% 14%;
   --card-foreground: 60 30% 96%;
   --muted: 232 14% 23%;
-  --muted-foreground: 225 14% 48%;
+  --muted-foreground: 225 14% 55%;
   --accent: 326 100% 74%;
   --accent-foreground: 231 15% 18%;
   --primary: 265 89% 78%;
@@ -150,6 +157,11 @@
     font-size: 16px;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    /* Subtle grid pattern for neobrutal feel */
+    background-image: 
+      linear-gradient(hsl(var(--border) / 0.15) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--border) / 0.15) 1px, transparent 1px);
+    background-size: 32px 32px;
   }
 
   @media (min-width: 1024px) {
@@ -160,6 +172,88 @@
   }
 }
 
+/* ── Neobrutal card — thick border + hard shadow ── */
+.nb-card {
+  border: var(--nb-border);
+  box-shadow: var(--nb-shadow);
+  background-color: hsl(var(--card));
+  transition: box-shadow 0.12s ease, transform 0.12s ease;
+}
+
+.nb-card:hover {
+  box-shadow: var(--nb-shadow-lg);
+  transform: translate(-2px, -2px);
+}
+
+.nb-card-sm {
+  border: var(--nb-border);
+  box-shadow: var(--nb-shadow-sm);
+  background-color: hsl(var(--card));
+}
+
+/* ── Neobrutal badge ── */
+.nb-badge {
+  border: 1.5px solid currentColor;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 9px;
+}
+
+/* ── Neobrutal button ── */
+.nb-btn {
+  border: var(--nb-border-strong);
+  box-shadow: var(--nb-shadow-sm);
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  transition: box-shadow 0.1s ease, transform 0.1s ease;
+}
+
+.nb-btn:hover {
+  box-shadow: 3px 3px 0px 0px #000;
+  transform: translate(-1px, -1px);
+}
+
+.nb-btn:active {
+  box-shadow: 1px 1px 0px 0px #000;
+  transform: translate(1px, 1px);
+}
+
+/* ── Tag / tech pill ── */
+.nb-tag {
+  border: 1.5px solid hsl(var(--border));
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* ── Section heading ── */
+.nb-section-label {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: hsl(var(--primary));
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nb-section-label::before {
+  content: '';
+  display: block;
+  width: 12px;
+  height: 2px;
+  background: hsl(var(--primary));
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: hsl(var(--background)); }
+::-webkit-scrollbar-thumb { background: hsl(var(--border)); }
+::-webkit-scrollbar-thumb:hover { background: hsl(var(--muted-foreground)); }
+
+/* ── Animations ── */
 @keyframes tabContentEnter {
   from { opacity: 0; transform: translateY(6px); }
   to { opacity: 1; transform: translateY(0); }
@@ -177,11 +271,6 @@
 .cursor-blink {
   animation: blink 1s step-end infinite;
 }
-
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: hsl(var(--background)); }
-::-webkit-scrollbar-thumb { background: hsl(var(--border)); border-radius: 2px; }
-::-webkit-scrollbar-thumb:hover { background: hsl(var(--muted-foreground)); }
 
 @keyframes terminalLine {
   from { opacity: 0; transform: translateY(4px); }
@@ -235,4 +324,16 @@
 @keyframes marquee-scroll {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
+}
+
+/* ── Neobrutal nav tab active underline ── */
+.nb-tab-active {
+  border-bottom: 3px solid hsl(var(--primary));
+  font-weight: 700;
+}
+
+/* ── Timeline connector ── */
+.nb-timeline-line {
+  width: 2px;
+  background: hsl(var(--border));
 }

@@ -1,5 +1,22 @@
 [
   {
+    "id": "https://blog.saikat.in/i-had-no-idea-what-an-order-book-was-now-i-ve-built-one-that-handles-18k-rps",
+    "slug": "i-had-no-idea-what-an-order-book-was-now-i-ve-built-one-that-handles-18k-rps",
+    "title": "I Had No Idea What an Order Book Was. Now I've Built One That Handles 18k RPS.",
+    "brief": "My system specs, because benchmarks without hardware context are just creative fiction. 13th Gen Intel Core i5-13500HX (20 threads, 4.70 GHz boost), 16 GB RAM, Fedora 43 (kernel 6.19.8). The assignment asked for 2,000 req/s. The system ended up doing 18,210.",
+    "publishedAt": "2026-05-27T00:28:08.000Z",
+    "readTimeInMinutes": 15,
+    "coverImage": "https://cdn.hashnode.com/uploads/covers/67093bfb638dddf76481cbb9/7c422326-b293-47c5-8cfc-f0c070132108.png",
+    "url": "https://blog.saikat.in/i-had-no-idea-what-an-order-book-was-now-i-ve-built-one-that-handles-18k-rps",
+    "tags": [
+      { "name": "golang" },
+      { "name": "kafka" },
+      { "name": "distributed systems" },
+      { "name": "backend" },
+      { "name": "System Design" }
+    ]
+  },
+  {
     "id": "\nhttps://blog.saikat.in/beyond-the-green-dot-engineering-online-presence-using-golang\n",
     "slug": "beyond-the-green-dot-engineering-online-presence-using-golang\n",
     "title": "Beyond the Green Dot: Engineering Online Presence using GoLang",

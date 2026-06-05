@@ -10,14 +10,14 @@ const posts = fetchHashnodePosts();
 <Layout title="Blog - Saikat Das" description="Technical blog posts on Go, distributed systems, and backend engineering.">
   <Sidebar />
 
-  <div class="flex-1 min-w-0 border border-border rounded-sm bg-card mt-4 lg:mt-0 lg:max-h-[calc(100vh-4rem)] lg:flex lg:flex-col lg:sticky lg:top-8 lg:self-start">
+  <div class="flex-1 min-w-0 nb-card mt-4 lg:mt-0 lg:max-h-[calc(100vh-4rem)] lg:flex lg:flex-col lg:sticky lg:top-8 lg:self-start">
     <NavTabs />
 
     <div class="p-5 sm:p-6 lg:flex-1 lg:min-h-0 lg:flex lg:flex-col">
       <div class="tab-content-enter lg:flex-1 lg:min-h-0 lg:flex lg:flex-col">
         {posts.length === 0 ? (
           <div class="text-center py-12">
-            <p class="text-sm text-muted-foreground">No posts yet.</p>
+            <p class="text-sm text-muted-foreground font-bold uppercase tracking-widest">No posts yet.</p>
           </div>
         ) : (
           <div class="lg:flex-1 lg:overflow-y-auto lg:pr-2">
@@ -30,26 +30,29 @@ const posts = fetchHashnodePosts();
                     href={post.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="border border-border rounded-sm bg-card p-4 hover:border-primary/40 transition-colors no-underline cursor-pointer block"
+                    class="border-2 border-[hsl(var(--border))] bg-card p-4 hover:bg-muted/20 transition-colors no-underline cursor-pointer block group"
+                    style="box-shadow: 3px 3px 0 0 #000; transition: box-shadow 0.12s, transform 0.12s;"
+                    onmouseover="this.style.boxShadow='5px 5px 0 0 #000'; this.style.transform='translate(-2px,-2px)'"
+                    onmouseout="this.style.boxShadow='3px 3px 0 0 #000'; this.style.transform=''"
                   >
                     <div class="flex items-start justify-between gap-3">
                       <div class="flex-1 min-w-0">
-                        <p class="text-base font-medium text-foreground leading-snug">{post.title}</p>
+                        <p class="text-base font-bold text-foreground leading-snug tracking-tight">{post.title}</p>
                         <p class="text-sm text-muted-foreground mt-1 leading-relaxed line-clamp-2">{post.brief}</p>
                       </div>
                       <div class="hidden sm:flex flex-col items-end gap-1 flex-shrink-0 ml-2">
-                        <span class="text-xs text-muted-foreground whitespace-nowrap">{date}</span>
-                        <span class="text-xs text-muted-foreground">{post.readTimeInMinutes} min</span>
+                        <span class="text-xs text-muted-foreground whitespace-nowrap font-mono">{date}</span>
+                        <span class="text-xs text-muted-foreground font-mono">{post.readTimeInMinutes} min</span>
                       </div>
                     </div>
                     {tags.length > 0 && (
                       <div class="flex flex-wrap gap-1.5 mt-3">
                         {tags.map((t) => (
-                          <span class="text-xs text-muted-foreground bg-muted/50 border border-border rounded-sm px-1.5 py-0.5">{t.name}</span>
+                          <span class="nb-tag text-muted-foreground border-border bg-muted/40 px-1.5 py-0.5">{t.name}</span>
                         ))}
                       </div>
                     )}
-                    <div class="flex sm:hidden items-center gap-2 mt-2 text-xs text-muted-foreground">
+                    <div class="flex sm:hidden items-center gap-2 mt-2 text-xs text-muted-foreground font-mono">
                       <span>{date}</span>
                       <span>·</span>
                       <span>{post.readTimeInMinutes} min read</span>

@@ -14,20 +14,21 @@ function isActive(href: string, current: string): boolean {
 }
 ---
 
-<div class="flex items-center gap-0 border-b border-border flex-wrap">
+<div class="flex items-center gap-0 border-b-2 border-[hsl(var(--border))] flex-wrap">
   {tabs.map((tab) => {
     const active = isActive(tab.href, currentPath);
     return (
       <a
         href={tab.href}
         data-astro-prefetch
-        class={`flex items-center gap-2 px-4 py-2.5 text-sm border-r border-border whitespace-nowrap transition-colors flex-shrink-0 no-underline ${
+        class={`flex items-center gap-2 px-4 py-2.5 text-sm border-r-2 border-[hsl(var(--border))] whitespace-nowrap transition-colors flex-shrink-0 no-underline ${
           active
-            ? "bg-background text-foreground border-b-2 border-b-primary -mb-px"
-            : "text-muted-foreground hover:text-foreground hover:bg-muted/40"
+            ? "bg-card text-foreground font-bold"
+            : "text-muted-foreground hover:text-foreground hover:bg-muted/40 font-medium"
         }`}
+        style={active ? `border-top: 3px solid hsl(var(--primary)); border-bottom: 3px solid hsl(var(--card)); margin-bottom: -2px;` : ""}
       >
-        <span class={`text-[9px] font-bold font-mono ${
+        <span class={`text-[9px] font-black font-mono tracking-widest ${
           active
             ? tab.ext === "ts" ? "text-[var(--tn-blue)]" : "text-[var(--tn-green)]"
             : "text-muted-foreground"

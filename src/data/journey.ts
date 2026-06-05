@@ -14,6 +14,15 @@ export interface JourneyEntry {
 
 export const journey: JourneyEntry[] = [
   {
+    id: "copious-intern",
+    kind: "internship",
+    title: "Software Development Engineer Intern",
+    org: "COPIOUS",
+    period: "Jun 2026 - Jul 2026",
+    description: "Working as an SDE Intern, contributing to software development initiatives.",
+    tags: ["SDE"],
+  },
+  {
     id: "bny-hackathon",
     kind: "hackathon",
     title: "1st Place - BNY Hackathon (Transaction Processing & Settlement)",

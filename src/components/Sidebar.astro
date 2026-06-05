@@ -14,10 +14,10 @@ const iconMap: Record<string, LucideIcon> = {
 };
 
 const categoryColor: Record<string, string> = {
-  language:  "text-[var(--tn-blue)] border-[var(--tn-blue)]/20 bg-[var(--tn-blue)]/5",
-  framework: "text-[var(--tn-purple)] border-[var(--tn-purple)]/20 bg-[var(--tn-purple)]/5",
-  infra:     "text-[var(--tn-yellow)] border-[var(--tn-yellow)]/20 bg-[var(--tn-yellow)]/5",
-  database:  "text-[var(--tn-green)] border-[var(--tn-green)]/20 bg-[var(--tn-green)]/5",
+  language:  "text-[var(--tn-blue)] border-[var(--tn-blue)] bg-[var(--tn-blue)]/8",
+  framework: "text-[var(--tn-purple)] border-[var(--tn-purple)] bg-[var(--tn-purple)]/8",
+  infra:     "text-[var(--tn-yellow)] border-[var(--tn-yellow)] bg-[var(--tn-yellow)]/8",
+  database:  "text-[var(--tn-green)] border-[var(--tn-green)] bg-[var(--tn-green)]/8",
 };
 
 const highlightColor = (kind: string) =>
@@ -25,53 +25,59 @@ const highlightColor = (kind: string) =>
 ---
 
 <aside transition:persist="sidebar" class="w-full lg:w-72 flex-shrink-0 flex flex-col gap-4 lg:sticky lg:top-8 lg:self-start lg:max-h-[calc(100vh-4rem)] lg:overflow-y-auto">
-  <div class="border border-border rounded-sm bg-card p-4 sm:p-5 flex flex-col gap-4 shrink-0">
-    <div class="flex items-center gap-3 flex-wrap">
-      <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-sm border border-border bg-muted flex items-center justify-center flex-shrink-0 overflow-hidden">
+
+  <!-- Profile Card -->
+  <div class="nb-card p-4 sm:p-5 flex flex-col gap-4 shrink-0">
+    <!-- Top accent stripe -->
+    <div class="h-1 bg-[var(--tn-blue)] -mx-4 -mt-4 sm:-mx-5 sm:-mt-5 mb-0" />
+    <div class="flex items-center gap-3 flex-wrap pt-0">
+      <div class="w-12 h-12 sm:w-14 sm:h-14 border-2 border-[var(--tn-blue)] bg-muted flex items-center justify-center flex-shrink-0 overflow-hidden" style="box-shadow: 3px 3px 0 0 var(--tn-blue)">
         {profile.avatar ? (
-          <img src={profile.avatar} alt={profile.name} class="w-full h-full object-cover rounded-sm" loading="lazy" />
+          <img src={profile.avatar} alt={profile.name} class="w-full h-full object-cover" loading="lazy" />
         ) : (
           <User size={24} className="text-muted-foreground" />
         )}
       </div>
       <div>
-        <h1 class="text-base font-semibold text-foreground">{profile.name}</h1>
-        <p class="text-xs text-primary mt-0.5">{profile.title}</p>
+        <h1 class="text-base font-bold text-foreground tracking-tight">{profile.name}</h1>
+        <p class="text-xs text-[var(--tn-blue)] mt-0.5 font-semibold uppercase tracking-wider">{profile.title}</p>
       </div>
     </div>
 
-    <div class="flex items-center gap-1.5 text-sm text-muted-foreground mt-2">
+    <div class="flex items-center gap-1.5 text-xs text-muted-foreground">
       <MapPin size={11} />
       <span>{profile.location}</span>
     </div>
 
-    <p class="text-sm text-muted-foreground leading-relaxed mt-2">{profile.bio}</p>
+    <p class="text-sm text-muted-foreground leading-relaxed">{profile.bio}</p>
   </div>
 
-  <div class="border border-border rounded-sm bg-card px-4 py-3 flex flex-col gap-2 shrink-0">
+  <!-- Status + Contact Card -->
+  <div class="nb-card-sm px-4 py-3 flex flex-col gap-2 shrink-0" style="border-left: 3px solid var(--tn-green); box-shadow: 2px 2px 0 0 #000;">
     <div class="flex items-center gap-2">
       <span class="relative flex h-2 w-2">
-        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-        <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+        <span class="animate-ping absolute inline-flex h-full w-full bg-[var(--tn-green)] opacity-75"></span>
+        <span class="relative inline-flex h-2 w-2 bg-[var(--tn-green)]"></span>
       </span>
-      <span class="text-xs font-medium text-foreground">Open to work</span>
+      <span class="text-xs font-bold text-[var(--tn-green)] uppercase tracking-wider">Open to work</span>
     </div>
     <div class="flex items-center gap-2 text-xs text-muted-foreground">
       <Mail size={12} />
-      <a href={`mailto:${profile.email}`} class="hover:text-foreground transition-colors">{profile.email}</a>
+      <a href={`mailto:${profile.email}`} class="hover:text-foreground transition-colors hover:text-[var(--tn-blue)]">{profile.email}</a>
     </div>
     <div class="flex items-center gap-2 text-xs text-muted-foreground">
       <Phone size={12} />
-      <a href={`tel:${profile.phone.replace(/\s/g, '')}`} class="hover:text-foreground transition-colors">{profile.phone}</a>
+      <a href={`tel:${profile.phone.replace(/\s/g, '')}`} class="hover:text-foreground transition-colors hover:text-[var(--tn-blue)]">{profile.phone}</a>
     </div>
   </div>
 
+  <!-- Tech Stack -->
   {profile.techStack.length > 0 && (
-    <div class="border border-border rounded-sm bg-card p-3 sm:p-4 flex flex-col gap-3 shrink-0">
-      <p class="text-xs text-muted-foreground uppercase tracking-widest">Tech Stack</p>
+    <div class="nb-card p-3 sm:p-4 flex flex-col gap-3 shrink-0">
+      <p class="nb-section-label">Tech Stack</p>
       <div class="flex flex-wrap gap-1.5">
         {profile.techStack.map((tech) => (
-          <span class={`text-xs border rounded-sm px-2 py-0.5 ${categoryColor[tech.category] ?? "text-muted-foreground border-border bg-muted/30"}`}>
+          <span class={`nb-tag px-2 py-0.5 ${categoryColor[tech.category] ?? "text-muted-foreground border-border bg-muted/30"}`}>
             {tech.name}
           </span>
         ))}
@@ -81,8 +87,8 @@ const highlightColor = (kind: string) =>
           const hasAny = profile.techStack.some((t) => t.category === cat);
           if (!hasAny) return null;
           return (
-            <span class={`flex items-center gap-1 text-[9px] rounded-lg px-1.5 py-0.5 ${categoryColor[cat]}`}>
-              <span class="w-1.5 h-1.5 rounded-full inline-block" style={{ borderColor: "currentColor", background: "currentColor", opacity: 0.5 }} />
+            <span class={`flex items-center gap-1 text-[9px] px-1.5 py-0.5 font-bold uppercase tracking-wider ${categoryColor[cat]}`}>
+              <span class="w-1.5 h-1.5 inline-block" style={{ background: "currentColor" }} />
               {cat}
             </span>
           );
@@ -91,21 +97,23 @@ const highlightColor = (kind: string) =>
     </div>
   )}
 
+  <!-- Highlights Marquee -->
   {highlights.length > 0 && (
-    <div class="border border-border rounded-sm bg-card py-3 overflow-hidden shrink-0">
-      <p class="text-xs text-muted-foreground uppercase tracking-widest px-4 mb-2">Highlights</p>
+    <div class="nb-card py-3 overflow-hidden shrink-0">
+      <p class="nb-section-label px-4 mb-2">Highlights</p>
       <div class="marquee-container">
         <div class="marquee-track">
           {doubled.map((entry) => (
             <a
               href="/journey"
-              class="inline-flex items-center gap-2 px-3 py-1.5 mr-3 rounded-lg bg-muted/30 hover:bg-muted/60 transition-colors no-underline cursor-pointer flex-shrink-0 whitespace-nowrap"
+              class="inline-flex items-center gap-2 px-3 py-1.5 mr-3 border border-[hsl(var(--border))] bg-muted/30 hover:bg-muted/60 transition-colors no-underline cursor-pointer flex-shrink-0 whitespace-nowrap"
+              style="box-shadow: 1px 1px 0 0 #000;"
             >
-              <span class={`text-[10px] font-semibold ${highlightColor(entry.kind)}`}>
+              <span class={`text-[10px] font-bold uppercase tracking-wider ${highlightColor(entry.kind)}`}>
                 {entry.highlight ?? entry.kind}
               </span>
-              <span class="text-[10px] text-muted-foreground">-</span>
-              <span class="text-xs text-foreground">{entry.org}</span>
+              <span class="text-[10px] text-muted-foreground">—</span>
+              <span class="text-xs text-foreground font-medium">{entry.org}</span>
             </a>
           ))}
         </div>
@@ -113,13 +121,14 @@ const highlightColor = (kind: string) =>
     </div>
   )}
 
+  <!-- Interests -->
   {profile.interests.length > 0 && (
-    <div class="rounded-sm bg-muted/30 p-4 flex flex-col gap-3 shrink-0">
-      <p class="text-xs text-muted-foreground uppercase tracking-widest">Interests</p>
+    <div class="bg-muted/20 border border-dashed border-[hsl(var(--border))] p-4 flex flex-col gap-3 shrink-0">
+      <p class="nb-section-label">Interests</p>
       <div class="flex flex-col gap-1.5">
         {profile.interests.map((interest) => (
           <div class="flex items-center gap-2 text-xs text-muted-foreground">
-            <span class="text-primary text-[9px]">&#x25B8;</span>
+            <span class="text-[var(--tn-blue)] font-bold text-[9px]">→</span>
             {interest}
           </div>
         ))}
@@ -127,8 +136,9 @@ const highlightColor = (kind: string) =>
     </div>
   )}
 
-  <div class="border border-border rounded-sm bg-card p-4 flex flex-col gap-3 shrink-0">
-    <p class="text-xs text-muted-foreground uppercase tracking-widest">Socials</p>
+  <!-- Socials + Resume -->
+  <div class="nb-card p-4 flex flex-col gap-3 shrink-0">
+    <p class="nb-section-label">Socials</p>
     <div class="flex gap-2 flex-wrap">
       {profile.socials.map((s) => {
         const Icon = iconMap[s.icon] || Mail;
@@ -138,7 +148,8 @@ const highlightColor = (kind: string) =>
             target="_blank"
             rel="noopener noreferrer"
             title={s.label}
-            class="w-9 h-9 border border-border rounded-sm bg-muted/40 flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-primary/50 transition-colors cursor-pointer"
+            class="w-9 h-9 border-2 border-[hsl(var(--border))] bg-muted/40 flex items-center justify-center text-muted-foreground hover:text-[var(--tn-blue)] hover:border-[var(--tn-blue)] transition-colors cursor-pointer"
+            style="box-shadow: 2px 2px 0 0 #000;"
           >
             <Icon size={15} />
           </a>
@@ -151,7 +162,7 @@ const highlightColor = (kind: string) =>
         href={profile.resumeUrl}
         target="_blank"
         rel="noopener noreferrer"
-        class="flex items-center justify-center gap-2 text-sm border border-primary/40 text-primary rounded-sm py-1.5 px-3 hover:bg-primary/10 transition-colors cursor-pointer"
+        class="nb-btn flex items-center justify-center gap-2 text-sm border-2 border-[var(--tn-blue)] text-[var(--tn-blue)] py-2 px-3 hover:bg-[var(--tn-blue)]/10 transition-colors cursor-pointer font-bold uppercase tracking-wider"
       >
         <FileText size={12} />
         View Resume
@@ -159,7 +170,7 @@ const highlightColor = (kind: string) =>
     ) : (
       <div
         title="Resume not available"
-        class="flex items-center justify-center gap-2 text-xs border border-border text-muted-foreground/40 rounded-sm py-1.5 px-3 cursor-not-allowed select-none"
+        class="flex items-center justify-center gap-2 text-xs border-2 border-dashed border-border text-muted-foreground/40 py-2 px-3 cursor-not-allowed select-none font-bold uppercase tracking-wider"
       >
         <FileText size={12} />
         View Resume
