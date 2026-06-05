@@ -180,10 +180,6 @@
   transition: box-shadow 0.12s ease, transform 0.12s ease;
 }
 
-.nb-card:hover {
-  box-shadow: var(--nb-shadow-lg);
-  transform: translate(-2px, -2px);
-}
 
 .nb-card-sm {
   border: var(--nb-border);
@@ -324,6 +320,12 @@
 @keyframes marquee-scroll {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
 }
 
 /* ── Neobrutal nav tab active underline ── */
