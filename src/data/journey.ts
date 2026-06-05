@@ -10,6 +10,8 @@ export interface JourneyEntry {
   bullets?: string[];
   tags?: string[];
   highlight?: string;
+  logo?: string;
+  logoPadding?: boolean;
 }
 
 export const journey: JourneyEntry[] = [
@@ -18,9 +20,10 @@ export const journey: JourneyEntry[] = [
     kind: "internship",
     title: "Software Development Engineer Intern",
     org: "COPIOUS",
-    period: "Jun 2026 - Jul 2026",
+    period: "Jun 2026 - Present",
     description: "Working as an SDE Intern, contributing to software development initiatives.",
     tags: ["SDE"],
+    logo: "/images/logos/copious.png",
   },
   {
     id: "bny-hackathon",
@@ -31,6 +34,7 @@ export const journey: JourneyEntry[] = [
     description: "Won first place for building a high-performance transaction processing and settlement system.",
     tags: ["Systems"],
     highlight: "1st Place",
+    logo: "https://logo.clearbit.com/bny.com",
   },
   {
     id: "nutanix-hackathon",
@@ -41,6 +45,7 @@ export const journey: JourneyEntry[] = [
     description: "WizFlow: Drag-and-drop workflow engine. Won for system reliability and real-time execution logs.",
     tags: ["Python", "FastAPI", "Redis"],
     highlight: "2nd Place",
+    logo: "https://logo.clearbit.com/nutanix.com",
   },
   {
     id: "event-exec",
@@ -60,11 +65,12 @@ export const journey: JourneyEntry[] = [
     description: "Refactored state management and integrated payment and mapping SDKs.",
     bullets: [
       "Refactored state management, reduced API calls by 30%.",
-      "Integrated Google Maps SDK and Razorpay.",
-      "Fixed Play Store privacy and permission issues.",
+      "Integrated Razorpay and resolved Play Store privacy and permission issues.",
     ],
     tags: ["Flutter", "API", "Android"],
     highlight: "30% API calls reduction",
+    logo: "/images/logos/vrajpath.png",
+    logoPadding: true,
   },
   {
     id: "creative-exec",
@@ -88,11 +94,12 @@ export const journey: JourneyEntry[] = [
   {
     id: "iit-bhu",
     kind: "education",
-    title: "B.Tech in Mining Engineering",
-    org: "Indian Institute of Technology (BHU), Varanasi",
+    title: "Indian Institute of Technology (BHU), Varanasi",
+    org: "B.Tech in Mining Engineering",
     period: "July 2023 - May 2027",
     description: "",
     tags: [],
+    logo: "/images/logos/iit_bhu_logo.png",
   },
   {
     id: "jee-2023",

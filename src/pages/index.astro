@@ -21,7 +21,7 @@ const latestPosts = fetchHashnodePosts().slice(0, 2);
 
     <div class="p-5 sm:p-6 lg:flex-1 lg:min-h-0 lg:flex lg:flex-col">
       <div class="tab-content-enter lg:flex-1 lg:min-h-0 lg:flex lg:flex-col">
-        <div class="lg:flex-1 lg:overflow-y-auto lg:pr-2 flex flex-col gap-7">
+        <div class="lg:flex-1 lg:overflow-y-auto p-2 -m-2 flex flex-col gap-7">
 
           <!-- About -->
           <section>
@@ -41,11 +41,14 @@ const latestPosts = fetchHashnodePosts().slice(0, 2);
                 {experience.map((entry) => (
                   <a
                     href="/journey"
-                    class="bg-muted/15 border-2 border-[hsl(var(--border))] p-3 flex items-start justify-between gap-3 hover:bg-muted/40 transition-colors no-underline cursor-pointer group"
-                    style="box-shadow: 2px 2px 0 0 #000; transition: box-shadow 0.1s, transform 0.1s;"
-                    onmouseover="this.style.boxShadow='4px 4px 0 0 #000'; this.style.transform='translate(-2px,-2px)'"
-                    onmouseout="this.style.boxShadow='2px 2px 0 0 #000'; this.style.transform=''"
+                    class="bg-muted/15 border-2 border-[hsl(var(--border))] p-3 flex items-start justify-between gap-3 transition-all duration-100 no-underline cursor-pointer group hover:bg-muted/40 hover:-translate-y-[2px] hover:-translate-x-[2px] hover:shadow-[4px_4px_0_0_#000]"
+                    style="box-shadow: 2px 2px 0 0 #000;"
                   >
+                    {entry.logo && (
+                      <div class={`w-10 h-10 flex-shrink-0 overflow-hidden ${entry.logoPadding ? 'bg-white p-1' : ''}`}>
+                        <img src={entry.logo} alt={entry.org} class="w-full h-full object-contain" onerror="this.style.display='none'" />
+                      </div>
+                    )}
                     <div class="flex-1 min-w-0">
                       <p class="text-sm font-bold text-foreground leading-snug tracking-tight">{entry.title}</p>
                       <p class="text-xs text-muted-foreground mt-0.5 font-medium">{entry.org} · {entry.period}</p>
@@ -80,22 +83,29 @@ const latestPosts = fetchHashnodePosts().slice(0, 2);
           {education && (
             <section>
               <h2 class="nb-section-label mb-3">Education</h2>
-              <a
-                href="/journey"
-                class="bg-muted/15 border-2 border-[hsl(var(--border))] p-3 flex items-start justify-between gap-3 hover:bg-muted/40 transition-colors no-underline cursor-pointer"
-                style="box-shadow: 2px 2px 0 0 #000;"
-              >
-                <div class="flex-1 min-w-0">
-                  <p class="text-sm font-bold text-foreground leading-snug tracking-tight">{education.title}</p>
-                  <p class="text-xs text-muted-foreground mt-0.5 font-medium">{education.org} · {education.period}</p>
-                </div>
-                <span
-                  class="hidden sm:inline-block text-[10px] border-2 px-1.5 py-0.5 flex-shrink-0 font-black uppercase tracking-wider"
-                  style={badgeStyle("education")}
+              <div>
+                <a
+                  href="/journey"
+                  class="bg-muted/15 border-2 border-[hsl(var(--border))] p-3 flex items-start justify-between gap-3 transition-all duration-100 no-underline cursor-pointer hover:bg-muted/40 hover:-translate-y-[2px] hover:-translate-x-[2px] hover:shadow-[4px_4px_0_0_#000]"
+                  style="box-shadow: 2px 2px 0 0 #000;"
                 >
-                  Education
-                </span>
-              </a>
+                  {education.logo && (
+                    <div class="w-10 h-10 flex-shrink-0 overflow-hidden">
+                      <img src={education.logo} alt={education.org} class="w-full h-full object-contain" onerror="this.style.display='none'" />
+                    </div>
+                  )}
+                  <div class="flex-1 min-w-0">
+                    <p class="text-sm font-bold text-foreground leading-snug tracking-tight">{education.title}</p>
+                    <p class="text-xs text-muted-foreground mt-0.5 font-medium">{education.org} · {education.period}</p>
+                  </div>
+                  <span
+                    class="hidden sm:inline-block text-[10px] border-2 px-1.5 py-0.5 flex-shrink-0 font-black uppercase tracking-wider"
+                    style={badgeStyle("education")}
+                  >
+                    Education
+                  </span>
+                </a>
+              </div>
             </section>
           )}
 
@@ -107,7 +117,7 @@ const latestPosts = fetchHashnodePosts().slice(0, 2);
                 {latestProjects.map((project) => (
                   <a
                     href="/projects"
-                    class="bg-muted/15 border-2 border-[hsl(var(--border))] p-3 flex items-start justify-between gap-3 hover:bg-muted/40 transition-colors no-underline cursor-pointer"
+                    class="bg-muted/15 border-2 border-[hsl(var(--border))] p-3 flex items-start justify-between gap-3 transition-all duration-100 no-underline cursor-pointer hover:bg-muted/40 hover:-translate-y-[2px] hover:-translate-x-[2px] hover:shadow-[4px_4px_0_0_#000]"
                     style="box-shadow: 2px 2px 0 0 #000;"
                   >
                     <div class="flex-1 min-w-0">
@@ -135,7 +145,7 @@ const latestPosts = fetchHashnodePosts().slice(0, 2);
                       href={post.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      class="bg-muted/15 border-2 border-[hsl(var(--border))] p-3 flex items-start justify-between gap-3 hover:bg-muted/40 transition-colors no-underline cursor-pointer"
+                      class="bg-muted/15 border-2 border-[hsl(var(--border))] p-3 flex items-start justify-between gap-3 transition-all duration-100 no-underline cursor-pointer hover:bg-muted/40 hover:-translate-y-[2px] hover:-translate-x-[2px] hover:shadow-[4px_4px_0_0_#000]"
                       style="box-shadow: 2px 2px 0 0 #000;"
                     >
                       <div class="flex-1 min-w-0">
