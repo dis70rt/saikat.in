@@ -17,75 +17,52 @@
     ]
   },
   {
-    "id": "\nhttps://blog.saikat.in/beyond-the-green-dot-engineering-online-presence-using-golang\n",
-    "slug": "beyond-the-green-dot-engineering-online-presence-using-golang\n",
+    "id": "https://blog.saikat.in/beyond-the-green-dot-engineering-online-presence-using-golang",
+    "slug": "beyond-the-green-dot-engineering-online-presence-using-golang",
     "title": "Beyond the Green Dot: Engineering Online Presence using GoLang",
     "brief": "I'm building Bluppi, a music listening app, as a solo project. At some point I wanted to add a friends activity feed, the part of the home screen that shows which friends are online, what they're lis...",
     "publishedAt": "2026-05-11T04:26:20.000Z",
-    "readTimeInMinutes": 1,
+    "readTimeInMinutes": 8,
+    "coverImage": "https://cdn.hashnode.com/uploads/covers/67093bfb638dddf76481cbb9/8ba8efa5-4353-4431-9463-fcfcd1ac7d3c.png",
     "url": "https://blog.saikat.in/beyond-the-green-dot-engineering-online-presence-using-golang",
     "tags": [
-      {
-        "name": "golang"
-      },
-      {
-        "name": "Redis"
-      },
-      {
-        "name": "System Design"
-      },
-      {
-        "name": "backend"
-      },
-      {
-        "name": "distributed systems"
-      },
-      {
-        "name": "Online presence"
-      }
+      { "name": "golang" },
+      { "name": "Redis" },
+      { "name": "System Design" },
+      { "name": "backend" },
+      { "name": "distributed systems" },
+      { "name": "Online presence" }
     ]
   },
   {
-    "id": "\nhttps://blog.saikat.in/how-i-got-grpc-working-through-cloudflare-tunnel-the-hard-way\n",
-    "slug": "how-i-got-grpc-working-through-cloudflare-tunnel-the-hard-way\n",
+    "id": "https://blog.saikat.in/how-i-got-grpc-working-through-cloudflare-tunnel-the-hard-way",
+    "slug": "how-i-got-grpc-working-through-cloudflare-tunnel-the-hard-way",
     "title": "How I Got gRPC Working Through Cloudflare Tunnel (The Hard Way)",
     "brief": "A complete guide to exposing a Go gRPC backend behind college NAT using Cloudflare Tunnel, Docker Compose, and TLS, including every mistake I made along the way. Background I'm a student building Bl",
     "publishedAt": "2026-03-28T01:25:47.000Z",
-    "readTimeInMinutes": 1,
+    "readTimeInMinutes": 10,
+    "coverImage": "https://cdn.hashnode.com/uploads/covers/67093bfb638dddf76481cbb9/fa59eda8-a56c-41a8-a787-e9781ac23d6a.png",
     "url": "https://blog.saikat.in/how-i-got-grpc-working-through-cloudflare-tunnel-the-hard-way",
     "tags": [
-      {
-        "name": "gRPC"
-      },
-      {
-        "name": "cloudflare"
-      },
-      {
-        "name": "self-hosted"
-      },
-      {
-        "name": "Docker"
-      },
-      {
-        "name": "Flutter"
-      }
+      { "name": "gRPC" },
+      { "name": "cloudflare" },
+      { "name": "self-hosted" },
+      { "name": "Docker" },
+      { "name": "Flutter" }
     ]
   },
   {
-    "id": "\nhttps://blog.saikat.in/firebase-draining-your-wallet-here-s-how-to-stop-paying-for-every-single-read\n",
-    "slug": "firebase-draining-your-wallet-here-s-how-to-stop-paying-for-every-single-read\n",
+    "id": "https://blog.saikat.in/firebase-draining-your-wallet-here-s-how-to-stop-paying-for-every-single-read",
+    "slug": "firebase-draining-your-wallet-here-s-how-to-stop-paying-for-every-single-read",
     "title": "Firebase Draining Your Wallet? Here's How to Stop Paying for Every Single Read.",
-    "brief": "❗ In this blog, we’ll focus on using Dart/Flutter for our code examples, but keep in mind that you can apply these methods in any programming language. The key here is to focus on the techniques, not...",
+    "brief": "❗ In this blog, we'll focus on using Dart/Flutter for our code examples, but keep in mind that you can apply these methods in any programming language. The key here is to focus on the techniques, not...",
     "publishedAt": "2026-03-14T22:46:36.000Z",
-    "readTimeInMinutes": 1,
+    "readTimeInMinutes": 7,
+    "coverImage": "https://cdn.hashnode.com/res/hashnode/image/upload/v1734680734208/641c02b8-81c2-47aa-84ca-c7100eb23a41.png",
     "url": "https://blog.saikat.in/firebase-draining-your-wallet-here-s-how-to-stop-paying-for-every-single-read",
     "tags": [
-      {
-        "name": "Firebase"
-      },
-      {
-        "name": "Flutter"
-      }
+      { "name": "Firebase" },
+      { "name": "Flutter" }
     ]
   }
 ]
