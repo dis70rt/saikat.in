@@ -11,6 +11,7 @@ export interface HashnodePostSummary {
   brief: string;
   publishedAt: string;
   readTimeInMinutes: number;
+  coverImage?: string;
   url: string;
   tags: HashnodeTag[];
 }
