@@ -7,10 +7,11 @@ import { journey } from "@/data/journey";
 import { fetchHashnodePosts } from "@/lib/hashnode";
 import { badgeStyle } from "@/data/colors";
 
-const latestProjects = projects.slice(0, 2);
+const HOME_PREVIEW_COUNT = 2;
+const latestProjects = projects.slice(0, HOME_PREVIEW_COUNT);
 const experience = journey.filter((e) => e.kind === "internship");
 const education = journey.find((e) => e.kind === "education");
-const latestPosts = fetchHashnodePosts().slice(0, 2);
+const latestPosts = fetchHashnodePosts().slice(0, HOME_PREVIEW_COUNT);
 ---
 
 <Layout title="Saikat Das - Backend Engineer" description="Backend engineer building fast, real-time systems in Go. IIT (BHU) Varanasi.">
@@ -125,7 +126,7 @@ const latestPosts = fetchHashnodePosts().slice(0, 2);
                       <p class="text-xs text-muted-foreground mt-0.5 line-clamp-1">{project.description}</p>
                     </div>
                     <span class="hidden sm:inline-block text-xs text-muted-foreground flex-shrink-0 font-mono">
-                      {new Date(project.date).toLocaleDateString("en-US", { month: "short", year: "numeric" })}
+                      {(() => { const d = new Date(project.date); return isNaN(d.getTime()) ? '' : d.toLocaleDateString("en-US", { month: "short", year: "numeric" }); })()}
                     </span>
                   </a>
                 ))}
