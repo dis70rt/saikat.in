@@ -104,7 +104,6 @@ export const projects: Project[] = [
     id: "wizflow",
     title: "WizFlow - Workflow Engine",
     description: "Asynchronous workflow engine with a drag-and-drop UI.",
-    image: "/images/projects/wizflow.webp",
     bullets: [
       "Built an asynchronous workflow engine using React, FastAPI, and Redis task queuing.",
       "Won 2nd Place at Nutanix Hackathon 2025 for system reliability and real-time execution logs."
