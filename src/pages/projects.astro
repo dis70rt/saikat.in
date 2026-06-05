@@ -5,11 +5,7 @@ import NavTabs from "@/components/NavTabs.astro";
 import ProjectCard from "@/components/ProjectCard.astro";
 import { projects } from "@/data/projects";
 
-const sorted = [...projects].sort((a, b) => {
-  const da = new Date(a.date).getTime();
-  const db = new Date(b.date).getTime();
-  return (isNaN(db) ? 0 : db) - (isNaN(da) ? 0 : da);
-});
+const sorted = [...projects];
 ---
 
 <Layout title="Projects - Saikat Das" description="Open-source projects in Go, distributed systems, and real-time architectures.">
@@ -28,9 +24,11 @@ const sorted = [...projects].sort((a, b) => {
           </div>
         ) : (
           <div class="lg:flex-1 lg:overflow-y-auto p-2 -m-2">
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 items-start">
+            <div class="columns-1 sm:columns-2 gap-3 sm:gap-4 space-y-3 sm:space-y-4">
               {sorted.map((project) => (
-                <ProjectCard project={project} />
+                <div class="break-inside-avoid relative">
+                  <ProjectCard project={project} />
+                </div>
               ))}
             </div>
           </div>
