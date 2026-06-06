@@ -34,7 +34,7 @@ const activeKinds = [...new Set(journey.map((e) => e.kind))];
           ))}
         </div>
 
-        <div class="relative lg:flex-1 lg:overflow-y-auto lg:pr-2">
+        <div class="relative lg:flex-1 lg:overflow-y-auto p-2 -m-2">
           <div class="flex flex-col gap-0">
             {journey.map((entry, idx) => (
               <TimelineEntry entry={entry} isLast={idx === journey.length - 1} />
