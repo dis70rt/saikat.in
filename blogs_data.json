@@ -1,0 +1,81 @@
+[
+    {
+        "title": "How I Cracked Paasa's Secret Hiring Challenge",
+        "link": "https://blog.saikat.in/cracking-paasas-hidden-hiring-challenge",
+        "pubDate": "Tue, 07 Jul 2026 08:25:02 GMT",
+        "snippet": "I was scrolling the internet doing absolutely nothing productive (classic) when someone dropped a link: challenge.paisa.com. The page said:\n\n\"We're...",
+        "tags": [
+            "CTF",
+            "Web Development",
+            "JavaScript",
+            "reverse engineering",
+            "debugging",
+            "Career"
+        ],
+        "reading_time_minutes": 2,
+        "views": 0,
+        "cover_image": "/images/blogs/how-i-cracked-paasas-secret-hiring-challenge.webp"
+    },
+    {
+        "title": "I Had No Idea What an Order Book Was. Now I've Built One That Handles 18k RPS.",
+        "link": "https://blog.saikat.in/i-had-no-idea-what-an-order-book-was-now-i-ve-built-one-that-handles-18k-rps",
+        "pubDate": "Wed, 27 May 2026 00:28:08 GMT",
+        "snippet": "My system specs, because benchmarks without hardware context are just creative fiction. 13th Gen Intel Core i5-13500HX (20 threads, 4.70 GHz boost)...",
+        "tags": [
+            "golang",
+            "kafka",
+            "distributed systems",
+            "backend",
+            "System Design"
+        ],
+        "reading_time_minutes": 18,
+        "views": 0,
+        "cover_image": "/images/blogs/i-had-no-idea-what-an-order-book-was-now-ive-built-one-that-handles-18k-rps.webp"
+    },
+    {
+        "title": "Beyond the Green Dot: Engineering Online Presence using GoLang",
+        "link": "https://blog.saikat.in/beyond-the-green-dot-engineering-online-presence-using-golang",
+        "pubDate": "Mon, 11 May 2026 04:26:20 GMT",
+        "snippet": "I'm building Bluppi, a music listening app, as a solo project. At some point I wanted to add a friends activity feed, the part of the home screen t...",
+        "tags": [
+            "golang",
+            "Redis",
+            "System Design",
+            "backend",
+            "distributed systems",
+            "Online presence"
+        ],
+        "reading_time_minutes": 16,
+        "views": 0,
+        "cover_image": "/images/blogs/beyond-the-green-dot-engineering-online-presence-using-golang.webp"
+    },
+    {
+        "title": "How I Got gRPC Working Through Cloudflare Tunnel (The Hard Way)",
+        "link": "https://blog.saikat.in/how-i-got-grpc-working-through-cloudflare-tunnel-the-hard-way",
+        "pubDate": "Sat, 28 Mar 2026 01:25:47 GMT",
+        "snippet": "A complete guide to exposing a Go gRPC backend behind college NAT using Cloudflare Tunnel, Docker Compose, and TLS, including every mistake I made ...",
+        "tags": [
+            "gRPC",
+            "cloudflare",
+            "self-hosted",
+            "Docker",
+            "Flutter"
+        ],
+        "reading_time_minutes": 6,
+        "views": 0,
+        "cover_image": "/images/blogs/how-i-got-grpc-working-through-cloudflare-tunnel-the-hard-way.webp"
+    },
+    {
+        "title": "Firebase Draining Your Wallet? Here's How to Stop Paying for Every Single Read.",
+        "link": "https://blog.saikat.in/firebase-draining-your-wallet-here-s-how-to-stop-paying-for-every-single-read",
+        "pubDate": "Sat, 14 Mar 2026 22:46:36 GMT",
+        "snippet": "❗\nIn this blog, we’ll focus on using Dart/Flutter for our code examples, but keep in mind that you can apply these methods in any programming langu...",
+        "tags": [
+            "Firebase",
+            "Flutter"
+        ],
+        "reading_time_minutes": 7,
+        "views": 0,
+        "cover_image": "/images/blogs/firebase-draining-your-wallet-heres-how-to-stop-paying-for-every-single-read.webp"
+    }
+]
