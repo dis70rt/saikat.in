@@ -335,3 +335,24 @@
   width: 2px;
   background: hsl(var(--border));
 }
+
+/* ── Skeleton Loading ── */
+@keyframes skeleton-loading {
+  0% { background-color: hsl(var(--muted) / 0.4); }
+  50% { background-color: hsl(var(--muted) / 1); }
+  100% { background-color: hsl(var(--muted) / 0.4); }
+}
+
+.skeleton-bg {
+  animation: skeleton-loading 1.5s infinite ease-in-out;
+}
+
+/* ── Image Fade In ── */
+.fade-in-image {
+  opacity: 0;
+  transition: opacity 0.4s ease-out;
+}
+
+.fade-in-image.loaded {
+  opacity: 1;
+}

@@ -49,11 +49,11 @@ const latestPosts = fetchHashnodePosts().slice(0, HOME_PREVIEW_COUNT);
                     style="box-shadow: 2px 2px 0 0 #000;"
                   >
                     {entry.logo && (
-                      <div class={`w-10 h-10 flex-shrink-0 overflow-hidden ${entry.logoPadding ? 'bg-white p-1' : ''}`}>
+                      <div class={`w-10 h-10 flex-shrink-0 overflow-hidden skeleton-bg ${entry.logoPadding ? 'bg-white p-1' : ''}`}>
                         {entry.logo.startsWith('http') ? (
-                          <Image src={entry.logo} alt={entry.org} inferSize={true} class="w-full h-full object-contain" />
+                          <Image src={entry.logo} alt={entry.org} inferSize={true} class="w-full h-full object-contain fade-in-image" onload="this.classList.add('loaded'); this.parentElement.classList.remove('skeleton-bg')" />
                         ) : images[`/src/assets${entry.logo}`] ? (
-                          <Image src={images[`/src/assets${entry.logo}`]()} alt={entry.org} class="w-full h-full object-contain" />
+                          <Image src={images[`/src/assets${entry.logo}`]()} alt={entry.org} class="w-full h-full object-contain fade-in-image" onload="this.classList.add('loaded'); this.parentElement.classList.remove('skeleton-bg')" />
                         ) : null}
                       </div>
                     )}
@@ -98,11 +98,11 @@ const latestPosts = fetchHashnodePosts().slice(0, HOME_PREVIEW_COUNT);
                   style="box-shadow: 2px 2px 0 0 #000;"
                 >
                   {education.logo && (
-                    <div class="w-10 h-10 flex-shrink-0 overflow-hidden">
+                    <div class="w-10 h-10 flex-shrink-0 overflow-hidden skeleton-bg">
                       {education.logo.startsWith('http') ? (
-                        <Image src={education.logo} alt={education.org} inferSize={true} class="w-full h-full object-contain" />
+                        <Image src={education.logo} alt={education.org} inferSize={true} class="w-full h-full object-contain fade-in-image" onload="this.classList.add('loaded'); this.parentElement.classList.remove('skeleton-bg')" />
                       ) : images[`/src/assets${education.logo}`] ? (
-                        <Image src={images[`/src/assets${education.logo}`]()} alt={education.org} class="w-full h-full object-contain" />
+                        <Image src={images[`/src/assets${education.logo}`]()} alt={education.org} class="w-full h-full object-contain fade-in-image" onload="this.classList.add('loaded'); this.parentElement.classList.remove('skeleton-bg')" />
                       ) : null}
                     </div>
                   )}

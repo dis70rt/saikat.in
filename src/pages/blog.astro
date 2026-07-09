@@ -36,11 +36,11 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/**/*.{j
                     style="box-shadow: 3px 3px 0 0 #000;"
                   >
                     {post.coverImage && (
-                      <div class="w-20 h-20 sm:w-28 sm:h-28 flex-shrink-0 border-2 border-[hsl(var(--border))] overflow-hidden bg-muted/20 aspect-square">
+                      <div class="w-20 h-20 sm:w-28 sm:h-28 flex-shrink-0 border-2 border-[hsl(var(--border))] overflow-hidden bg-muted/20 aspect-square skeleton-bg">
                         {post.coverImage.startsWith('http') ? (
-                          <Image src={post.coverImage} alt={post.title} inferSize={true} class="w-full h-full object-cover" />
+                          <Image src={post.coverImage} alt={post.title} inferSize={true} class="w-full h-full object-cover fade-in-image" onload="this.classList.add('loaded'); this.parentElement.classList.remove('skeleton-bg')" />
                         ) : images[`/src/assets${post.coverImage}`] ? (
-                          <Image src={images[`/src/assets${post.coverImage}`]()} alt={post.title} class="w-full h-full object-cover" />
+                          <Image src={images[`/src/assets${post.coverImage}`]()} alt={post.title} class="w-full h-full object-cover fade-in-image" onload="this.classList.add('loaded'); this.parentElement.classList.remove('skeleton-bg')" />
                         ) : null}
                       </div>
                     )}
