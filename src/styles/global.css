@@ -264,11 +264,7 @@
   background: hsl(var(--primary));
 }
 
-/* ── Scrollbar ── */
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: hsl(var(--background)); }
-::-webkit-scrollbar-thumb { background: hsl(var(--border)); }
-::-webkit-scrollbar-thumb:hover { background: hsl(var(--muted-foreground)); }
+
 
 /* ── Animations ── */
 @keyframes tabContentEnter {
