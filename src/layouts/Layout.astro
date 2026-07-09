@@ -250,23 +250,25 @@ const ogImage = new URL("/og-cover.webp", Astro.site);
         }
       });
 
-      // Handle image skeleton loading reliably (especially for cached images)
-      document.addEventListener("astro:page-load", () => {
-        document.querySelectorAll('.fade-in-image').forEach((img) => {
-          const handleLoad = () => {
+      function setupImages() {
+        const images = document.querySelectorAll('.fade-in-image');
+        images.forEach(img => {
+          const onLoad = () => {
             img.classList.add('loaded');
             if (img.parentElement && img.parentElement.classList.contains('skeleton-bg')) {
               img.parentElement.classList.remove('skeleton-bg');
             }
           };
-          
           if (img.complete) {
-            handleLoad();
+            onLoad();
           } else {
-            img.addEventListener('load', handleLoad);
+            img.addEventListener('load', onLoad);
           }
         });
-      });
+      }
+      document.addEventListener('astro:page-load', setupImages);
+      // Run once immediately for first load
+      setupImages();
     </script>
   </body>
 </html>
