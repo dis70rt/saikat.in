@@ -374,6 +374,7 @@
 }
 
 .fade-in-image.loaded {
+  opacity: 1;
 }
 
 /* ── Custom Scrollbar ── */
