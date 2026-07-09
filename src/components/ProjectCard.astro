@@ -87,10 +87,9 @@ const activeLinks = (project.links ?? []).filter((l) => l.url.trim() !== "").sli
           href={link.url}
           target="_blank"
           rel="noopener noreferrer"
-          class={`flex items-center gap-1.5 text-xs border-2 px-2.5 py-1.5 transition-all duration-100 whitespace-nowrap cursor-pointer font-bold uppercase tracking-wider hover:-translate-y-[1px] hover:-translate-x-[1px] hover:shadow-[3px_3px_0_0_#000] ${
+          class={`nb-shadow-sm flex items-center gap-1.5 text-xs border-2 px-2.5 py-1.5 transition-all duration-100 whitespace-nowrap cursor-pointer font-bold uppercase tracking-wider hover:-translate-y-[1px] hover:-translate-x-[1px] hover:shadow-[3px_3px_0_0_#000] ${
             linkStyle[link.label] ?? defaultStyle
           }`}
-          style="box-shadow: 2px 2px 0 0 #000;"
         >
           <ExternalLink size={10} className="flex-shrink-0" />
           {link.label}

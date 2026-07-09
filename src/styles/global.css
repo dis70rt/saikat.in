@@ -203,6 +203,11 @@
   background-color: hsl(var(--card));
 }
 
+/* ── Neobrutal shadow utilities ── */
+.nb-shadow    { box-shadow: var(--nb-shadow); }
+.nb-shadow-sm { box-shadow: var(--nb-shadow-sm); }
+.nb-shadow-lg { box-shadow: var(--nb-shadow-lg); }
+
 /* ── Neobrutal badge ── */
 .nb-badge {
   border: 1.5px solid currentColor;
