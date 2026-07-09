@@ -3,7 +3,7 @@ export const profile = {
   title: "Software Engineer",
   location: "Varanasi, India",
   bio: "I hate slow stuff",
-  avatar: "/avatar.png",
+  avatar: "/avatar.webp",
   openToWork: false,
 
   githubUsername: "dis70rt",
