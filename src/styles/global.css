@@ -208,33 +208,6 @@
 .nb-shadow-sm { box-shadow: var(--nb-shadow-sm); }
 .nb-shadow-lg { box-shadow: var(--nb-shadow-lg); }
 
-/* ── Neobrutal badge ── */
-.nb-badge {
-  border: 1.5px solid currentColor;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  font-size: 9px;
-}
-
-/* ── Neobrutal button ── */
-.nb-btn {
-  border: var(--nb-border-strong);
-  box-shadow: var(--nb-shadow-sm);
-  font-weight: 700;
-  letter-spacing: 0.03em;
-  transition: box-shadow 0.1s ease, transform 0.1s ease;
-}
-
-.nb-btn:hover {
-  box-shadow: 3px 3px 0px 0px #000;
-  transform: translate(-1px, -1px);
-}
-
-.nb-btn:active {
-  box-shadow: 1px 1px 0px 0px #000;
-  transform: translate(1px, 1px);
-}
 
 /* ── Tag / tech pill ── */
 .nb-tag {
@@ -276,24 +249,6 @@
   animation: tabContentEnter 0.18s ease-out;
 }
 
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
-.cursor-blink {
-  animation: blink 1s step-end infinite;
-}
-
-@keyframes terminalLine {
-  from { opacity: 0; transform: translateY(4px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.terminal-line {
-  opacity: 0;
-  animation: terminalLine 0.3s ease-out forwards;
-}
 
 /* ── Marquee carousel ── */
 .marquee-container {
@@ -345,17 +300,6 @@
   }
 }
 
-/* ── Neobrutal nav tab active underline ── */
-.nb-tab-active {
-  border-bottom: 3px solid hsl(var(--primary));
-  font-weight: 700;
-}
-
-/* ── Timeline connector ── */
-.nb-timeline-line {
-  width: 2px;
-  background: hsl(var(--border));
-}
 
 /* ── Skeleton Loading ── */
 @keyframes skeleton-loading {
