@@ -1,4 +1,4 @@
-import blogPosts from "../data/blog-posts.json";
+import rawPosts from "../../blogs_data.json";
 
 export interface HashnodeTag {
   name: string;
@@ -17,8 +17,15 @@ export interface HashnodePostSummary {
 }
 
 export function fetchHashnodePosts(): HashnodePostSummary[] {
-  // Completely removed network fetch and XML parsing.
-  // We now simply serve the static JSON file.
-  // You can manually edit `src/data/blog-posts.json` to add new posts!
-  return blogPosts as HashnodePostSummary[];
+  return rawPosts.map((post: any) => ({
+    id: post.link,
+    slug: post.link.split('/').pop() || '',
+    title: post.title,
+    brief: post.snippet,
+    publishedAt: post.pubDate,
+    readTimeInMinutes: post.reading_time_minutes,
+    coverImage: post.cover_image,
+    url: post.link,
+    tags: (post.tags || []).map((t: string) => ({ name: t }))
+  }));
 }

@@ -1,0 +1,58 @@
+---
+import '../styles/pixel-blast.css';
+
+interface Props {
+  variant?: 'square' | 'circle' | 'triangle' | 'diamond';
+  pixelSize?: number;
+  color?: string;
+  patternScale?: number;
+  patternDensity?: number;
+  pixelSizeJitter?: number;
+  enableRipples?: boolean;
+  rippleSpeed?: number;
+  rippleThickness?: number;
+  rippleIntensityScale?: number;
+  liquid?: boolean;
+  liquidStrength?: number;
+  liquidRadius?: number;
+  liquidWobbleSpeed?: number;
+  speed?: number;
+  edgeFade?: number;
+  transparent?: boolean;
+}
+
+const props = Astro.props;
+// Serialize props to pass to client-side script
+const configStr = JSON.stringify(props);
+---
+
+<div class="pixel-blast-container" data-config={configStr}></div>
+
+<script>
+  import { PixelBlast } from '../scripts/pixel-blast.js';
+
+  // Initialize the component on all matching elements
+  const initPixelBlast = () => {
+    const containers = document.querySelectorAll('.pixel-blast-container');
+    
+    containers.forEach((container) => {
+      // Avoid initializing multiple times on the same element
+      if (container.hasAttribute('data-initialized')) return;
+      
+      const configStr = container.getAttribute('data-config') || '{}';
+      const config = JSON.parse(configStr);
+      
+      const blast = new PixelBlast(container, config);
+      container.setAttribute('data-initialized', 'true');
+      
+      // Cleanup on view transition (Astro specific)
+      document.addEventListener('astro:before-swap', () => {
+        blast.destroy();
+      }, { once: true });
+    });
+  };
+
+  // Run on initial load and after view transitions
+  initPixelBlast();
+  document.addEventListener('astro:page-load', initPixelBlast);
+</script>

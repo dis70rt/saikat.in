@@ -6,6 +6,9 @@ import { projects } from "@/data/projects";
 import { journey } from "@/data/journey";
 import { fetchHashnodePosts } from "@/lib/hashnode";
 import { badgeStyle } from "@/data/colors";
+import { Image } from "astro:assets";
+
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/**/*.{jpeg,jpg,png,gif,webp,svg}');
 
 const HOME_PREVIEW_COUNT = 2;
 const latestProjects = projects.slice(0, HOME_PREVIEW_COUNT);
@@ -47,7 +50,11 @@ const latestPosts = fetchHashnodePosts().slice(0, HOME_PREVIEW_COUNT);
                   >
                     {entry.logo && (
                       <div class={`w-10 h-10 flex-shrink-0 overflow-hidden ${entry.logoPadding ? 'bg-white p-1' : ''}`}>
-                        <img src={entry.logo} alt={entry.org} class="w-full h-full object-contain" onerror="this.style.display='none'" />
+                        {entry.logo.startsWith('http') ? (
+                          <Image src={entry.logo} alt={entry.org} inferSize={true} class="w-full h-full object-contain" />
+                        ) : images[`/src/assets${entry.logo}`] ? (
+                          <Image src={images[`/src/assets${entry.logo}`]()} alt={entry.org} class="w-full h-full object-contain" />
+                        ) : null}
                       </div>
                     )}
                     <div class="flex-1 min-w-0">
@@ -92,7 +99,11 @@ const latestPosts = fetchHashnodePosts().slice(0, HOME_PREVIEW_COUNT);
                 >
                   {education.logo && (
                     <div class="w-10 h-10 flex-shrink-0 overflow-hidden">
-                      <img src={education.logo} alt={education.org} class="w-full h-full object-contain" onerror="this.style.display='none'" />
+                      {education.logo.startsWith('http') ? (
+                        <Image src={education.logo} alt={education.org} inferSize={true} class="w-full h-full object-contain" />
+                      ) : images[`/src/assets${education.logo}`] ? (
+                        <Image src={images[`/src/assets${education.logo}`]()} alt={education.org} class="w-full h-full object-contain" />
+                      ) : null}
                     </div>
                   )}
                   <div class="flex-1 min-w-0">

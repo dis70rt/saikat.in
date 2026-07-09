@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import { SIGNATURE_PATHS, SIGNATURE_VIEWBOX } from "@/data/signature-paths";
 import { ClientRouter } from "astro:transitions";
+import PixelBlast from "../components/PixelBlast.astro";
 
 interface Props {
   title?: string;
@@ -67,6 +68,23 @@ const ogImage = new URL("/og-cover.webp", Astro.site);
     <ClientRouter />
   </head>
   <body>
+    <div class="pixel-blast-bg">
+      <PixelBlast
+        variant="diamond"
+        pixelSize={6}
+        color="#B497CF"
+        patternScale={3}
+        patternDensity={1.2}
+        pixelSizeJitter={0.6}
+        enableRipples={true}
+        rippleSpeed={0.4}
+        rippleThickness={0.12}
+        rippleIntensityScale={1.5}
+        speed={0.6}
+        edgeFade={0.4}
+        transparent={true}
+      />
+    </div>
     <div id="loader" class="fixed inset-0 z-[9999] flex items-center justify-center bg-background">
       <div class="flex flex-col items-center gap-6 w-full max-w-sm px-8 select-none">
         <svg
@@ -90,7 +108,7 @@ const ogImage = new URL("/og-cover.webp", Astro.site);
       </div>
     </div>
 
-    <div id="app-shell" class="min-h-screen bg-background text-foreground opacity-0">
+    <div id="app-shell" class="min-h-screen text-foreground opacity-0">
       <main class="flex flex-col items-stretch min-h-screen p-2 sm:p-4 md:p-8">
         <div class="w-full max-w-6xl mx-auto">
           <div class="flex flex-col lg:flex-row gap-4 items-stretch lg:items-start">
@@ -103,6 +121,21 @@ const ogImage = new URL("/og-cover.webp", Astro.site);
     <style>
       .signature-path {
         opacity: 0;
+      }
+      .pixel-blast-bg {
+        /* hidden on mobile, visible on desktop only */
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 0;
+        pointer-events: none;
+        opacity: 0.35;
+      }
+      @media (min-width: 1024px) {
+        .pixel-blast-bg { display: block; }
       }
     </style>
 

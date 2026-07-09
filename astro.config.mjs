@@ -9,4 +9,7 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
+  image: {
+    domains: ['logo.clearbit.com', 'cdn.hashnode.com'],
+  },
 });

@@ -158,11 +158,6 @@
     font-size: 17.6px;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
-    /* Subtle grid pattern for neobrutal feel */
-    background-image: 
-      linear-gradient(hsl(var(--border) / 0.15) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(var(--border) / 0.15) 1px, transparent 1px);
-    background-size: 32px 32px;
   }
 
   @media (min-width: 1024px) {
