@@ -23,7 +23,7 @@ export const journey: JourneyEntry[] = [
     period: "Jun 2026 - Present",
     description: "Working as an SDE Intern, contributing to software development initiatives.",
     tags: ["SDE"],
-    logo: "/images/logos/copious.png",
+    logo: "/images/logos/copious.webp",
   },
   {
     id: "bny-hackathon",
@@ -69,7 +69,7 @@ export const journey: JourneyEntry[] = [
     ],
     tags: ["Flutter", "API", "Android"],
     highlight: "30% API calls reduction",
-    logo: "/images/logos/vrajpath.png",
+    logo: "/images/logos/vrajpath.webp",
     logoPadding: true,
   },
   {
@@ -99,7 +99,7 @@ export const journey: JourneyEntry[] = [
     period: "July 2023 - May 2027",
     description: "",
     tags: [],
-    logo: "/images/logos/iit_bhu_logo.png",
+    logo: "/images/logos/iit_bhu_logo.webp",
   },
   {
     id: "jee-2023",

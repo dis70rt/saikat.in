@@ -1,4 +1,15 @@
-import rawPosts from "../../blogs_data.json";
+import rawPosts from "@/data/blogs_data.json";
+
+/** Shape of a single entry in blogs_data.json */
+interface RawBlogPost {
+  title: string;
+  link: string;
+  snippet: string;
+  pubDate: string;
+  reading_time_minutes: number;
+  cover_image?: string;
+  tags?: string[];
+}
 
 export interface HashnodeTag {
   name: string;
@@ -17,7 +28,7 @@ export interface HashnodePostSummary {
 }
 
 export function fetchHashnodePosts(): HashnodePostSummary[] {
-  return rawPosts.map((post: any) => ({
+  return (rawPosts as RawBlogPost[]).map((post) => ({
     id: post.link,
     slug: post.link.split('/').pop() || '',
     title: post.title,
@@ -26,6 +37,6 @@ export function fetchHashnodePosts(): HashnodePostSummary[] {
     readTimeInMinutes: post.reading_time_minutes,
     coverImage: post.cover_image,
     url: post.link,
-    tags: (post.tags || []).map((t: string) => ({ name: t }))
+    tags: (post.tags || []).map((t) => ({ name: t }))
   }));
 }

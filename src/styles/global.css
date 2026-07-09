@@ -146,6 +146,26 @@
 
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  ::selection {
+    background-color: hsl(var(--primary) / 0.25);
+    color: hsl(var(--primary));
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
   * {
     border-color: hsl(var(--border));
   }
@@ -168,6 +188,15 @@
   }
 }
 
+/* ── Cross-browser hide scrollbar ── */
+.no-scrollbar {
+  scrollbar-width: none;        /* Firefox */
+  -ms-overflow-style: none;    /* IE/Edge */
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;               /* Chrome/Safari */
+}
+
 /* ── Neobrutal card — thick border + hard shadow ── */
 .nb-card {
   border: var(--nb-border);
@@ -183,33 +212,11 @@
   background-color: hsl(var(--card));
 }
 
-/* ── Neobrutal badge ── */
-.nb-badge {
-  border: 1.5px solid currentColor;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  font-size: 9px;
-}
+/* ── Neobrutal shadow utilities ── */
+.nb-shadow    { box-shadow: var(--nb-shadow); }
+.nb-shadow-sm { box-shadow: var(--nb-shadow-sm); }
+.nb-shadow-lg { box-shadow: var(--nb-shadow-lg); }
 
-/* ── Neobrutal button ── */
-.nb-btn {
-  border: var(--nb-border-strong);
-  box-shadow: var(--nb-shadow-sm);
-  font-weight: 700;
-  letter-spacing: 0.03em;
-  transition: box-shadow 0.1s ease, transform 0.1s ease;
-}
-
-.nb-btn:hover {
-  box-shadow: 3px 3px 0px 0px #000;
-  transform: translate(-1px, -1px);
-}
-
-.nb-btn:active {
-  box-shadow: 1px 1px 0px 0px #000;
-  transform: translate(1px, 1px);
-}
 
 /* ── Tag / tech pill ── */
 .nb-tag {
@@ -239,11 +246,7 @@
   background: hsl(var(--primary));
 }
 
-/* ── Scrollbar ── */
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: hsl(var(--background)); }
-::-webkit-scrollbar-thumb { background: hsl(var(--border)); }
-::-webkit-scrollbar-thumb:hover { background: hsl(var(--muted-foreground)); }
+
 
 /* ── Animations ── */
 @keyframes tabContentEnter {
@@ -255,24 +258,6 @@
   animation: tabContentEnter 0.18s ease-out;
 }
 
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
-.cursor-blink {
-  animation: blink 1s step-end infinite;
-}
-
-@keyframes terminalLine {
-  from { opacity: 0; transform: translateY(4px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.terminal-line {
-  opacity: 0;
-  animation: terminalLine 0.3s ease-out forwards;
-}
 
 /* ── Marquee carousel ── */
 .marquee-container {
@@ -324,14 +309,42 @@
   }
 }
 
-/* ── Neobrutal nav tab active underline ── */
-.nb-tab-active {
-  border-bottom: 3px solid hsl(var(--primary));
-  font-weight: 700;
+
+/* ── Skeleton Loading ── */
+@keyframes skeleton-loading {
+  0% { background-color: hsl(var(--muted) / 0.4); }
+  50% { background-color: hsl(var(--muted) / 1); }
+  100% { background-color: hsl(var(--muted) / 0.4); }
 }
 
-/* ── Timeline connector ── */
-.nb-timeline-line {
-  width: 2px;
+.skeleton-bg {
+  animation: skeleton-loading 1.5s infinite ease-in-out;
+}
+
+/* ── Image Fade In ── */
+.fade-in-image {
+  opacity: 0;
+  transition: opacity 0.4s ease-out;
+}
+
+.fade-in-image.loaded {
+  opacity: 1;
+}
+
+/* ── Custom Scrollbar ── */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+  border-left: 1px solid hsl(var(--border));
+}
+::-webkit-scrollbar-thumb {
   background: hsl(var(--border));
+  border: 1px solid hsl(var(--background));
+  border-right: none;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary));
 }

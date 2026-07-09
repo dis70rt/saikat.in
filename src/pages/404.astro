@@ -4,14 +4,24 @@ import Layout from "@/layouts/Layout.astro";
 
 <Layout title="404 - Saikat Das" description="Page not found.">
   <div class="flex-1 flex items-center justify-center min-h-[60vh]">
-    <div class="text-center flex flex-col gap-4">
-      <div class="font-mono text-sm text-muted-foreground border border-border rounded-sm bg-card p-6 max-w-md">
-        <div><span class="text-primary">$</span> curl saikat.in{Astro.url.pathname}</div>
-        <div class="mt-2 text-[var(--tn-red)]">404: page not found</div>
-        <div class="mt-1 text-muted-foreground">the route you requested does not exist.</div>
+    <div class="text-center flex flex-col items-center gap-6">
+      <div class="nb-card p-0 overflow-hidden max-w-md text-left flex flex-col">
+        <div class="bg-[hsl(var(--border))] px-3 py-1.5 flex items-center gap-2 border-b-2 border-[hsl(var(--border))]">
+          <div class="w-3 h-3 rounded-full bg-[var(--tn-red)] border border-[hsl(var(--background))]"></div>
+          <div class="w-3 h-3 rounded-full bg-[var(--tn-yellow)] border border-[hsl(var(--background))]"></div>
+          <div class="w-3 h-3 rounded-full bg-[var(--tn-green)] border border-[hsl(var(--background))]"></div>
+          <span class="text-[10px] font-mono text-[hsl(var(--background))] font-bold ml-2">bash - terminal</span>
+        </div>
+        <div class="p-5 font-mono text-sm text-foreground bg-card">
+          <div><span class="text-[var(--tn-green)] font-bold">~</span> <span class="text-primary">$</span> curl saikat.in{Astro.url.pathname}</div>
+          <div class="mt-3 text-[var(--tn-red)] font-bold flex items-center gap-2">
+            <span>></span> HTTP 404: Not Found
+          </div>
+          <div class="mt-1 text-muted-foreground text-xs">The route you requested does not exist in the current context.</div>
+        </div>
       </div>
-      <a href="/" class="text-sm text-primary hover:text-primary/80 transition-colors no-underline">
-        ← back to home
+      <a href="/" class="inline-flex items-center gap-2 px-4 py-2 bg-card border-2 border-[hsl(var(--primary))] text-[hsl(var(--primary))] font-bold uppercase tracking-wider text-sm transition-all hover:bg-[hsl(var(--primary))]/10 hover:-translate-y-[2px] hover:-translate-x-[2px] hover:shadow-[4px_4px_0_0_hsl(var(--primary))] no-underline" style="box-shadow: 2px 2px 0 0 hsl(var(--primary));">
+        <span class="text-[10px]">←</span> back to home
       </a>
     </div>
   </div>

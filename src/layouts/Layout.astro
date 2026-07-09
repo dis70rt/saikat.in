@@ -1,5 +1,11 @@
 ---
 import "../styles/global.css";
+import "@fontsource/space-grotesk/400.css";
+import "@fontsource/space-grotesk/500.css";
+import "@fontsource/space-grotesk/600.css";
+import "@fontsource/space-grotesk/700.css";
+import "@fontsource/jetbrains-mono/400.css";
+import "@fontsource/jetbrains-mono/500.css";
 import { SIGNATURE_PATHS, SIGNATURE_VIEWBOX } from "@/data/signature-paths";
 import { ClientRouter } from "astro:transitions";
 import PixelBlast from "../components/PixelBlast.astro";
@@ -48,9 +54,6 @@ const ogImage = new URL("/og-cover.webp", Astro.site);
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage.href} />
     <link rel="icon" type="image/png" href="/favicon.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
     <script is:inline src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
     <script is:inline>
       (function() {
@@ -139,7 +142,9 @@ const ogImage = new URL("/og-cover.webp", Astro.site);
       }
     </style>
 
-    <script is:inline>
+    <script>
+      import gsap from "gsap";
+      
       function runLoader() {
         const loader = document.getElementById("loader");
         const shell = document.getElementById("app-shell");
@@ -153,7 +158,7 @@ const ogImage = new URL("/og-cover.webp", Astro.site);
         window.loaderHasRun = true;
 
         const paths = document.querySelectorAll(".signature-path");
-        if (!paths.length || typeof gsap === "undefined") {
+        if (!paths.length) {
           loader.remove();
           shell.style.opacity = "1";
           return;
@@ -244,6 +249,26 @@ const ogImage = new URL("/og-cover.webp", Astro.site);
           document.documentElement.setAttribute("data-theme", savedTheme);
         }
       });
+
+      function setupImages() {
+        const images = document.querySelectorAll('.fade-in-image');
+        images.forEach(img => {
+          const onLoad = () => {
+            img.classList.add('loaded');
+            if (img.parentElement && img.parentElement.classList.contains('skeleton-bg')) {
+              img.parentElement.classList.remove('skeleton-bg');
+            }
+          };
+          if (img.complete) {
+            onLoad();
+          } else {
+            img.addEventListener('load', onLoad);
+          }
+        });
+      }
+      document.addEventListener('astro:page-load', setupImages);
+      // Run once immediately for first load
+      setupImages();
     </script>
   </body>
 </html>

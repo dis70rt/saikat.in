@@ -3,8 +3,7 @@ import { profile } from "@/data/profile";
 import { journey } from "@/data/journey";
 import { Github, Linkedin, Mail, MapPin, User, FileText, Code, Phone, type LucideIcon } from "lucide-react";
 import { Image } from "astro:assets";
-
-const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/**/*.{jpeg,jpg,png,gif,webp,svg}');
+import { localImages } from "@/lib/images";
 
 const highlights = journey.filter((e) => e.kind === "hackathon" || e.kind === "achievement");
 const doubled = [...highlights, ...highlights];
@@ -34,9 +33,9 @@ const highlightColor = (kind: string) =>
     <!-- Top accent stripe -->
     <div class="h-1 bg-[var(--tn-blue)] -mx-4 -mt-4 sm:-mx-5 sm:-mt-5 mb-0" />
     <div class="flex items-center gap-3 flex-wrap pt-0">
-      <div class="w-12 h-12 sm:w-14 sm:h-14 border-2 border-[var(--tn-blue)] bg-muted flex items-center justify-center flex-shrink-0 overflow-hidden" style="box-shadow: 3px 3px 0 0 var(--tn-blue)">
-        {profile.avatar && images[`/src/assets${profile.avatar}`] ? (
-          <Image src={images[`/src/assets${profile.avatar}`]()} alt={profile.name} class="w-full h-full object-cover" loading="eager" />
+      <div class="w-12 h-12 sm:w-14 sm:h-14 border-2 border-[var(--tn-blue)] bg-muted flex items-center justify-center flex-shrink-0 overflow-hidden skeleton-bg" style="box-shadow: 3px 3px 0 0 var(--tn-blue)">
+        {profile.avatar && localImages[`/src/assets${profile.avatar}`] ? (
+          <Image src={localImages[`/src/assets${profile.avatar}`]()} alt={profile.name} class="w-full h-full object-cover fade-in-image" loading="eager" />
         ) : (
           <User size={24} className="text-muted-foreground" />
         )}
@@ -56,7 +55,7 @@ const highlightColor = (kind: string) =>
   </div>
 
   <!-- Status + Contact Card -->
-  <div class="nb-card-sm px-4 py-3 flex flex-col gap-2 shrink-0" style={`border-left: 3px solid ${profile.openToWork ? 'var(--tn-green)' : 'var(--tn-blue)'}; box-shadow: 2px 2px 0 0 #000;`}>
+  <div class="nb-card-sm nb-shadow-sm px-4 py-3 flex flex-col gap-2 shrink-0" style={`border-left: 3px solid ${profile.openToWork ? 'var(--tn-green)' : 'var(--tn-blue)'};`}>
     <div class="flex items-center gap-2">
       {profile.openToWork ? (
         <span class="relative flex h-2 w-2">
@@ -117,8 +116,7 @@ const highlightColor = (kind: string) =>
           {doubled.map((entry) => (
             <a
               href="/journey"
-              class="inline-flex items-center gap-2 px-3 py-1.5 mr-3 border border-[hsl(var(--border))] bg-muted/30 hover:bg-muted/60 transition-colors no-underline cursor-pointer flex-shrink-0 whitespace-nowrap"
-              style="box-shadow: 1px 1px 0 0 #000;"
+              class="nb-shadow-sm inline-flex items-center gap-2 px-3 py-1.5 mr-3 border border-[hsl(var(--border))] bg-muted/30 hover:bg-muted/60 transition-colors no-underline cursor-pointer flex-shrink-0 whitespace-nowrap"
             >
               <span class={`text-[10px] font-bold uppercase tracking-wider ${highlightColor(entry.kind)}`}>
                 {entry.highlight ?? entry.kind}
@@ -160,8 +158,7 @@ const highlightColor = (kind: string) =>
             rel="noopener noreferrer"
             title={s.label}
             aria-label={s.label}
-            class="w-9 h-9 border-2 border-[hsl(var(--border))] bg-muted/40 flex items-center justify-center text-muted-foreground hover:text-[var(--tn-blue)] hover:border-[var(--tn-blue)] transition-colors cursor-pointer"
-            style="box-shadow: 2px 2px 0 0 #000;"
+            class="nb-shadow-sm w-9 h-9 border-2 border-[hsl(var(--border))] bg-muted/40 flex items-center justify-center text-muted-foreground hover:text-[var(--tn-blue)] hover:border-[var(--tn-blue)] transition-all cursor-pointer hover:-translate-y-[2px] hover:-translate-x-[2px] hover:shadow-[3px_3px_0_0_#000]"
           >
             <Icon size={15} />
           </a>
@@ -174,7 +171,7 @@ const highlightColor = (kind: string) =>
         href={profile.resumeUrl}
         target="_blank"
         rel="noopener noreferrer"
-        class="nb-btn flex items-center justify-center gap-2 text-sm border-2 border-[var(--tn-blue)] text-[var(--tn-blue)] py-2 px-3 hover:bg-[var(--tn-blue)]/10 transition-colors cursor-pointer font-bold uppercase tracking-wider"
+        class="nb-shadow-sm flex items-center justify-center gap-2 text-sm border-2 border-[var(--tn-blue)] text-[var(--tn-blue)] py-2 px-3 bg-card hover:bg-[var(--tn-blue)]/10 transition-all cursor-pointer font-bold uppercase tracking-wider hover:-translate-y-[2px] hover:-translate-x-[2px] hover:shadow-[4px_4px_0_0_var(--tn-blue)]"
       >
         <FileText size={12} />
         View Resume
