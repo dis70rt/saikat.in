@@ -32,8 +32,7 @@ const posts = fetchHashnodePosts();
                     href={post.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="border-2 border-[hsl(var(--border))] bg-card p-4 transition-all duration-100 no-underline cursor-pointer flex flex-row items-start gap-4 group hover:bg-muted/20 hover:-translate-y-[2px] hover:-translate-x-[2px] hover:shadow-[5px_5px_0_0_#000]"
-                    style="box-shadow: 3px 3px 0 0 #000;"
+                    class="nb-shadow border-2 border-[hsl(var(--border))] bg-card p-4 transition-all duration-100 no-underline cursor-pointer flex flex-row items-start gap-4 group hover:bg-muted/20 hover:-translate-y-[2px] hover:-translate-x-[2px] hover:shadow-[5px_5px_0_0_#000]"
                   >
                     {post.coverImage && (
                       <div class="w-20 h-20 sm:w-28 sm:h-28 flex-shrink-0 border-2 border-[hsl(var(--border))] overflow-hidden bg-muted/20 aspect-square skeleton-bg">
