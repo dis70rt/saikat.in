@@ -34,7 +34,7 @@ const activeLinks = (project.links ?? []).filter((l) => l.url.trim() !== "").sli
         src={images[`/src/assets${project.image}`]()} 
         alt={project.title} 
         class="w-full h-auto max-h-64 object-contain fade-in-image" 
-        onload="this.classList.add('loaded'); this.parentElement.classList.remove('skeleton-bg')"
+       
       />
     </div>
   )}

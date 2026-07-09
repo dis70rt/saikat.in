@@ -249,6 +249,24 @@ const ogImage = new URL("/og-cover.webp", Astro.site);
           document.documentElement.setAttribute("data-theme", savedTheme);
         }
       });
+
+      // Handle image skeleton loading reliably (especially for cached images)
+      document.addEventListener("astro:page-load", () => {
+        document.querySelectorAll('.fade-in-image').forEach((img) => {
+          const handleLoad = () => {
+            img.classList.add('loaded');
+            if (img.parentElement && img.parentElement.classList.contains('skeleton-bg')) {
+              img.parentElement.classList.remove('skeleton-bg');
+            }
+          };
+          
+          if (img.complete) {
+            handleLoad();
+          } else {
+            img.addEventListener('load', handleLoad);
+          }
+        });
+      });
     </script>
   </body>
 </html>
