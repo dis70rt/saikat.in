@@ -1,4 +1,4 @@
-import rawPosts from "../../blogs_data.json";
+import rawPosts from "@/data/blogs_data.json";
 
 export interface HashnodeTag {
   name: string;
