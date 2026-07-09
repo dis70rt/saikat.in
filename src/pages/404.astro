@@ -1,0 +1,18 @@
+---
+import Layout from "@/layouts/Layout.astro";
+---
+
+<Layout title="404 - Saikat Das" description="Page not found.">
+  <div class="flex-1 flex items-center justify-center min-h-[60vh]">
+    <div class="text-center flex flex-col gap-4">
+      <div class="font-mono text-sm text-muted-foreground border border-border rounded-sm bg-card p-6 max-w-md">
+        <div><span class="text-primary">$</span> curl saikat.in{Astro.url.pathname}</div>
+        <div class="mt-2 text-[var(--tn-red)]">404: page not found</div>
+        <div class="mt-1 text-muted-foreground">the route you requested does not exist.</div>
+      </div>
+      <a href="/" class="text-sm text-primary hover:text-primary/80 transition-colors no-underline">
+        ← back to home
+      </a>
+    </div>
+  </div>
+</Layout>

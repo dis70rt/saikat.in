@@ -1,0 +1,337 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --font-sans: var(--app-font-sans);
+  --font-mono: var(--app-font-mono);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+}
+
+:root,
+[data-theme="midnight"] {
+  --background: 235 16% 15%;
+  --foreground: 227 30% 85%;
+  --border: 228 22% 21%;
+  --card: 235 14% 10%;
+  --card-foreground: 227 30% 85%;
+  --muted: 228 23% 19%;
+  --muted-foreground: 228 22% 50%;
+  --accent: 265 85% 78%;
+  --accent-foreground: 235 16% 15%;
+  --primary: 220 90% 72%;
+  --primary-foreground: 235 16% 15%;
+  --input: 228 22% 21%;
+  --ring: 220 90% 72%;
+  --app-font-sans: 'Space Grotesk', 'Inter', sans-serif;
+  --app-font-mono: 'JetBrains Mono', monospace;
+  --radius: 0rem;
+
+  /* Neobrutal shadow */
+  --nb-shadow: 3px 3px 0px 0px #000;
+  --nb-shadow-sm: 2px 2px 0px 0px #000;
+  --nb-shadow-lg: 5px 5px 0px 0px #000;
+  --nb-border: 2px solid hsl(228 22% 30%);
+  --nb-border-strong: 2px solid hsl(228 22% 40%);
+
+  --tn-red: #f7768e;
+  --tn-orange: #ff9e64;
+  --tn-yellow: #e0af68;
+  --tn-green: #9ece6a;
+  --tn-cyan: #7dcfff;
+  --tn-blue: #7aa2f7;
+  --tn-purple: #bb9af7;
+  --tn-comment: #565f89;
+  --tn-selection: #283457;
+  --tn-terminal-black: #414868;
+}
+
+/* ── One Dark Pro ── */
+[data-theme="one-dark-pro"] {
+  --background: 220 13% 18%;
+  --foreground: 219 14% 78%;
+  --border: 220 13% 24%;
+  --card: 220 13% 14%;
+  --card-foreground: 219 14% 78%;
+  --muted: 220 13% 22%;
+  --muted-foreground: 219 10% 52%;
+  --accent: 286 60% 67%;
+  --accent-foreground: 220 13% 18%;
+  --primary: 207 82% 66%;
+  --primary-foreground: 220 13% 18%;
+  --input: 220 13% 24%;
+  --ring: 207 82% 66%;
+
+  --tn-red: #e06c75;
+  --tn-orange: #d19a66;
+  --tn-yellow: #e5c07b;
+  --tn-green: #98c379;
+  --tn-cyan: #56b6c2;
+  --tn-blue: #61afef;
+  --tn-purple: #c678dd;
+  --tn-comment: #5c6370;
+  --tn-selection: #3e4452;
+  --tn-terminal-black: #3b4048;
+}
+
+/* ── Catppuccin (Mocha) ── */
+[data-theme="catppuccin"] {
+  --background: 240 21% 15%;
+  --foreground: 226 64% 88%;
+  --border: 237 16% 23%;
+  --card: 240 21% 12%;
+  --card-foreground: 226 64% 88%;
+  --muted: 237 16% 21%;
+  --muted-foreground: 228 24% 55%;
+  --accent: 316 72% 86%;
+  --accent-foreground: 240 21% 15%;
+  --primary: 217 92% 76%;
+  --primary-foreground: 240 21% 15%;
+  --input: 237 16% 23%;
+  --ring: 217 92% 76%;
+
+  --tn-red: #f38ba8;
+  --tn-orange: #fab387;
+  --tn-yellow: #f9e2af;
+  --tn-green: #a6e3a1;
+  --tn-cyan: #89dceb;
+  --tn-blue: #89b4fa;
+  --tn-purple: #cba6f7;
+  --tn-comment: #6c7086;
+  --tn-selection: #313244;
+  --tn-terminal-black: #45475a;
+}
+
+/* ── Dracula ── */
+[data-theme="dracula"] {
+  --background: 231 15% 18%;
+  --foreground: 60 30% 96%;
+  --border: 232 14% 25%;
+  --card: 231 15% 14%;
+  --card-foreground: 60 30% 96%;
+  --muted: 232 14% 23%;
+  --muted-foreground: 225 14% 55%;
+  --accent: 326 100% 74%;
+  --accent-foreground: 231 15% 18%;
+  --primary: 265 89% 78%;
+  --primary-foreground: 231 15% 18%;
+  --input: 232 14% 25%;
+  --ring: 265 89% 78%;
+
+  --tn-red: #ff5555;
+  --tn-orange: #ffb86c;
+  --tn-yellow: #f1fa8c;
+  --tn-green: #50fa7b;
+  --tn-cyan: #8be9fd;
+  --tn-blue: #6272a4;
+  --tn-purple: #bd93f9;
+  --tn-comment: #6272a4;
+  --tn-selection: #44475a;
+  --tn-terminal-black: #44475a;
+}
+
+
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: var(--app-font-sans);
+    /* ~10% zoom bump: 16px * 1.1 = 17.6px */
+    font-size: 17.6px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  @media (min-width: 1024px) {
+    body { font-size: 18.7px; }
+  }
+  @media (min-width: 1440px) {
+    body { font-size: 19.8px; }
+  }
+}
+
+/* ── Neobrutal card — thick border + hard shadow ── */
+.nb-card {
+  border: var(--nb-border);
+  box-shadow: var(--nb-shadow);
+  background-color: hsl(var(--card));
+  transition: box-shadow 0.12s ease, transform 0.12s ease;
+}
+
+
+.nb-card-sm {
+  border: var(--nb-border);
+  box-shadow: var(--nb-shadow-sm);
+  background-color: hsl(var(--card));
+}
+
+/* ── Neobrutal badge ── */
+.nb-badge {
+  border: 1.5px solid currentColor;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 9px;
+}
+
+/* ── Neobrutal button ── */
+.nb-btn {
+  border: var(--nb-border-strong);
+  box-shadow: var(--nb-shadow-sm);
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  transition: box-shadow 0.1s ease, transform 0.1s ease;
+}
+
+.nb-btn:hover {
+  box-shadow: 3px 3px 0px 0px #000;
+  transform: translate(-1px, -1px);
+}
+
+.nb-btn:active {
+  box-shadow: 1px 1px 0px 0px #000;
+  transform: translate(1px, 1px);
+}
+
+/* ── Tag / tech pill ── */
+.nb-tag {
+  border: 1.5px solid hsl(var(--border));
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* ── Section heading ── */
+.nb-section-label {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: hsl(var(--primary));
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nb-section-label::before {
+  content: '';
+  display: block;
+  width: 12px;
+  height: 2px;
+  background: hsl(var(--primary));
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: hsl(var(--background)); }
+::-webkit-scrollbar-thumb { background: hsl(var(--border)); }
+::-webkit-scrollbar-thumb:hover { background: hsl(var(--muted-foreground)); }
+
+/* ── Animations ── */
+@keyframes tabContentEnter {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.tab-content-enter {
+  animation: tabContentEnter 0.18s ease-out;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes terminalLine {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.terminal-line {
+  opacity: 0;
+  animation: terminalLine 0.3s ease-out forwards;
+}
+
+/* ── Marquee carousel ── */
+.marquee-container {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+}
+
+.marquee-container::before,
+.marquee-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 24px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.marquee-container::before {
+  left: 0;
+  background: linear-gradient(to right, hsl(var(--card)), transparent);
+}
+
+.marquee-container::after {
+  right: 0;
+  background: linear-gradient(to left, hsl(var(--card)), transparent);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 30s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}
+
+/* ── Neobrutal nav tab active underline ── */
+.nb-tab-active {
+  border-bottom: 3px solid hsl(var(--primary));
+  font-weight: 700;
+}
+
+/* ── Timeline connector ── */
+.nb-timeline-line {
+  width: 2px;
+  background: hsl(var(--border));
+}

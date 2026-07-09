@@ -1,0 +1,44 @@
+---
+const currentPath = Astro.url.pathname;
+
+const tabs = [
+  { href: "/",         label: "about.ts",    ext: "ts" },
+  { href: "/projects", label: "projects.md", ext: "md" },
+  { href: "/journey",  label: "journey.md",  ext: "md" },
+  { href: "/blog",     label: "blog.md",     ext: "md" },
+];
+
+function isActive(href: string, current: string): boolean {
+  const normalize = (p: string) => p.replace(/\/+$/, "") || "/";
+  return normalize(href) === normalize(current);
+}
+---
+
+<div class="flex items-center gap-0 border-b-2 border-[hsl(var(--border))] overflow-x-auto scrollbar-none shrink-0">
+  {tabs.map((tab) => {
+    const active = isActive(tab.href, currentPath);
+    return (
+      <a
+        href={tab.href}
+        data-astro-prefetch
+        class={`flex items-center gap-2 px-4 py-2.5 text-sm border-r-2 border-[hsl(var(--border))] whitespace-nowrap transition-colors flex-shrink-0 no-underline ${
+          active
+            ? "bg-card text-foreground font-bold"
+            : "text-muted-foreground hover:text-foreground hover:bg-muted/40 font-medium"
+        }`}
+        style={active 
+          ? `border-top: 3px solid hsl(var(--primary)); border-bottom: 3px solid hsl(var(--card)); margin-bottom: -2px;` 
+          : `border-top: 3px solid transparent; border-bottom: 3px solid transparent; margin-bottom: -2px;`}
+      >
+        <span class={`text-[9px] font-black font-mono tracking-widest ${
+          active
+            ? tab.ext === "ts" ? "text-[var(--tn-blue)]" : "text-[var(--tn-green)]"
+            : "text-muted-foreground"
+        }`}>
+          {tab.ext.toUpperCase()}
+        </span>
+        {tab.label}
+      </a>
+    );
+  })}
+</div>

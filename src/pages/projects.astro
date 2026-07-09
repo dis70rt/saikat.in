@@ -1,0 +1,39 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Sidebar from "@/components/Sidebar.astro";
+import NavTabs from "@/components/NavTabs.astro";
+import ProjectCard from "@/components/ProjectCard.astro";
+import { projects } from "@/data/projects";
+
+const sorted = [...projects];
+---
+
+<Layout title="Projects - Saikat Das" description="Open-source projects in Go, distributed systems, and real-time architectures.">
+  <Sidebar />
+
+  <div class="flex-1 min-w-0 nb-card mt-4 lg:mt-0 lg:max-h-[calc(100vh-4rem)] lg:flex lg:flex-col lg:sticky lg:top-8 lg:self-start">
+    <NavTabs />
+
+    <div class="p-5 sm:p-6 lg:flex-1 lg:min-h-0 lg:flex lg:flex-col">
+      <div class="tab-content-enter lg:flex-1 lg:min-h-0 lg:flex lg:flex-col">
+        {sorted.length === 0 ? (
+          <div class="flex flex-col items-center gap-3 py-12 text-center">
+            <p class="text-xs text-muted-foreground">
+              No projects yet. Add them to <code class="text-primary">src/data/projects.ts</code>
+            </p>
+          </div>
+        ) : (
+          <div class="lg:flex-1 lg:overflow-y-auto p-2 -m-2">
+            <div class="columns-1 sm:columns-2 gap-3 sm:gap-4 space-y-3 sm:space-y-4">
+              {sorted.map((project) => (
+                <div class="break-inside-avoid relative">
+                  <ProjectCard project={project} />
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  </div>
+</Layout>

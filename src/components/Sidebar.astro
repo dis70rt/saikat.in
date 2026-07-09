@@ -1,0 +1,192 @@
+---
+import { profile } from "@/data/profile";
+import { journey } from "@/data/journey";
+import { Github, Linkedin, Mail, MapPin, User, FileText, Code, Phone, type LucideIcon } from "lucide-react";
+import { Image } from "astro:assets";
+
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/**/*.{jpeg,jpg,png,gif,webp,svg}');
+
+const highlights = journey.filter((e) => e.kind === "hackathon" || e.kind === "achievement");
+const doubled = [...highlights, ...highlights];
+
+const iconMap: Record<string, LucideIcon> = {
+  github: Github,
+  linkedin: Linkedin,
+  mail: Mail,
+  code: Code,
+};
+
+const categoryColor: Record<string, string> = {
+  language:  "text-[var(--tn-blue)] border-[var(--tn-blue)] bg-[var(--tn-blue)]/8",
+  framework: "text-[var(--tn-purple)] border-[var(--tn-purple)] bg-[var(--tn-purple)]/8",
+  infra:     "text-[var(--tn-yellow)] border-[var(--tn-yellow)] bg-[var(--tn-yellow)]/8",
+  database:  "text-[var(--tn-green)] border-[var(--tn-green)] bg-[var(--tn-green)]/8",
+};
+
+const highlightColor = (kind: string) =>
+  kind === "hackathon" ? "text-[var(--tn-yellow)]" : "text-[var(--tn-green)]";
+---
+
+<aside transition:persist="sidebar" class="w-full lg:w-72 flex-shrink-0 flex flex-col gap-4 lg:sticky lg:top-8 lg:self-start lg:max-h-[calc(100vh-4rem)] lg:overflow-y-auto">
+
+  <!-- Profile Card -->
+  <div class="nb-card p-4 sm:p-5 flex flex-col gap-4 shrink-0">
+    <!-- Top accent stripe -->
+    <div class="h-1 bg-[var(--tn-blue)] -mx-4 -mt-4 sm:-mx-5 sm:-mt-5 mb-0" />
+    <div class="flex items-center gap-3 flex-wrap pt-0">
+      <div class="w-12 h-12 sm:w-14 sm:h-14 border-2 border-[var(--tn-blue)] bg-muted flex items-center justify-center flex-shrink-0 overflow-hidden" style="box-shadow: 3px 3px 0 0 var(--tn-blue)">
+        {profile.avatar && images[`/src/assets${profile.avatar}`] ? (
+          <Image src={images[`/src/assets${profile.avatar}`]()} alt={profile.name} class="w-full h-full object-cover" loading="eager" />
+        ) : (
+          <User size={24} className="text-muted-foreground" />
+        )}
+      </div>
+      <div>
+        <h1 class="text-base font-bold text-foreground tracking-tight">{profile.name}</h1>
+        <p class="text-xs text-[var(--tn-blue)] mt-0.5 font-semibold uppercase tracking-wider">{profile.title}</p>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-1.5 text-xs text-muted-foreground">
+      <MapPin size={11} />
+      <span>{profile.location}</span>
+    </div>
+
+    <p class="text-sm text-muted-foreground leading-relaxed">{profile.bio}</p>
+  </div>
+
+  <!-- Status + Contact Card -->
+  <div class="nb-card-sm px-4 py-3 flex flex-col gap-2 shrink-0" style={`border-left: 3px solid ${profile.openToWork ? 'var(--tn-green)' : 'var(--tn-blue)'}; box-shadow: 2px 2px 0 0 #000;`}>
+    <div class="flex items-center gap-2">
+      {profile.openToWork ? (
+        <span class="relative flex h-2 w-2">
+          <span class="animate-ping absolute inline-flex h-full w-full bg-[var(--tn-green)] opacity-75"></span>
+          <span class="relative inline-flex h-2 w-2 bg-[var(--tn-green)]"></span>
+        </span>
+      ) : (
+        <span class="relative flex h-2 w-2">
+          <span class="relative inline-flex h-2 w-2 bg-[var(--tn-blue)]"></span>
+        </span>
+      )}
+      <span class={`text-xs font-bold uppercase tracking-wider ${profile.openToWork ? 'text-[var(--tn-green)]' : 'text-[var(--tn-blue)]'}`}>
+        {profile.openToWork ? 'Open to work' : 'Currently Employed'}
+      </span>
+    </div>
+    <div class="flex items-center gap-2 text-xs text-muted-foreground">
+      <Mail size={12} />
+      <a href={`mailto:${profile.email}`} class="hover:text-foreground transition-colors hover:text-[var(--tn-blue)]">{profile.email}</a>
+    </div>
+    <div class="flex items-center gap-2 text-xs text-muted-foreground">
+      <Phone size={12} />
+      <a href={`tel:${profile.phone.replace(/\s/g, '')}`} class="hover:text-foreground transition-colors hover:text-[var(--tn-blue)]">{profile.phone}</a>
+    </div>
+  </div>
+
+  <!-- Tech Stack -->
+  {profile.techStack.length > 0 && (
+    <div class="nb-card p-3 sm:p-4 flex flex-col gap-3 shrink-0">
+      <p class="nb-section-label">Tech Stack</p>
+      <div class="flex flex-wrap gap-1.5">
+        {profile.techStack.map((tech) => (
+          <span class={`nb-tag px-2 py-0.5 ${categoryColor[tech.category] ?? "text-muted-foreground border-border bg-muted/30"}`}>
+            {tech.name}
+          </span>
+        ))}
+      </div>
+      <div class="flex flex-wrap gap-x-2 gap-y-1 mt-0.5">
+        {(["language", "framework", "infra", "database"] as const).map((cat) => {
+          const hasAny = profile.techStack.some((t) => t.category === cat);
+          if (!hasAny) return null;
+          return (
+            <span class={`flex items-center gap-1 text-[9px] px-1.5 py-0.5 font-bold uppercase tracking-wider ${categoryColor[cat]}`}>
+              <span class="w-1.5 h-1.5 inline-block" style={{ background: "currentColor" }} />
+              {cat}
+            </span>
+          );
+        })}
+      </div>
+    </div>
+  )}
+
+  <!-- Highlights Marquee -->
+  {highlights.length > 0 && (
+    <div class="nb-card py-3 overflow-hidden shrink-0">
+      <p class="nb-section-label px-4 mb-2">Highlights</p>
+      <div class="marquee-container">
+        <div class="marquee-track">
+          {doubled.map((entry) => (
+            <a
+              href="/journey"
+              class="inline-flex items-center gap-2 px-3 py-1.5 mr-3 border border-[hsl(var(--border))] bg-muted/30 hover:bg-muted/60 transition-colors no-underline cursor-pointer flex-shrink-0 whitespace-nowrap"
+              style="box-shadow: 1px 1px 0 0 #000;"
+            >
+              <span class={`text-[10px] font-bold uppercase tracking-wider ${highlightColor(entry.kind)}`}>
+                {entry.highlight ?? entry.kind}
+              </span>
+              <span class="text-[10px] text-muted-foreground">—</span>
+              <span class="text-xs text-foreground font-medium">{entry.org}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  )}
+
+  <!-- Interests -->
+  {profile.interests.length > 0 && (
+    <div class="bg-card border border-dashed border-[hsl(var(--border))] p-4 flex flex-col gap-3 shrink-0">
+      <p class="nb-section-label">Interests</p>
+      <div class="flex flex-col gap-1.5">
+        {profile.interests.map((interest) => (
+          <div class="flex items-center gap-2 text-xs text-muted-foreground">
+            <span class="text-[var(--tn-blue)] font-bold text-[9px]">→</span>
+            {interest}
+          </div>
+        ))}
+      </div>
+    </div>
+  )}
+
+  <!-- Socials + Resume -->
+  <div class="nb-card p-4 flex flex-col gap-3 shrink-0">
+    <p class="nb-section-label">Socials</p>
+    <div class="flex gap-2 flex-wrap">
+      {profile.socials.map((s) => {
+        const Icon = iconMap[s.icon] || Mail;
+        return (
+          <a
+            href={s.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            title={s.label}
+            aria-label={s.label}
+            class="w-9 h-9 border-2 border-[hsl(var(--border))] bg-muted/40 flex items-center justify-center text-muted-foreground hover:text-[var(--tn-blue)] hover:border-[var(--tn-blue)] transition-colors cursor-pointer"
+            style="box-shadow: 2px 2px 0 0 #000;"
+          >
+            <Icon size={15} />
+          </a>
+        );
+      })}
+    </div>
+
+    {profile.resumeUrl ? (
+      <a
+        href={profile.resumeUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="nb-btn flex items-center justify-center gap-2 text-sm border-2 border-[var(--tn-blue)] text-[var(--tn-blue)] py-2 px-3 hover:bg-[var(--tn-blue)]/10 transition-colors cursor-pointer font-bold uppercase tracking-wider"
+      >
+        <FileText size={12} />
+        View Resume
+      </a>
+    ) : (
+      <div
+        title="Resume not available"
+        class="flex items-center justify-center gap-2 text-xs border-2 border-dashed border-border text-muted-foreground/40 py-2 px-3 cursor-not-allowed select-none font-bold uppercase tracking-wider"
+      >
+        <FileText size={12} />
+        View Resume
+      </div>
+    )}
+  </div>
+</aside>

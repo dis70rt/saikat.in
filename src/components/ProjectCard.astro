@@ -1,0 +1,97 @@
+---
+import { ExternalLink, Tag } from "lucide-react";
+import type { Project } from "@/data/projects";
+import { Image } from "astro:assets";
+
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/**/*.{jpeg,jpg,png,gif,webp,svg}');
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+
+const linkStyle: Record<string, string> = {
+  "Frontend":    "border-[var(--tn-blue)] text-[var(--tn-blue)] hover:bg-[var(--tn-blue)]/10",
+  "Backend":     "border-[var(--tn-green)] text-[var(--tn-green)] hover:bg-[var(--tn-green)]/10",
+  "Open Source": "border-[var(--tn-purple)] text-[var(--tn-purple)] hover:bg-[var(--tn-purple)]/10",
+  "Open Project":"border-[hsl(var(--primary))] text-[hsl(var(--primary))] hover:bg-[hsl(var(--primary))]/10",
+  "Paper":       "border-[var(--tn-yellow)] text-[var(--tn-yellow)] hover:bg-[var(--tn-yellow)]/10",
+  "Video":       "border-[var(--tn-orange)] text-[var(--tn-orange)] hover:bg-[var(--tn-orange)]/10",
+  "Play Store":  "border-[var(--tn-green)] text-[var(--tn-green)] hover:bg-[var(--tn-green)]/10",
+};
+
+const defaultStyle = "border-border text-muted-foreground hover:text-foreground hover:border-[hsl(var(--primary))]";
+
+const activeLinks = (project.links ?? []).filter((l) => l.url.trim() !== "").slice(0, 4);
+---
+
+<div class="nb-card p-5 flex flex-col gap-4 group">
+  <!-- Colored left accent bar based on first link type -->
+  {project.image && images[`/src/assets${project.image}`] && (
+    <div class="mb-1 border-2 border-[hsl(var(--border))] overflow-hidden bg-muted/20 flex justify-center items-center">
+      <Image src={images[`/src/assets${project.image}`]()} alt={project.title} class="w-full h-auto max-h-64 object-contain" />
+    </div>
+  )}
+  <div class="flex items-start justify-between gap-2">
+    <h3 class="text-base font-bold text-foreground leading-snug tracking-tight">{project.title}</h3>
+    {project.featured && (
+      <span class="text-[9px] text-[var(--tn-yellow)] border-2 border-[var(--tn-yellow)] bg-[var(--tn-yellow)]/10 px-1.5 py-0.5 flex-shrink-0 font-black uppercase tracking-widest">
+        ★ featured
+      </span>
+    )}
+  </div>
+
+  <div class="flex-1 flex flex-col gap-2">
+    {project.description && (
+      <p class="text-sm text-muted-foreground leading-relaxed">{project.description}</p>
+    )}
+
+    {project.bullets && project.bullets.length > 0 && (
+      <details class="group/details">
+        <summary class="text-xs text-[hsl(var(--primary))] cursor-pointer hover:text-[var(--tn-blue)] transition-colors list-none flex items-center gap-1 font-bold uppercase tracking-wider">
+          <span class="group-open/details:rotate-90 transition-transform text-[10px]">▶</span>
+          details
+        </summary>
+        <ul class="text-sm text-muted-foreground leading-relaxed max-w-full space-y-1.5 ml-3 mt-2">
+          {project.bullets.map((bullet) => (
+            <li class="flex items-start gap-1.5">
+              <span class="text-[var(--tn-blue)] font-bold text-[9px] mt-1 flex-shrink-0">→</span>
+              <span>{bullet}</span>
+            </li>
+          ))}
+        </ul>
+      </details>
+    )}
+  </div>
+
+  {project.tags.length > 0 && (
+    <div class="flex flex-wrap gap-1.5">
+      {project.tags.map((tag) => (
+        <span class="nb-tag flex items-center gap-1 text-muted-foreground border-border bg-muted/40 px-1.5 py-0.5">
+          <Tag size={8} />
+          {tag}
+        </span>
+      ))}
+    </div>
+  )}
+
+  {activeLinks.length > 0 && (
+    <div class="flex flex-wrap gap-2 pt-2 border-t-2 border-[hsl(var(--border))]">
+      {activeLinks.map((link) => (
+        <a
+          href={link.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class={`flex items-center gap-1.5 text-xs border-2 px-2.5 py-1.5 transition-all duration-100 whitespace-nowrap cursor-pointer font-bold uppercase tracking-wider hover:-translate-y-[1px] hover:-translate-x-[1px] hover:shadow-[3px_3px_0_0_#000] ${
+            linkStyle[link.label] ?? defaultStyle
+          }`}
+          style="box-shadow: 2px 2px 0 0 #000;"
+        >
+          <ExternalLink size={10} className="flex-shrink-0" />
+          {link.label}
+        </a>
+      ))}
+    </div>
+  )}
+</div>

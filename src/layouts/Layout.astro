@@ -1,0 +1,249 @@
+---
+import "../styles/global.css";
+import { SIGNATURE_PATHS, SIGNATURE_VIEWBOX } from "@/data/signature-paths";
+import { ClientRouter } from "astro:transitions";
+import PixelBlast from "../components/PixelBlast.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Saikat Das",
+  description = "Backend engineer building fast, real-time systems in Go. IIT (BHU) Varanasi.",
+} = Astro.props;
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL("/og-cover.webp", Astro.site);
+---
+
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google-adsense-account" content="ca-pub-2782190964704581" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Saikat Das" />
+    <meta name="keywords" content="Saikat Das, Backend Engineer, Software Engineer, Golang, Go, React, IIT BHU, Portfolio" />
+    <meta name="robots" content="index,follow" />
+    <meta name="theme-color" content="#1a1b26" />
+    <link rel="canonical" href={canonicalUrl.href} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Saikat Das" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl.href} />
+    <meta property="og:image" content={ogImage.href} />
+    <meta property="og:image:width" content="1920" />
+    <meta property="og:image:height" content="1080" />
+    <meta property="og:image:type" content="image/webp" />
+    <meta property="og:image:alt" content="Saikat Das - Backend Engineer Cover Image" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@dis70rt" />
+    <meta name="twitter:creator" content="@dis70rt" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage.href} />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <script is:inline src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+    <script is:inline>
+      (function() {
+        var savedTheme = sessionStorage.getItem("theme");
+        if (savedTheme) {
+          document.documentElement.setAttribute("data-theme", savedTheme);
+        } else {
+          var themes = ["midnight", "one-dark-pro", "catppuccin", "dracula"];
+          var randomTheme = themes[Math.floor(Math.random() * themes.length)];
+          document.documentElement.setAttribute("data-theme", randomTheme);
+          sessionStorage.setItem("theme", randomTheme);
+        }
+      })();
+    </script>
+    <ClientRouter />
+  </head>
+  <body>
+    <div class="pixel-blast-bg">
+      <PixelBlast
+        variant="diamond"
+        pixelSize={6}
+        color="#B497CF"
+        patternScale={3}
+        patternDensity={1.2}
+        pixelSizeJitter={0.6}
+        enableRipples={true}
+        rippleSpeed={0.4}
+        rippleThickness={0.12}
+        rippleIntensityScale={1.5}
+        speed={0.6}
+        edgeFade={0.4}
+        transparent={true}
+      />
+    </div>
+    <div id="loader" class="fixed inset-0 z-[9999] flex items-center justify-center bg-background">
+      <div class="flex flex-col items-center gap-6 w-full max-w-sm px-8 select-none">
+        <svg
+          id="signature-svg"
+          viewBox={SIGNATURE_VIEWBOX}
+          class="w-full"
+          aria-hidden="true"
+          stroke="hsl(var(--primary))"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          fill="transparent"
+        >
+          {SIGNATURE_PATHS.map((d) => (
+            <path d={d} class="signature-path" />
+          ))}
+        </svg>
+        <div class="w-32 h-px bg-border overflow-hidden rounded-full">
+          <div id="loader-progress" class="h-full bg-primary rounded-full w-0"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="app-shell" class="min-h-screen text-foreground opacity-0">
+      <main class="flex flex-col items-stretch min-h-screen p-2 sm:p-4 md:p-8">
+        <div class="w-full max-w-6xl mx-auto">
+          <div class="flex flex-col lg:flex-row gap-4 items-stretch lg:items-start">
+            <slot />
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <style>
+      .signature-path {
+        opacity: 0;
+      }
+      .pixel-blast-bg {
+        /* hidden on mobile, visible on desktop only */
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 0;
+        pointer-events: none;
+        opacity: 0.35;
+      }
+      @media (min-width: 1024px) {
+        .pixel-blast-bg { display: block; }
+      }
+    </style>
+
+    <script is:inline>
+      function runLoader() {
+        const loader = document.getElementById("loader");
+        const shell = document.getElementById("app-shell");
+        if (!loader || !shell) return;
+
+        if (window.loaderHasRun) {
+          loader.remove();
+          shell.style.opacity = "1";
+          return;
+        }
+        window.loaderHasRun = true;
+
+        const paths = document.querySelectorAll(".signature-path");
+        if (!paths.length || typeof gsap === "undefined") {
+          loader.remove();
+          shell.style.opacity = "1";
+          return;
+        }
+
+        // Safety net: if GSAP animation never completes (CDN timeout etc.), unblock after 3s
+        var safetyTimeout = setTimeout(function() {
+          loader.remove();
+          shell.style.opacity = "1";
+        }, 3000);
+
+        // Prepare all paths - measure real lengths
+        paths.forEach(function(path) {
+          var len = path.getTotalLength();
+          path.style.strokeDasharray = len;
+          path.style.strokeDashoffset = len;
+          path.style.opacity = "1";
+        });
+
+        var stagger = 0.22;
+        var duration = 0.4;
+        var tl = gsap.timeline({
+          onComplete: function() {
+            clearTimeout(safetyTimeout);
+            gsap.to(loader, {
+              opacity: 0,
+              duration: 0.35,
+              ease: "power2.inOut",
+              onComplete: function() {
+                loader.remove();
+                sessionStorage.setItem("loader-seen", "1");
+              }
+            });
+            gsap.to(shell, {
+              opacity: 1,
+              duration: 0.35,
+              ease: "power2.inOut"
+            });
+          }
+        });
+
+        // Animate each path with natural pen-like easing
+        paths.forEach(function(path, i) {
+          tl.to(path, {
+            strokeDashoffset: 0,
+            duration: duration,
+            ease: "power2.inOut"
+          }, i * stagger);
+        });
+
+        // Progress bar tracks the full timeline
+        var totalDuration = stagger * (paths.length - 1) + duration;
+        var progress = document.getElementById("loader-progress");
+        if (progress) {
+          tl.to(progress, {
+            width: "100%",
+            duration: totalDuration,
+            ease: "power1.inOut"
+          }, 0);
+        }
+
+        // Small pause after drawing finishes before fading out
+        tl.to({}, { duration: 0.3 });
+      }
+
+      // Run immediately (first load / hard reload)
+      runLoader();
+
+      // On soft navigations (tab clicks), the inline script doesn't re-run,
+      // so we need this handler to clean up the fresh loader div
+      document.addEventListener("astro:after-swap", function() {
+        if (window.loaderHasRun) {
+          var loader = document.getElementById("loader");
+          if (loader) loader.remove();
+          var shell = document.getElementById("app-shell");
+          if (shell) shell.style.opacity = "1";
+        }
+      });
+      // Maintain scroll position exactly where it is on tab clicks
+      var scrollPos = 0;
+      document.addEventListener("astro:before-preparation", () => {
+        scrollPos = window.scrollY;
+      });
+      document.addEventListener("astro:after-swap", () => {
+        window.scrollTo({ top: scrollPos, behavior: "instant" });
+        var savedTheme = sessionStorage.getItem("theme");
+        if (savedTheme) {
+          document.documentElement.setAttribute("data-theme", savedTheme);
+        }
+      });
+    </script>
+  </body>
+</html>
