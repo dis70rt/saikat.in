@@ -374,5 +374,22 @@
 }
 
 .fade-in-image.loaded {
-  opacity: 1;
+}
+
+/* ── Custom Scrollbar ── */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+  border-left: 1px solid hsl(var(--border));
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border: 1px solid hsl(var(--background));
+  border-right: none;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary));
 }

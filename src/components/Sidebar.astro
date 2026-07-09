@@ -160,7 +160,7 @@ const highlightColor = (kind: string) =>
             rel="noopener noreferrer"
             title={s.label}
             aria-label={s.label}
-            class="w-9 h-9 border-2 border-[hsl(var(--border))] bg-muted/40 flex items-center justify-center text-muted-foreground hover:text-[var(--tn-blue)] hover:border-[var(--tn-blue)] transition-colors cursor-pointer"
+            class="w-9 h-9 border-2 border-[hsl(var(--border))] bg-muted/40 flex items-center justify-center text-muted-foreground hover:text-[var(--tn-blue)] hover:border-[var(--tn-blue)] transition-all cursor-pointer hover:-translate-y-[2px] hover:-translate-x-[2px] hover:shadow-[3px_3px_0_0_#000]"
             style="box-shadow: 2px 2px 0 0 #000;"
           >
             <Icon size={15} />
@@ -174,7 +174,8 @@ const highlightColor = (kind: string) =>
         href={profile.resumeUrl}
         target="_blank"
         rel="noopener noreferrer"
-        class="nb-btn flex items-center justify-center gap-2 text-sm border-2 border-[var(--tn-blue)] text-[var(--tn-blue)] py-2 px-3 hover:bg-[var(--tn-blue)]/10 transition-colors cursor-pointer font-bold uppercase tracking-wider"
+        class="flex items-center justify-center gap-2 text-sm border-2 border-[var(--tn-blue)] text-[var(--tn-blue)] py-2 px-3 bg-card hover:bg-[var(--tn-blue)]/10 transition-all cursor-pointer font-bold uppercase tracking-wider hover:-translate-y-[2px] hover:-translate-x-[2px] hover:shadow-[4px_4px_0_0_var(--tn-blue)]"
+        style="box-shadow: 2px 2px 0 0 var(--tn-blue);"
       >
         <FileText size={12} />
         View Resume
