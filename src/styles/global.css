@@ -188,6 +188,15 @@
   }
 }
 
+/* ── Cross-browser hide scrollbar ── */
+.no-scrollbar {
+  scrollbar-width: none;        /* Firefox */
+  -ms-overflow-style: none;    /* IE/Edge */
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;               /* Chrome/Safari */
+}
+
 /* ── Neobrutal card — thick border + hard shadow ── */
 .nb-card {
   border: var(--nb-border);

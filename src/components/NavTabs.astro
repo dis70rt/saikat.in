@@ -14,7 +14,7 @@ function isActive(href: string, current: string): boolean {
 }
 ---
 
-<div class="flex items-center gap-0 border-b-2 border-[hsl(var(--border))] overflow-x-auto scrollbar-none shrink-0">
+<div class="flex items-center gap-0 border-b-2 border-[hsl(var(--border))] overflow-x-auto no-scrollbar shrink-0">
   {tabs.map((tab) => {
     const active = isActive(tab.href, currentPath);
     return (
