@@ -3,8 +3,7 @@ import { profile } from "@/data/profile";
 import { journey } from "@/data/journey";
 import { Github, Linkedin, Mail, MapPin, User, FileText, Code, Phone, type LucideIcon } from "lucide-react";
 import { Image } from "astro:assets";
-
-const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/**/*.{jpeg,jpg,png,gif,webp,svg}');
+import { localImages } from "@/lib/images";
 
 const highlights = journey.filter((e) => e.kind === "hackathon" || e.kind === "achievement");
 const doubled = [...highlights, ...highlights];
@@ -35,8 +34,8 @@ const highlightColor = (kind: string) =>
     <div class="h-1 bg-[var(--tn-blue)] -mx-4 -mt-4 sm:-mx-5 sm:-mt-5 mb-0" />
     <div class="flex items-center gap-3 flex-wrap pt-0">
       <div class="w-12 h-12 sm:w-14 sm:h-14 border-2 border-[var(--tn-blue)] bg-muted flex items-center justify-center flex-shrink-0 overflow-hidden skeleton-bg" style="box-shadow: 3px 3px 0 0 var(--tn-blue)">
-        {profile.avatar && images[`/src/assets${profile.avatar}`] ? (
-          <Image src={images[`/src/assets${profile.avatar}`]()} alt={profile.name} class="w-full h-full object-cover fade-in-image" loading="eager" />
+        {profile.avatar && localImages[`/src/assets${profile.avatar}`] ? (
+          <Image src={localImages[`/src/assets${profile.avatar}`]()} alt={profile.name} class="w-full h-full object-cover fade-in-image" loading="eager" />
         ) : (
           <User size={24} className="text-muted-foreground" />
         )}

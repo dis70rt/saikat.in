@@ -7,8 +7,7 @@ import { journey } from "@/data/journey";
 import { fetchHashnodePosts } from "@/lib/hashnode";
 import { badgeStyle } from "@/data/colors";
 import { Image } from "astro:assets";
-
-const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/**/*.{jpeg,jpg,png,gif,webp,svg}');
+import { localImages } from "@/lib/images";
 
 const HOME_PREVIEW_COUNT = 2;
 const latestProjects = projects.slice(0, HOME_PREVIEW_COUNT);
@@ -52,8 +51,8 @@ const latestPosts = fetchHashnodePosts().slice(0, HOME_PREVIEW_COUNT);
                       <div class={`w-10 h-10 flex-shrink-0 overflow-hidden skeleton-bg ${entry.logoPadding ? 'bg-white p-1' : ''}`}>
                         {entry.logo.startsWith('http') ? (
                           <Image src={entry.logo} alt={entry.org} inferSize={true} class="w-full h-full object-contain fade-in-image" />
-                        ) : images[`/src/assets${entry.logo}`] ? (
-                          <Image src={images[`/src/assets${entry.logo}`]()} alt={entry.org} class="w-full h-full object-contain fade-in-image" />
+                        ) : localImages[`/src/assets${entry.logo}`] ? (
+                          <Image src={localImages[`/src/assets${entry.logo}`]()} alt={entry.org} class="w-full h-full object-contain fade-in-image" />
                         ) : null}
                       </div>
                     )}
@@ -101,8 +100,8 @@ const latestPosts = fetchHashnodePosts().slice(0, HOME_PREVIEW_COUNT);
                     <div class="w-10 h-10 flex-shrink-0 overflow-hidden skeleton-bg">
                       {education.logo.startsWith('http') ? (
                         <Image src={education.logo} alt={education.org} inferSize={true} class="w-full h-full object-contain fade-in-image" />
-                      ) : images[`/src/assets${education.logo}`] ? (
-                        <Image src={images[`/src/assets${education.logo}`]()} alt={education.org} class="w-full h-full object-contain fade-in-image" />
+                      ) : localImages[`/src/assets${education.logo}`] ? (
+                        <Image src={localImages[`/src/assets${education.logo}`]()} alt={education.org} class="w-full h-full object-contain fade-in-image" />
                       ) : null}
                     </div>
                   )}

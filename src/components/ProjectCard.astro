@@ -2,8 +2,7 @@
 import { ExternalLink, Tag } from "lucide-react";
 import type { Project } from "@/data/projects";
 import { Image } from "astro:assets";
-
-const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/**/*.{jpeg,jpg,png,gif,webp,svg}');
+import { localImages } from "@/lib/images";
 
 interface Props {
   project: Project;
@@ -28,10 +27,10 @@ const activeLinks = (project.links ?? []).filter((l) => l.url.trim() !== "").sli
 
 <div class="nb-card p-5 flex flex-col gap-4 group">
   <!-- Colored left accent bar based on first link type -->
-  {project.image && images[`/src/assets${project.image}`] && (
+  {project.image && localImages[`/src/assets${project.image}`] && (
     <div class="mb-1 border-2 border-[hsl(var(--border))] overflow-hidden bg-muted/20 flex justify-center items-center skeleton-bg aspect-video">
       <Image 
-        src={images[`/src/assets${project.image}`]()} 
+        src={localImages[`/src/assets${project.image}`]()} 
         alt={project.title} 
         class="w-full h-auto max-h-64 object-contain fade-in-image" 
        

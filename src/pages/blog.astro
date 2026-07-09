@@ -4,9 +4,9 @@ import Sidebar from "@/components/Sidebar.astro";
 import NavTabs from "@/components/NavTabs.astro";
 import { fetchHashnodePosts } from "@/lib/hashnode";
 import { Image } from "astro:assets";
+import { localImages } from "@/lib/images";
 
 const posts = fetchHashnodePosts();
-const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/**/*.{jpeg,jpg,png,gif,webp,svg}');
 ---
 
 <Layout title="Blog - Saikat Das" description="Technical blog posts on Go, distributed systems, and backend engineering.">
@@ -39,8 +39,8 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/**/*.{j
                       <div class="w-20 h-20 sm:w-28 sm:h-28 flex-shrink-0 border-2 border-[hsl(var(--border))] overflow-hidden bg-muted/20 aspect-square skeleton-bg">
                         {post.coverImage.startsWith('http') ? (
                           <Image src={post.coverImage} alt={post.title} inferSize={true} class="w-full h-full object-cover fade-in-image" />
-                        ) : images[`/src/assets${post.coverImage}`] ? (
-                          <Image src={images[`/src/assets${post.coverImage}`]()} alt={post.title} class="w-full h-full object-cover fade-in-image" />
+                        ) : localImages[`/src/assets${post.coverImage}`] ? (
+                          <Image src={localImages[`/src/assets${post.coverImage}`]()} alt={post.title} class="w-full h-full object-cover fade-in-image" />
                         ) : null}
                       </div>
                     )}
