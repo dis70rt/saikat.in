@@ -142,7 +142,9 @@ const ogImage = new URL("/og-cover.webp", Astro.site);
       }
     </style>
 
-    <script is:inline>
+    <script>
+      import { gsap } from "gsap";
+      
       function runLoader() {
         const loader = document.getElementById("loader");
         const shell = document.getElementById("app-shell");
@@ -156,7 +158,7 @@ const ogImage = new URL("/og-cover.webp", Astro.site);
         window.loaderHasRun = true;
 
         const paths = document.querySelectorAll(".signature-path");
-        if (!paths.length || typeof gsap === "undefined") {
+        if (!paths.length) {
           loader.remove();
           shell.style.opacity = "1";
           return;
