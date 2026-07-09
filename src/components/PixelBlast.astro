@@ -31,8 +31,11 @@ const configStr = JSON.stringify(props);
 <script>
   import { PixelBlast } from '../scripts/pixel-blast.js';
 
-  // Initialize the component on all matching elements
+  // Only initialize on desktop — avoids downloading the heavy Three.js/postprocessing
+  // bundle (~600KB) on mobile where the background is hidden via CSS anyway.
   const initPixelBlast = () => {
+    if (!window.matchMedia('(min-width: 1024px)').matches) return;
+
     const containers = document.querySelectorAll('.pixel-blast-container');
     
     containers.forEach((container) => {
