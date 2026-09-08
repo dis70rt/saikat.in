@@ -2,7 +2,7 @@ export const profile = {
   name: "Saikat Das",
   title: "Software Engineer",
   location: "Varanasi, India",
-  bio: "I hate slow stuff",
+  bio: "I build backend systems that stay fast under pressure. Most of my time goes into Go, real-time architectures, and databases. The rest goes into chess, sketching, strong coffee, and traveling to find great food.",
   avatar: "/avatar.webp",
   openToWork: true,
 
@@ -33,6 +33,7 @@ export const profile = {
   interests: [
     "Distributed Systems",
     "Agentic AI & LLMs",
+    "Real-time Architectures",
     "System Design",
     "Data Structures & Algorithms"
   ],
