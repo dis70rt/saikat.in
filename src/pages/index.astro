@@ -58,19 +58,19 @@ const latestPosts = fetchHashnodePosts().slice(0, HOME_PREVIEW_COUNT);
                       </div>
                     )}
                     <div class="flex-1 min-w-0">
-                      <p class="text-base font-bold text-foreground leading-snug tracking-tight">{entry.title}</p>
+                      <p class="text-sm font-bold text-foreground leading-snug tracking-tight">{entry.title}</p>
                       <p class="text-sm text-muted-foreground mt-0.5 font-medium">{entry.org} · {entry.period}</p>
                       {entry.bullets && entry.bullets.length > 0 ? (
                         <ul class="mt-1.5 flex flex-col gap-1">
                           {entry.bullets.map((point) => (
-                            <li class="text-base text-muted-foreground flex items-start gap-1.5">
+                            <li class="text-sm text-muted-foreground flex items-start gap-1.5">
                               <span class="text-[var(--tn-blue)] font-bold text-[10px] mt-1 flex-shrink-0">→</span>
                               <span>{point}</span>
                             </li>
                           ))}
                         </ul>
                       ) : entry.description && (
-                        <p class="text-base text-muted-foreground mt-1.5">{entry.description}</p>
+                        <p class="text-sm text-muted-foreground mt-1.5">{entry.description}</p>
                       )}
                     </div>
                     {entry.highlight && (
@@ -107,7 +107,7 @@ const latestPosts = fetchHashnodePosts().slice(0, HOME_PREVIEW_COUNT);
                     </div>
                   )}
                   <div class="flex-1 min-w-0">
-                    <p class="text-base font-bold text-foreground leading-snug tracking-tight">{education.title}</p>
+                    <p class="text-sm font-bold text-foreground leading-snug tracking-tight">{education.title}</p>
                     <p class="text-sm text-muted-foreground mt-0.5 font-medium">{education.org} · {education.period}</p>
                   </div>
                   <span
@@ -133,7 +133,7 @@ const latestPosts = fetchHashnodePosts().slice(0, HOME_PREVIEW_COUNT);
                    
                   >
                     <div class="flex-1 min-w-0">
-                      <p class="text-base font-bold text-foreground tracking-tight">{project.title}</p>
+                      <p class="text-sm font-bold text-foreground tracking-tight">{project.title}</p>
                       <p class="text-sm text-muted-foreground mt-0.5 line-clamp-1">{project.description}</p>
                     </div>
                     <span class="hidden sm:inline-block text-xs text-muted-foreground flex-shrink-0 font-mono">
@@ -161,7 +161,7 @@ const latestPosts = fetchHashnodePosts().slice(0, HOME_PREVIEW_COUNT);
                      
                     >
                       <div class="flex-1 min-w-0">
-                        <p class="text-base font-bold text-foreground tracking-tight">{post.title}</p>
+                        <p class="text-sm font-bold text-foreground tracking-tight">{post.title}</p>
                         <p class="text-sm text-muted-foreground mt-0.5 line-clamp-1">{post.brief}</p>
                       </div>
                       <div class="hidden sm:flex flex-col items-end gap-0.5 flex-shrink-0">
