@@ -49,6 +49,16 @@ const dotColor = kindColors[entry.kind].hex;
       </span>
     </div>
 
+    {entry.bullets && entry.bullets.length > 0 && (
+      <ul class="mt-1.5 flex flex-col gap-1">
+        {entry.bullets.map((point) => (
+          <li class="text-sm text-muted-foreground flex items-start gap-1.5">
+            <span class="text-[var(--tn-blue)] font-bold text-[9px] mt-1 flex-shrink-0">→</span>
+            <span>{point}</span>
+          </li>
+        ))}
+      </ul>
+    )}
     {entry.description && (
       <p class="text-sm text-muted-foreground leading-relaxed">{entry.description}</p>
     )}

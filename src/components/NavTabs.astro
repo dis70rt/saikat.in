@@ -20,7 +20,7 @@ function isActive(href: string, current: string): boolean {
     return (
       <a
         href={tab.href}
-        data-astro-prefetch
+        data-astro-prefetch="load"
         class={`flex items-center gap-2 px-4 py-2.5 text-sm border-r-2 border-[hsl(var(--border))] whitespace-nowrap transition-colors flex-shrink-0 no-underline ${
           active
             ? "bg-card text-foreground font-bold"

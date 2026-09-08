@@ -5,6 +5,7 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   site: 'https://saikat.in',
   output: 'static',
+  prefetch: true,
   integrations: [react()],
   vite: {
     plugins: [tailwindcss()],
