@@ -34,22 +34,22 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    id: "flowback",
-    title: "Flowback - AI Revenue Recovery Platform",
-    description: "Autonomous, event-driven pipeline that intercepts failed SaaS payments and deploys AI agents to recover revenue.",
-    image: "/images/projects/flowback.png",
+    id: "bluppi",
+    title: "Bluppi - Shared Music Playback",
+    description: "Distributed music streaming backend with real-time synchronization.",
+    image: "/images/projects/bluppi.webp",
     bullets: [
-      "Queued payment webhooks via Go + Redis Asynq, scaling background workers with idempotent, effectively-once processing.",
-      "Orchestrated a multi-agent Google ADK graph with copywriter and Gemini TTS agents to drive multi-channel outreach (Email, WhatsApp, SMS, Voice).",
-      "Wrote a deterministic Go policy engine enforcing hard constraints (discount & contact-hour limits) to guarantee zero hallucination in financial flows.",
-      "Streamed agent state to a Human-in-the-Loop (HITL) React dashboard via Redis Pub/Sub and SSE, eliminating polling overhead."
+      "Designed PTP-style clock synchronization with quorum-based buffering for consistent playback across devices.",
+      "Tracks online presence via a gRPC gateway: 51k concurrent connections with 0 errors and p99 15ms latency.",
+      "Live ephemeral chat via Redis Pub/Sub, social features via Memgraph, and a 500GB music catalog via Solr."
     ],
-    tags: ["Go", "React", "Redis", "Google ADK", "SSE", "Docker"],
-    date: "2026-09-01",
+    tags: ["Go", "gRPC", "PostgreSQL", "Redis", "Solr", "Flutter"],
+    date: "2025-05-01",
     featured: true,
     links: [
-      { label: "Open Source", url: "https://github.com/dis70rt/Flowback" },
-      { label: "Video", url: "https://www.youtube.com/watch?v=gg_5s9nRk5A" },
+      { label: "Open Project", url: "https://bluppi.saikat.in" },
+      { label: "Backend", url: "https://github.com/dis70rt/bluppi-backend" },
+      { label: "Frontend", url: "https://github.com/dis70rt/bluppi-frontend" },
     ],
   },
   {
@@ -88,25 +88,6 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: "bluppi",
-    title: "Bluppi - Shared Music Playback",
-    description: "Distributed music streaming backend with real-time synchronization.",
-    image: "/images/projects/bluppi.webp",
-    bullets: [
-      "Designed PTP-style clock synchronization with quorum-based buffering for consistent playback across devices.",
-      "Tracks online presence via a gRPC gateway: 51k concurrent connections with 0 errors and p99 15ms latency.",
-      "Live ephemeral chat via Redis Pub/Sub, social features via Memgraph, and a 500GB music catalog via Solr."
-    ],
-    tags: ["Go", "gRPC", "PostgreSQL", "Redis", "Solr", "Flutter"],
-    date: "2025-05-01",
-    featured: true,
-    links: [
-      { label: "Open Project", url: "https://bluppi.saikat.in" },
-      { label: "Backend", url: "https://github.com/dis70rt/bluppi-backend" },
-      { label: "Frontend", url: "https://github.com/dis70rt/bluppi-frontend" },
-    ],
-  },
-  {
     id: "keryx",
     title: "Keryx - Local Multi-Agent Outreach Engine",
     description: "Autonomous LinkedIn research and personalized cold-messaging pipeline powered by local LLMs and LangGraph.",
@@ -120,6 +101,39 @@ export const projects: Project[] = [
     date: "2026-04-20",
     links: [
       { label: "Open Source", url: "https://github.com/dis70rt/keryx" },
+    ],
+  },
+  {
+    id: "wizflow",
+    title: "WizFlow - Workflow Engine",
+    description: "Asynchronous workflow engine with a drag-and-drop UI.",
+    bullets: [
+      "Built an asynchronous workflow engine using React, FastAPI, and Redis task queuing.",
+      "Won 2nd Place at Nutanix Hackathon 2025 for system reliability and real-time execution logs."
+    ],
+    tags: ["Python", "FastAPI", "Redis"],
+    date: "2025-04-01",
+    links: [
+      { label: "Open Source", url: "https://github.com/dis70rt/WizFlow" },
+    ],
+  },
+  {
+    id: "flowback",
+    title: "Flowback - AI Revenue Recovery Platform",
+    description: "Autonomous, event-driven pipeline that intercepts failed SaaS payments and deploys AI agents to recover revenue.",
+    image: "/images/projects/flowback.png",
+    bullets: [
+      "Queued payment webhooks via Go + Redis Asynq, scaling background workers with idempotent, effectively-once processing.",
+      "Orchestrated a multi-agent Google ADK graph with copywriter and Gemini TTS agents to drive multi-channel outreach (Email, WhatsApp, SMS, Voice).",
+      "Wrote a deterministic Go policy engine enforcing hard constraints (discount & contact-hour limits) to guarantee zero hallucination in financial flows.",
+      "Streamed agent state to a Human-in-the-Loop (HITL) React dashboard via Redis Pub/Sub and SSE, eliminating polling overhead."
+    ],
+    tags: ["Go", "React", "Redis", "Google ADK", "SSE", "Docker"],
+    date: "2026-09-01",
+    featured: true,
+    links: [
+      { label: "Open Source", url: "https://github.com/dis70rt/Flowback" },
+      { label: "Video", url: "https://www.youtube.com/watch?v=gg_5s9nRk5A" },
     ],
   },
   {
@@ -170,19 +184,5 @@ export const projects: Project[] = [
       { label: "Open Project", url: "https://subpaper.saikat.in" },
       { label: "Play Store", url: "https://play.google.com/store/apps/details?id=in.saikat.subpaper" },
     ],
-  },
-  {
-    id: "wizflow",
-    title: "WizFlow - Workflow Engine",
-    description: "Asynchronous workflow engine with a drag-and-drop UI.",
-    bullets: [
-      "Built an asynchronous workflow engine using React, FastAPI, and Redis task queuing.",
-      "Won 2nd Place at Nutanix Hackathon 2025 for system reliability and real-time execution logs."
-    ],
-    tags: ["Python", "FastAPI", "Redis"],
-    date: "2025-04-01",
-    links: [
-      { label: "Open Source", url: "https://github.com/dis70rt/WizFlow" },
-    ],
-  },
+  }
 ];
