@@ -29,12 +29,19 @@ const configStr = JSON.stringify(props);
 <div class="pixel-blast-container" data-config={configStr}></div>
 
 <script>
-  import { PixelBlast } from '../scripts/pixel-blast.js';
-
   // Only initialize on desktop — avoids downloading the heavy Three.js/postprocessing
   // bundle (~600KB) on mobile where the background is hidden via CSS anyway.
-  const initPixelBlast = () => {
-    if (!window.matchMedia('(min-width: 1024px)').matches) return;
+  const initPixelBlast = async () => {
+    if (!window.matchMedia('(min-width: 1024px)').matches ||
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    // Download in parallel with the intro without blocking the page module.
+    let PixelBlast;
+    try {
+      ({ PixelBlast } = await import('../scripts/pixel-blast.js'));
+    } catch {
+      return; // A decorative background must never prevent page rendering.
+    }
 
     const containers = document.querySelectorAll('.pixel-blast-container');
     

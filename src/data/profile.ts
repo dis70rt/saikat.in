@@ -11,6 +11,7 @@ export const profile = {
   resumeUrl: "https://dis70rt.github.io/resume/resume.pdf" as string | null,
   email: "sd.saikat369@gmail.com",
   phone: "+91 6202051066",
+  instagramUrl: "https://www.instagram.com/saikat._/", // Revealed by the pet's friendship easter egg.
   socials: [
     { label: "GitHub", icon: "github", url: "https://github.com/dis70rt" },
     { label: "LinkedIn", icon: "linkedin", url: "https://linkedin.com/in/in-saikat" },

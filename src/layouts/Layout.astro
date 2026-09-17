@@ -9,6 +9,7 @@ import "@fontsource/jetbrains-mono/500.css";
 import { SIGNATURE_PATHS, SIGNATURE_VIEWBOX } from "@/data/signature-paths";
 import { ClientRouter } from "astro:transitions";
 import PixelBlast from "../components/PixelBlast.astro";
+import MusicPet from "../components/MusicPet.astro";
 
 interface Props {
   title?: string;
@@ -54,7 +55,6 @@ const ogImage = new URL("/og-cover.webp", Astro.site);
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage.href} />
     <link rel="icon" type="image/png" href="/favicon.png" />
-    <script is:inline src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
     <script is:inline>
       (function() {
         var savedTheme = sessionStorage.getItem("theme");
@@ -88,7 +88,7 @@ const ogImage = new URL("/og-cover.webp", Astro.site);
         transparent={true}
       />
     </div>
-    <div id="loader" class="fixed inset-0 z-[9999] flex items-center justify-center bg-background">
+    <div id="loader" aria-hidden="true" class="fixed inset-0 z-[9999] flex items-center justify-center bg-background">
       <div class="flex flex-col items-center gap-6 w-full max-w-sm px-8 select-none">
         <svg
           id="signature-svg"
@@ -111,7 +111,7 @@ const ogImage = new URL("/og-cover.webp", Astro.site);
       </div>
     </div>
 
-    <div id="app-shell" class="min-h-screen text-foreground opacity-0">
+    <div id="app-shell" class="min-h-screen text-foreground">
       <main class="flex flex-col items-stretch min-h-screen p-2 sm:p-4 md:p-8">
         <div class="w-full max-w-[90rem] mx-auto">
           <div class="flex flex-col lg:flex-row gap-4 items-stretch lg:items-start">
@@ -120,8 +120,34 @@ const ogImage = new URL("/og-cover.webp", Astro.site);
         </div>
       </main>
     </div>
+    <MusicPet />
+    <noscript><style>#loader { display: none; }</style></noscript>
+    <script is:inline>
+      // Content renders and resources download under the intro. Keep the page
+      // accessible even if the animation bundle fails to download or execute.
+      (() => {
+        const shell = document.getElementById('app-shell');
+        const pet = document.querySelector('music-pet');
+        const loader = document.getElementById('loader');
+        if (window.loaderHasRun || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          loader?.remove();
+          return;
+        }
+        if (shell) shell.inert = true;
+        if (pet) pet.inert = true;
+        setTimeout(() => {
+          loader?.remove();
+          if (shell) shell.inert = false;
+          if (pet) pet.inert = false;
+        }, 3500);
+      })();
+    </script>
 
     <style>
+      /* Allow the last content to scroll clear of the fixed pet on small screens. */
+      @media (max-width: 1023px) {
+        main { padding-bottom: calc(180px + env(safe-area-inset-bottom)); }
+      }
       .signature-path {
         opacity: 0;
       }
@@ -150,31 +176,35 @@ const ogImage = new URL("/og-cover.webp", Astro.site);
         const shell = document.getElementById("app-shell");
         if (!loader || !shell) return;
 
-        if (window.loaderHasRun) {
+        const reveal = () => {
           loader.remove();
-          shell.style.opacity = "1";
+          shell.inert = false;
+          const pet = document.querySelector<HTMLElement>('music-pet');
+          if (pet) pet.inert = false;
+        };
+
+        if (window.loaderHasRun || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          reveal();
           return;
         }
         window.loaderHasRun = true;
 
-        const paths = document.querySelectorAll(".signature-path");
+        const paths = document.querySelectorAll<SVGPathElement>(".signature-path");
         if (!paths.length) {
-          loader.remove();
-          shell.style.opacity = "1";
+          reveal();
           return;
         }
 
-        // Safety net: if GSAP animation never completes (CDN timeout etc.), unblock after 3s
+        // The independent inline fallback also covers a failed module download.
         var safetyTimeout = setTimeout(function() {
-          loader.remove();
-          shell.style.opacity = "1";
+          reveal();
         }, 3000);
 
         // Prepare all paths - measure real lengths
         paths.forEach(function(path) {
           var len = path.getTotalLength();
-          path.style.strokeDasharray = len;
-          path.style.strokeDashoffset = len;
+          path.style.strokeDasharray = String(len);
+          path.style.strokeDashoffset = String(len);
           path.style.opacity = "1";
         });
 
@@ -188,14 +218,8 @@ const ogImage = new URL("/og-cover.webp", Astro.site);
               duration: 0.35,
               ease: "power2.inOut",
               onComplete: function() {
-                loader.remove();
-                sessionStorage.setItem("loader-seen", "1");
+                reveal();
               }
-            });
-            gsap.to(shell, {
-              opacity: 1,
-              duration: 0.35,
-              ease: "power2.inOut"
             });
           }
         });
@@ -234,7 +258,7 @@ const ogImage = new URL("/og-cover.webp", Astro.site);
           var loader = document.getElementById("loader");
           if (loader) loader.remove();
           var shell = document.getElementById("app-shell");
-          if (shell) shell.style.opacity = "1";
+          if (shell) shell.inert = false;
         }
       });
       // Maintain scroll position exactly where it is on tab clicks

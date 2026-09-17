@@ -1,0 +1,237 @@
+---
+import { profile } from "../data/profile";
+const audioSrc = import.meta.env.PUBLIC_ATTENTION_AUDIO_URL || "/music/attention-charlie-puth.mp3";
+---
+
+<music-pet transition:persist="music-pet" class="music-pet" data-audio-src={audioSrc}>
+  <div class="music-bubble">
+    <span class="track" data-track><strong>Attention</strong><span>Charlie Puth</span></span>
+    <div class="pet-dialogue" hidden>
+      <span data-dialogue-text></span>
+      {profile.instagramUrl && <a data-instagram href={profile.instagramUrl} target="_blank" rel="noopener noreferrer" hidden aria-label="DM Saikat on Instagram (opens in a new tab)">DM me ↗</a>}
+    </div>
+    <button class="music-toggle" type="button" disabled={!audioSrc} aria-label="Unmute Attention by Charlie Puth" aria-pressed="false" title={audioSrc ? "Unmute" : "Audio is not available yet"}>
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M11 5 6 9H3v6h3l5 4V5Z" />
+        <path data-muted-icon d="m16 9 5 6m0-6-5 6" />
+        <path data-playing-icon hidden d="M15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14" />
+      </svg>
+    </button>
+  </div>
+  <button class="pet-touch" type="button" disabled aria-label="Say hello to pixel Saikat">
+    <span class="pet-sprite" aria-hidden="true"></span>
+    <span class="pet-grumble" aria-hidden="true">!</span>
+    <span class="pet-hearts" aria-hidden="true">
+      {[0, 1, 2].map(() => <svg viewBox="0 0 9 8"><path d="M1 0h2v1h3V0h2v1h1v3H8v1H7v1H6v1H5v1H4V7H3V6H2V5H1V4H0V1h1Z" /></svg>)}
+    </span>
+  </button>
+  <audio preload="none" muted loop></audio>
+  <span class="sr-only" role="status" aria-live="polite"></span>
+</music-pet>
+
+<style>
+  .music-pet {
+    --pet-width: clamp(100px, 12vw, 148px);
+    position: fixed;
+    right: max(12px, env(safe-area-inset-right));
+    bottom: 0;
+    z-index: 40;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    pointer-events: none;
+  }
+  .pet-sprite {
+    display: block;
+    width: var(--pet-width);
+    aspect-ratio: 251 / 258;
+    background: url('/pet/listening.webp') 0 0 / 400% 100% no-repeat;
+    image-rendering: pixelated;
+    animation: pet-nod 1.12s steps(4) infinite;
+  }
+  @keyframes pet-nod { to { background-position: calc(var(--pet-width) * -4) 0; } }
+  .music-bubble {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: -2px;
+    padding: 4px 5px 4px 12px;
+    color: hsl(var(--foreground));
+    background: hsl(var(--card));
+    border: 2px solid hsl(var(--border));
+    box-shadow: 3px 3px 0 hsl(var(--background));
+    pointer-events: auto;
+  }
+  .music-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    right: 34px;
+    width: 8px;
+    height: 8px;
+    background: hsl(var(--card));
+    border-right: 2px solid hsl(var(--border));
+    border-bottom: 2px solid hsl(var(--border));
+    transform: rotate(45deg);
+  }
+  .track { display: flex; flex-direction: column; line-height: 1.4; font-size: 10px; }
+  .track strong { font-size: 12px; }
+  .track > span { color: hsl(var(--muted-foreground)); }
+  .music-toggle {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+  }
+  .music-toggle:hover { background: hsl(var(--muted)); }
+  button:focus-visible { outline: 2px solid hsl(var(--primary)); outline-offset: -2px; }
+  .music-toggle:disabled { opacity: .45; cursor: default; }
+  .pet-touch {
+    position: relative;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    pointer-events: auto;
+    cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .pet-touch:disabled { cursor: default; }
+  .pet-dialogue { max-width: min(185px, calc(100vw - 105px)); font-size: 12px; line-height: 1.5; padding-block: 4px; }
+  .pet-dialogue a { display: block; width: fit-content; color: hsl(var(--primary)); font-weight: 700; padding-block: 8px; }
+  .pet-dialogue a:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+  .pet-grumble, .pet-hearts { display: none; position: absolute; pointer-events: none; }
+  .pet-grumble { top: 12%; left: 6%; color: #edaaa3; font: bold 20px var(--app-font-mono, monospace); }
+  .pet-hearts { inset: 0; color: #eebbc7; }
+  .pet-hearts svg { position: absolute; width: 12px; height: 12px; fill: currentColor; shape-rendering: crispEdges; animation: pet-heart 1.8s ease-in-out infinite; }
+  .pet-hearts svg:nth-child(1) { left: 4%; top: 24%; }
+  .pet-hearts svg:nth-child(2) { right: 5%; top: 18%; animation-delay: -.6s; }
+  .pet-hearts svg:nth-child(3) { right: 23%; top: 1%; animation-delay: -1.2s; width: 9px; }
+  [data-reaction="annoyed"] .pet-grumble { display: block; }
+  [data-reaction="annoyed"] .pet-sprite { animation-play-state: paused; }
+  [data-reaction="annoyed"] .pet-touch { animation: pet-huff .35s steps(3); }
+  [data-reaction="curious"] .pet-touch { animation: pet-soften .5s ease-out; }
+  [data-reaction="friendly"] .pet-hearts { display: block; }
+  @keyframes pet-huff { 25% { transform: translateX(-2px); } 75% { transform: translateX(2px); } }
+  @keyframes pet-soften { 50% { transform: translateY(-2px); } }
+  @keyframes pet-heart { 50% { transform: translateY(-5px); opacity: .65; } }
+  [hidden] { display: none !important; }
+  @media (prefers-reduced-motion: reduce) {
+    .pet-sprite, .pet-touch, .pet-hearts svg { animation: none !important; }
+  }
+</style>
+
+<script>
+  class MusicPet extends HTMLElement {
+    connectedCallback() {
+      if (this.dataset.initialized) return;
+      this.dataset.initialized = 'true';
+      const button = this.querySelector<HTMLButtonElement>('.music-toggle')!;
+      const audio = this.querySelector('audio')!;
+      const status = this.querySelector('[role="status"]')!;
+      const mutedIcon = this.querySelector('[data-muted-icon]')!;
+      const playingIcon = this.querySelector('[data-playing-icon]')!;
+      const src = this.dataset.audioSrc;
+      audio.muted = true;
+
+      const update = () => {
+        const playing = !audio.muted && !audio.paused;
+        button.setAttribute('aria-pressed', String(playing));
+        button.setAttribute('aria-label', `${playing ? 'Mute' : 'Unmute'} Attention by Charlie Puth`);
+        button.title = playing ? 'Mute' : 'Unmute';
+        mutedIcon.toggleAttribute('hidden', playing);
+        playingIcon.toggleAttribute('hidden', !playing);
+      };
+      button.addEventListener('click', async () => {
+        if (!src) return;
+        status.textContent = '';
+        if (!audio.paused && !audio.muted) {
+          audio.muted = true;
+          audio.pause();
+          update();
+          return;
+        }
+        button.disabled = true;
+        button.setAttribute('aria-busy', 'true');
+        try {
+          if (!audio.getAttribute('src')) audio.src = src;
+          audio.muted = false;
+          await audio.play();
+        } catch {
+          audio.muted = true;
+          status.textContent = 'Music could not play. Try unmuting again.';
+        } finally {
+          button.disabled = false;
+          button.removeAttribute('aria-busy');
+          update();
+        }
+      });
+      audio.addEventListener('error', () => {
+        audio.muted = true;
+        status.textContent = 'Music is unavailable. Please try again later.';
+        update();
+      });
+      audio.addEventListener('pause', update);
+      audio.addEventListener('playing', update);
+
+      const touch = this.querySelector<HTMLButtonElement>('.pet-touch')!;
+      const track = this.querySelector<HTMLElement>('[data-track]')!;
+      const dialogue = this.querySelector<HTMLElement>('.pet-dialogue')!;
+      const text = this.querySelector('[data-dialogue-text]')!;
+      const instagram = this.querySelector<HTMLAnchorElement>('[data-instagram]');
+      const bubble = this.querySelector<HTMLElement>('.music-bubble')!;
+      const friendshipKey = 'saikat-pet-friendship';
+      let taps = 0;
+      try {
+        const saved = Number(sessionStorage.getItem(friendshipKey));
+        if (Number.isInteger(saved) && saved >= 0 && saved <= 5) taps = saved;
+      } catch { /* The interaction still works when session storage is blocked. */ }
+      let nextTapAt = 0;
+      let resetTimer: ReturnType<typeof setTimeout>;
+      const lines = [
+        'Excuse me? Personal space.',
+        'We’re not friends like that.',
+        'You’re very persistent…',
+        'Okay, maybe we’re friends now.',
+        'Wanna talk? 👀',
+      ];
+      const restoreMusic = () => {
+        // Give people time to reach and activate the revealed link.
+        if (bubble.matches(':hover') || bubble.contains(document.activeElement)) {
+          resetTimer = setTimeout(restoreMusic, 1000);
+          return;
+        }
+        dialogue.hidden = true;
+        track.hidden = false;
+        this.removeAttribute('data-reaction');
+      };
+      touch.disabled = false;
+      touch.addEventListener('click', () => {
+        const now = performance.now();
+        if (now < nextTapAt) return;
+        nextTapAt = now + 900;
+        const alreadyFriends = taps === 5;
+        taps = Math.min(taps + 1, 5);
+        try { sessionStorage.setItem(friendshipKey, String(taps)); } catch { /* Optional persistence. */ }
+        const message = alreadyFriends ? 'Oh, you’re back 🤍' : lines[taps - 1];
+        text.textContent = message;
+        status.textContent = message;
+        track.hidden = true;
+        dialogue.hidden = false;
+        if (instagram) instagram.hidden = taps < 5;
+        // Restart the short reaction on each accepted tap without touching the nod loop.
+        this.removeAttribute('data-reaction');
+        void touch.offsetWidth;
+        this.dataset.reaction = taps < 3 ? 'annoyed' : taps === 3 ? 'curious' : 'friendly';
+        clearTimeout(resetTimer);
+        resetTimer = setTimeout(restoreMusic, taps >= 5 ? 12000 : 6000);
+      });
+    }
+  }
+  if (!customElements.get('music-pet')) customElements.define('music-pet', MusicPet);
+</script>
