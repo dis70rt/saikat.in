@@ -20,7 +20,10 @@ const audioSrc = import.meta.env.PUBLIC_ATTENTION_AUDIO_URL || "/music/attention
   </div>
   <button class="pet-touch" type="button" disabled aria-label="Say hello to pixel Saikat">
     <span class="pet-sprite" aria-hidden="true"></span>
-    <span class="pet-grumble" aria-hidden="true">!</span>
+    <span class="pet-reaction" aria-hidden="true"></span>
+    <span class="pet-cue pet-stop-cue" aria-hidden="true">✋</span>
+    <span class="pet-cue pet-exclaim-cue" aria-hidden="true">❗</span>
+    <span class="pet-cue pet-eyes-cue" aria-hidden="true">👀</span>
     <span class="pet-hearts" aria-hidden="true">
       {[0, 1, 2].map(() => <svg viewBox="0 0 9 8"><path d="M1 0h2v1h3V0h2v1h1v3H8v1H7v1H6v1H5v1H4V7H3V6H2V5H1V4H0V1h1Z" /></svg>)}
     </span>
@@ -49,6 +52,21 @@ const audioSrc = import.meta.env.PUBLIC_ATTENTION_AUDIO_URL || "/music/attention
     image-rendering: pixelated;
     animation: pet-nod 1.12s steps(4) infinite;
   }
+  .pet-reaction {
+    position: absolute;
+    inset: 0;
+    background: url('/pet/reactions.webp') 0 0 / 500% 100% no-repeat;
+    background-position-x: calc(var(--pet-width) * var(--reaction-frame, 0) * -1);
+    image-rendering: pixelated;
+    opacity: 0;
+    transition: opacity 180ms ease-in-out;
+    pointer-events: none;
+  }
+  [data-phase="entering"] .pet-sprite { animation-play-state: paused; }
+  [data-phase="holding"] .pet-sprite,
+  [data-phase="returning"] .pet-sprite { animation: none; background-position: 0 0; }
+  [data-phase="entering"] .pet-reaction,
+  [data-phase="holding"] .pet-reaction { opacity: 1; }
   @keyframes pet-nod { to { background-position: calc(var(--pet-width) * -4) 0; } }
   .music-bubble {
     position: relative;
@@ -105,24 +123,32 @@ const audioSrc = import.meta.env.PUBLIC_ATTENTION_AUDIO_URL || "/music/attention
   .pet-dialogue { max-width: min(185px, calc(100vw - 105px)); font-size: 12px; line-height: 1.5; padding-block: 4px; }
   .pet-dialogue a { display: block; width: fit-content; color: hsl(var(--primary)); font-weight: 700; padding-block: 8px; }
   .pet-dialogue a:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
-  .pet-grumble, .pet-hearts { display: none; position: absolute; pointer-events: none; }
-  .pet-grumble { top: 12%; left: 6%; color: #edaaa3; font: bold 20px var(--app-font-mono, monospace); }
+  .pet-cue, .pet-hearts { opacity: 0; transition: opacity 180ms ease-out; position: absolute; pointer-events: none; }
+  .pet-cue { color: hsl(var(--primary)); filter: drop-shadow(2px 2px 0 hsl(var(--background))); }
+  .pet-stop-cue { top: 18%; left: -2px; color: #e8c88a; font: 24px/1 "Apple Color Emoji", "Segoe UI Emoji", sans-serif; transform: rotate(-10deg); }
+  .pet-exclaim-cue { top: 0; left: 1%; color: #edaaa3; font: 28px/1 "Apple Color Emoji", "Segoe UI Emoji", sans-serif; }
+  .pet-eyes-cue { top: 1%; right: -4px; color: #c7b4e8; font: 27px/1 "Apple Color Emoji", "Segoe UI Emoji", sans-serif; }
   .pet-hearts { inset: 0; color: #eebbc7; }
-  .pet-hearts svg { position: absolute; width: 12px; height: 12px; fill: currentColor; shape-rendering: crispEdges; animation: pet-heart 1.8s ease-in-out infinite; }
+  .pet-hearts svg { position: absolute; width: 12px; height: 12px; fill: currentColor; shape-rendering: crispEdges; }
   .pet-hearts svg:nth-child(1) { left: 4%; top: 24%; }
   .pet-hearts svg:nth-child(2) { right: 5%; top: 18%; animation-delay: -.6s; }
   .pet-hearts svg:nth-child(3) { right: 23%; top: 1%; animation-delay: -1.2s; width: 9px; }
-  [data-reaction="annoyed"] .pet-grumble { display: block; }
-  [data-reaction="annoyed"] .pet-sprite { animation-play-state: paused; }
-  [data-reaction="annoyed"] .pet-touch { animation: pet-huff .35s steps(3); }
-  [data-reaction="curious"] .pet-touch { animation: pet-soften .5s ease-out; }
-  [data-reaction="friendly"] .pet-hearts { display: block; }
-  @keyframes pet-huff { 25% { transform: translateX(-2px); } 75% { transform: translateX(2px); } }
-  @keyframes pet-soften { 50% { transform: translateY(-2px); } }
+  [data-reaction="skeptical"] .pet-stop-cue,
+  [data-reaction="annoyed"] .pet-exclaim-cue,
+  [data-reaction="curious"] .pet-eyes-cue { opacity: 1; }
+  [data-reaction="annoyed"] .pet-exclaim-cue { animation: pet-exclaim 1.2s steps(2) infinite; }
+  [data-reaction="curious"] .pet-eyes-cue { animation: pet-eyes 1.4s ease-in-out infinite; }
+  [data-reaction="friendly"] .pet-hearts,
+  [data-reaction="inviting"] .pet-hearts { opacity: 1; }
+  [data-reaction="friendly"] .pet-hearts svg,
+  [data-reaction="inviting"] .pet-hearts svg { animation: pet-heart 1.8s ease-in-out infinite; }
   @keyframes pet-heart { 50% { transform: translateY(-5px); opacity: .65; } }
+  @keyframes pet-exclaim { 50% { transform: translateY(-2px) scale(1.06); } }
+  @keyframes pet-eyes { 50% { transform: translateX(-2px); } }
   [hidden] { display: none !important; }
   @media (prefers-reduced-motion: reduce) {
     .pet-sprite, .pet-touch, .pet-hearts svg { animation: none !important; }
+    .pet-reaction, .pet-cue, .pet-hearts { transition: none; }
   }
 </style>
 
@@ -193,6 +219,38 @@ const audioSrc = import.meta.env.PUBLIC_ATTENTION_AUDIO_URL || "/music/attention
       } catch { /* The interaction still works when session storage is blocked. */ }
       let nextTapAt = 0;
       let resetTimer: ReturnType<typeof setTimeout>;
+      let settleTimer: ReturnType<typeof setTimeout>;
+      let reactionTimer: ReturnType<typeof setTimeout>;
+      let resumeTimer: ReturnType<typeof setTimeout>;
+      let reactionVersion = 0;
+      const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+      // Decode once so the first tap cannot reveal an unloaded expression.
+      const reactions = new Image();
+      reactions.src = '/pet/reactions.webp';
+      const reactionsReady = reactions.decode().then(() => true, () => false);
+      const showReaction = async (stage: number) => {
+        const version = ++reactionVersion;
+        clearTimeout(settleTimer);
+        clearTimeout(reactionTimer);
+        clearTimeout(resumeTimer);
+        if (!await reactionsReady || version !== reactionVersion || !this.isConnected) return;
+        this.style.setProperty('--reaction-frame', String(stage - 1));
+        this.dataset.reaction = ['skeptical', 'annoyed', 'curious', 'friendly', 'inviting'][stage - 1];
+        this.dataset.phase = reducedMotion.matches ? 'holding' : 'entering';
+        // Fade onto the static pose, then reset the hidden nod to its matching
+        // first frame. Body pixels in every reaction are identical to that frame.
+        settleTimer = setTimeout(() => {
+          this.dataset.phase = 'holding';
+        }, reducedMotion.matches ? 0 : 180);
+        reactionTimer = setTimeout(() => {
+          this.dataset.phase = 'returning';
+          this.removeAttribute('data-reaction');
+          resumeTimer = setTimeout(() => {
+            // Restart at neutral only after the expression has faded away.
+            this.removeAttribute('data-phase');
+          }, reducedMotion.matches ? 0 : 180);
+        }, stage >= 4 ? 3200 : 2600);
+      };
       const lines = [
         'Excuse me? Personal space.',
         'We’re not friends like that.',
@@ -208,7 +266,6 @@ const audioSrc = import.meta.env.PUBLIC_ATTENTION_AUDIO_URL || "/music/attention
         }
         dialogue.hidden = true;
         track.hidden = false;
-        this.removeAttribute('data-reaction');
       };
       touch.disabled = false;
       touch.addEventListener('click', () => {
@@ -224,10 +281,9 @@ const audioSrc = import.meta.env.PUBLIC_ATTENTION_AUDIO_URL || "/music/attention
         track.hidden = true;
         dialogue.hidden = false;
         if (instagram) instagram.hidden = taps < 5;
-        // Restart the short reaction on each accepted tap without touching the nod loop.
-        this.removeAttribute('data-reaction');
-        void touch.offsetWidth;
-        this.dataset.reaction = taps < 3 ? 'annoyed' : taps === 3 ? 'curious' : 'friendly';
+        // Pose timing is independent of the bubble: the pet resumes listening
+        // even while a visitor is reading or focusing the Instagram link.
+        void showReaction(taps);
         clearTimeout(resetTimer);
         resetTimer = setTimeout(restoreMusic, taps >= 5 ? 12000 : 6000);
       });
