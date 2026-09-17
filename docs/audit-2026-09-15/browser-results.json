@@ -1,0 +1,421 @@
+[
+  {
+    "name": "desktop",
+    "errors": [],
+    "metrics": {
+      "shellOpacity": "1",
+      "loader": false,
+      "navY": 37.1875,
+      "bodyWidth": 1440,
+      "innerWidth": 1440,
+      "canvas": true,
+      "resources": [
+        {
+          "name": "https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js",
+          "bytes": 29129
+        },
+        {
+          "name": "http://localhost:4321/_astro/ClientRouter.astro_astro_type_script_index_0_lang._uGr_JH5.js",
+          "bytes": 4747
+        },
+        {
+          "name": "http://localhost:4321/_astro/page.Fg5MKtB-.js",
+          "bytes": 47
+        },
+        {
+          "name": "http://localhost:4321/_astro/PixelBlast.astro_astro_type_script_index_0_lang.C8KhMl6G.js",
+          "bytes": 141162
+        },
+        {
+          "name": "http://localhost:4321/_astro/Layout.astro_astro_type_script_index_0_lang.DkP4duY9.js",
+          "bytes": 27645
+        },
+        {
+          "name": "http://localhost:4321/_astro/space-grotesk-latin-700-normal.RjhwGPKo.woff2",
+          "bytes": 12840
+        },
+        {
+          "name": "http://localhost:4321/_astro/space-grotesk-latin-600-normal.DjKNqYRj.woff2",
+          "bytes": 13284
+        },
+        {
+          "name": "http://localhost:4321/_astro/space-grotesk-latin-400-normal.CJ-V5oYT.woff2",
+          "bytes": 13388
+        },
+        {
+          "name": "http://localhost:4321/_astro/space-grotesk-latin-500-normal.lFbtlQH6.woff2",
+          "bytes": 13312
+        },
+        {
+          "name": "http://localhost:4321/_astro/jetbrains-mono-latin-500-normal.BWZEU5yA.woff2",
+          "bytes": 21832
+        },
+        {
+          "name": "http://localhost:4321/_astro/jetbrains-mono-latin-400-normal.V6pRDFza.woff2",
+          "bytes": 21168
+        },
+        {
+          "name": "http://localhost:4321/_astro/prefetch.CVbtM5u1.js",
+          "bytes": 1133
+        }
+      ],
+      "headings": [
+        "Saikat Das",
+        "About me",
+        "Experience",
+        "Education",
+        "Latest Projects",
+        "Latest Posts"
+      ],
+      "images": [
+        {
+          "src": "http://localhost:4321/_astro/avatar.j442X593_25H5EY.webp",
+          "width": 58,
+          "naturalWidth": 800
+        },
+        {
+          "src": "http://localhost:4321/_astro/copious.BJkDdhJF_1frogH.webp",
+          "width": 44,
+          "naturalWidth": 225
+        },
+        {
+          "src": "http://localhost:4321/_astro/vrajpath.CB0MztO0_1BeNub.webp",
+          "width": 35,
+          "naturalWidth": 200
+        },
+        {
+          "src": "http://localhost:4321/_astro/iit_bhu_logo.9-QuLBvi_Z1aq9V7.webp",
+          "width": 44,
+          "naturalWidth": 120
+        }
+      ]
+    },
+    "violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "count": 28,
+        "examples": [
+          {
+            "html": "<span>Varanasi, India</span>",
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.05 (foreground color: #788191, background color: #1f2228, font size: 9.9pt (13.2px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "html": "<p class=\"text-sm text-muted-foreground leading-relaxed\">I hate slow stuff</p>",
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.05 (foreground color: #788191, background color: #1f2228, font size: 11.5pt (15.4px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "html": "<a href=\"mailto:sd.saikat369@gmail.com\" class=\"hover:text-foreground transition-colors hover:text-[var(--tn-blue)]\">sd.saikat369@gmail.com</a>",
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.05 (foreground color: #788191, background color: #1f2228, font size: 9.9pt (13.2px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "mobile",
+    "errors": [],
+    "metrics": {
+      "shellOpacity": "1",
+      "loader": false,
+      "navY": 996.921875,
+      "bodyWidth": 375,
+      "innerWidth": 375,
+      "canvas": false,
+      "resources": [
+        {
+          "name": "https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js",
+          "bytes": 29129
+        },
+        {
+          "name": "http://localhost:4321/_astro/ClientRouter.astro_astro_type_script_index_0_lang._uGr_JH5.js",
+          "bytes": 4747
+        },
+        {
+          "name": "http://localhost:4321/_astro/page.Fg5MKtB-.js",
+          "bytes": 47
+        },
+        {
+          "name": "http://localhost:4321/_astro/Layout.astro_astro_type_script_index_0_lang.DkP4duY9.js",
+          "bytes": 27645
+        },
+        {
+          "name": "http://localhost:4321/_astro/PixelBlast.astro_astro_type_script_index_0_lang.C8KhMl6G.js",
+          "bytes": 141162
+        },
+        {
+          "name": "http://localhost:4321/_astro/prefetch.CVbtM5u1.js",
+          "bytes": 1133
+        },
+        {
+          "name": "http://localhost:4321/_astro/space-grotesk-latin-700-normal.RjhwGPKo.woff2",
+          "bytes": 12840
+        },
+        {
+          "name": "http://localhost:4321/_astro/space-grotesk-latin-600-normal.DjKNqYRj.woff2",
+          "bytes": 13284
+        },
+        {
+          "name": "http://localhost:4321/_astro/space-grotesk-latin-400-normal.CJ-V5oYT.woff2",
+          "bytes": 13388
+        },
+        {
+          "name": "http://localhost:4321/_astro/space-grotesk-latin-500-normal.lFbtlQH6.woff2",
+          "bytes": 13312
+        },
+        {
+          "name": "http://localhost:4321/_astro/jetbrains-mono-latin-500-normal.BWZEU5yA.woff2",
+          "bytes": 21832
+        }
+      ],
+      "headings": [
+        "Saikat Das",
+        "About me",
+        "Experience",
+        "Education",
+        "Latest Projects",
+        "Latest Posts"
+      ],
+      "images": [
+        {
+          "src": "http://localhost:4321/_astro/avatar.j442X593_25H5EY.webp",
+          "width": 49,
+          "naturalWidth": 800
+        },
+        {
+          "src": "http://localhost:4321/_astro/copious.BJkDdhJF_1frogH.webp",
+          "width": 44,
+          "naturalWidth": 225
+        },
+        {
+          "src": "http://localhost:4321/_astro/vrajpath.CB0MztO0_1BeNub.webp",
+          "width": 35,
+          "naturalWidth": 200
+        },
+        {
+          "src": "http://localhost:4321/_astro/iit_bhu_logo.9-QuLBvi_Z1aq9V7.webp",
+          "width": 44,
+          "naturalWidth": 0
+        }
+      ]
+    },
+    "violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "count": 33,
+        "examples": [
+          {
+            "html": "<p class=\"text-xs text-[var(--tn-blue)] mt-0.5 font-semibold uppercase tracking-wider\">Software Engineer</p>",
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.44 (foreground color: #6272a4, background color: #1e2029, font size: 9.9pt (13.2px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "html": "<span>Varanasi, India</span>",
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.35 (foreground color: #7c849c, background color: #1e2029, font size: 9.9pt (13.2px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "html": "<p class=\"text-sm text-muted-foreground leading-relaxed\">I hate slow stuff</p>",
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.35 (foreground color: #7c849c, background color: #1e2029, font size: 11.5pt (15.4px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "no-js",
+    "errors": [],
+    "metrics": {
+      "shellOpacity": "0",
+      "loader": true,
+      "navY": 996.921875,
+      "bodyWidth": 375,
+      "innerWidth": 375,
+      "canvas": false,
+      "resources": [
+        {
+          "name": "https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js",
+          "bytes": 0
+        },
+        {
+          "name": "http://localhost:4321/_astro/ClientRouter.astro_astro_type_script_index_0_lang._uGr_JH5.js",
+          "bytes": 0
+        },
+        {
+          "name": "http://localhost:4321/_astro/page.Fg5MKtB-.js",
+          "bytes": 0
+        },
+        {
+          "name": "http://localhost:4321/_astro/PixelBlast.astro_astro_type_script_index_0_lang.C8KhMl6G.js",
+          "bytes": 0
+        },
+        {
+          "name": "http://localhost:4321/_astro/Layout.astro_astro_type_script_index_0_lang.DkP4duY9.js",
+          "bytes": 0
+        },
+        {
+          "name": "http://localhost:4321/_astro/space-grotesk-latin-700-normal.RjhwGPKo.woff2",
+          "bytes": 12840
+        },
+        {
+          "name": "http://localhost:4321/_astro/space-grotesk-latin-600-normal.DjKNqYRj.woff2",
+          "bytes": 13284
+        },
+        {
+          "name": "http://localhost:4321/_astro/space-grotesk-latin-400-normal.CJ-V5oYT.woff2",
+          "bytes": 13388
+        },
+        {
+          "name": "http://localhost:4321/_astro/space-grotesk-latin-500-normal.lFbtlQH6.woff2",
+          "bytes": 13312
+        },
+        {
+          "name": "http://localhost:4321/_astro/jetbrains-mono-latin-500-normal.BWZEU5yA.woff2",
+          "bytes": 21832
+        }
+      ],
+      "headings": [
+        "Saikat Das",
+        "About me",
+        "Experience",
+        "Education",
+        "Latest Projects",
+        "Latest Posts"
+      ],
+      "images": [
+        {
+          "src": "http://localhost:4321/_astro/avatar.j442X593_25H5EY.webp",
+          "width": 49,
+          "naturalWidth": 800
+        },
+        {
+          "src": "http://localhost:4321/_astro/copious.BJkDdhJF_1frogH.webp",
+          "width": 44,
+          "naturalWidth": 225
+        },
+        {
+          "src": "http://localhost:4321/_astro/vrajpath.CB0MztO0_1BeNub.webp",
+          "width": 35,
+          "naturalWidth": 200
+        },
+        {
+          "src": "http://localhost:4321/_astro/iit_bhu_logo.9-QuLBvi_Z1aq9V7.webp",
+          "width": 44,
+          "naturalWidth": 120
+        }
+      ]
+    }
+  },
+  {
+    "name": "reduced",
+    "errors": [],
+    "metrics": {
+      "shellOpacity": "1",
+      "loader": false,
+      "navY": 37.1875,
+      "bodyWidth": 1440,
+      "innerWidth": 1440,
+      "canvas": true,
+      "resources": [
+        {
+          "name": "https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js",
+          "bytes": 29129
+        },
+        {
+          "name": "http://localhost:4321/_astro/ClientRouter.astro_astro_type_script_index_0_lang._uGr_JH5.js",
+          "bytes": 4747
+        },
+        {
+          "name": "http://localhost:4321/_astro/page.Fg5MKtB-.js",
+          "bytes": 47
+        },
+        {
+          "name": "http://localhost:4321/_astro/PixelBlast.astro_astro_type_script_index_0_lang.C8KhMl6G.js",
+          "bytes": 141162
+        },
+        {
+          "name": "http://localhost:4321/_astro/Layout.astro_astro_type_script_index_0_lang.DkP4duY9.js",
+          "bytes": 27645
+        },
+        {
+          "name": "http://localhost:4321/_astro/prefetch.CVbtM5u1.js",
+          "bytes": 1133
+        },
+        {
+          "name": "http://localhost:4321/_astro/space-grotesk-latin-700-normal.RjhwGPKo.woff2",
+          "bytes": 12840
+        },
+        {
+          "name": "http://localhost:4321/_astro/space-grotesk-latin-600-normal.DjKNqYRj.woff2",
+          "bytes": 13284
+        },
+        {
+          "name": "http://localhost:4321/_astro/space-grotesk-latin-400-normal.CJ-V5oYT.woff2",
+          "bytes": 13388
+        },
+        {
+          "name": "http://localhost:4321/_astro/space-grotesk-latin-500-normal.lFbtlQH6.woff2",
+          "bytes": 13312
+        },
+        {
+          "name": "http://localhost:4321/_astro/jetbrains-mono-latin-500-normal.BWZEU5yA.woff2",
+          "bytes": 21832
+        },
+        {
+          "name": "http://localhost:4321/_astro/jetbrains-mono-latin-400-normal.V6pRDFza.woff2",
+          "bytes": 21168
+        }
+      ],
+      "headings": [
+        "Saikat Das",
+        "About me",
+        "Experience",
+        "Education",
+        "Latest Projects",
+        "Latest Posts"
+      ],
+      "images": [
+        {
+          "src": "http://localhost:4321/_astro/avatar.j442X593_25H5EY.webp",
+          "width": 58,
+          "naturalWidth": 800
+        },
+        {
+          "src": "http://localhost:4321/_astro/copious.BJkDdhJF_1frogH.webp",
+          "width": 44,
+          "naturalWidth": 225
+        },
+        {
+          "src": "http://localhost:4321/_astro/vrajpath.CB0MztO0_1BeNub.webp",
+          "width": 35,
+          "naturalWidth": 200
+        },
+        {
+          "src": "http://localhost:4321/_astro/iit_bhu_logo.9-QuLBvi_Z1aq9V7.webp",
+          "width": 44,
+          "naturalWidth": 120
+        }
+      ]
+    },
+    "violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "count": 28,
+        "examples": [
+          {
+            "html": "<span>Varanasi, India</span>",
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.05 (foreground color: #788191, background color: #1f2228, font size: 9.9pt (13.2px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "html": "<p class=\"text-sm text-muted-foreground leading-relaxed\">I hate slow stuff</p>",
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.05 (foreground color: #788191, background color: #1f2228, font size: 11.5pt (15.4px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "html": "<a href=\"mailto:sd.saikat369@gmail.com\" class=\"hover:text-foreground transition-colors hover:text-[var(--tn-blue)]\">sd.saikat369@gmail.com</a>",
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.05 (foreground color: #788191, background color: #1f2228, font size: 9.9pt (13.2px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ]
+      }
+    ]
+  }
+]

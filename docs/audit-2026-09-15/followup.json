@@ -1,0 +1,189 @@
+[
+  {
+    "width": 375,
+    "route": "/",
+    "overflow": false,
+    "navY": 996.921875,
+    "opacity": "1",
+    "violations": [
+      {
+        "id": "color-contrast",
+        "count": 26
+      }
+    ]
+  },
+  {
+    "width": 375,
+    "route": "/projects/",
+    "overflow": false,
+    "navY": 996.921875,
+    "opacity": "1",
+    "violations": [
+      {
+        "id": "color-contrast",
+        "count": 59
+      }
+    ]
+  },
+  {
+    "width": 375,
+    "route": "/blog/",
+    "overflow": false,
+    "navY": 996.921875,
+    "opacity": "1",
+    "violations": [
+      {
+        "id": "color-contrast",
+        "count": 43
+      }
+    ]
+  },
+  {
+    "width": 375,
+    "route": "/journey/",
+    "overflow": false,
+    "navY": 996.921875,
+    "opacity": "1",
+    "violations": [
+      {
+        "id": "color-contrast",
+        "count": 64
+      }
+    ]
+  },
+  {
+    "width": 375,
+    "softNavigation": {
+      "url": "/projects",
+      "loader": false,
+      "opacity": "1",
+      "scrollY": 571
+    }
+  },
+  {
+    "width": 768,
+    "route": "/",
+    "overflow": false,
+    "navY": 984.203125,
+    "opacity": "1",
+    "violations": [
+      {
+        "id": "color-contrast",
+        "count": 34
+      }
+    ]
+  },
+  {
+    "width": 768,
+    "route": "/projects/",
+    "overflow": false,
+    "navY": 984.203125,
+    "opacity": "1",
+    "violations": [
+      {
+        "id": "color-contrast",
+        "count": 61
+      }
+    ]
+  },
+  {
+    "width": 768,
+    "route": "/blog/",
+    "overflow": false,
+    "navY": 984.203125,
+    "opacity": "1",
+    "violations": [
+      {
+        "id": "color-contrast",
+        "count": 43
+      }
+    ]
+  },
+  {
+    "width": 768,
+    "route": "/journey/",
+    "overflow": false,
+    "navY": 984.203125,
+    "opacity": "1",
+    "violations": [
+      {
+        "id": "color-contrast",
+        "count": 66
+      }
+    ]
+  },
+  {
+    "width": 768,
+    "softNavigation": {
+      "url": "/projects",
+      "loader": false,
+      "opacity": "1",
+      "scrollY": 558
+    }
+  },
+  {
+    "width": 1440,
+    "route": "/",
+    "overflow": false,
+    "navY": 37.1875,
+    "opacity": "1",
+    "violations": [
+      {
+        "id": "color-contrast",
+        "count": 24
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "route": "/projects/",
+    "overflow": false,
+    "navY": 37.1875,
+    "opacity": "1",
+    "violations": [
+      {
+        "id": "color-contrast",
+        "count": 28
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "route": "/blog/",
+    "overflow": false,
+    "navY": 37.1875,
+    "opacity": "1",
+    "violations": [
+      {
+        "id": "color-contrast",
+        "count": 40
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "route": "/journey/",
+    "overflow": false,
+    "navY": 37.1875,
+    "opacity": "1",
+    "violations": [
+      {
+        "id": "color-contrast",
+        "count": 36
+      },
+      {
+        "id": "scrollable-region-focusable",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "softNavigation": {
+      "url": "/projects",
+      "loader": false,
+      "opacity": "1",
+      "scrollY": 0
+    }
+  }
+]
